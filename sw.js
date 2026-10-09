@@ -1,6 +1,6 @@
 // Generated at build time. Precaches the app so it works offline.
-const CACHE = 'app-ce4ae8b3063d';
-const ASSETS = ["./","./assets/index-ClR_QoO8.js","./assets/atkinson-hyperlegible-next-latin-400-normal-FfmJh7DR.woff2","./assets/atkinson-hyperlegible-next-latin-700-normal-Dpiyiu63.woff2","./assets/atkinson-hyperlegible-next-latin-ext-400-normal-BalHKn7d.woff2","./assets/atkinson-hyperlegible-next-latin-ext-700-normal-CBw-mJf_.woff2","./assets/index-CtKTbDVN.css","./assets/literata-latin-600-normal-A9sHopYh.woff2","./assets/literata-latin-ext-600-normal-iLkdh2tW.woff2","./manifest.webmanifest","./icon.svg","./icon-180.png","./icon-192.png","./icon-512.png"];
+const CACHE = 'app-1ce6cc511745';
+const ASSETS = ["./","./assets/index-hQageBPO.js","./assets/atkinson-hyperlegible-next-latin-400-normal-FfmJh7DR.woff2","./assets/atkinson-hyperlegible-next-latin-700-normal-Dpiyiu63.woff2","./assets/atkinson-hyperlegible-next-latin-ext-400-normal-BalHKn7d.woff2","./assets/atkinson-hyperlegible-next-latin-ext-700-normal-CBw-mJf_.woff2","./assets/index-HbSFgODZ.css","./assets/literata-latin-600-normal-A9sHopYh.woff2","./assets/literata-latin-ext-600-normal-iLkdh2tW.woff2","./manifest.webmanifest","./icon.svg","./icon-180.png","./icon-192.png","./icon-512.png"];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
