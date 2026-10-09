@@ -31,7 +31,8 @@ export function LabGuide({ marker, onClose }: { marker: MarkerId | null; onClose
               <dt>{m.names[lang]}</dt>
               <dd>
                 <span class="small">{t('guide_also_printed')}: </span>
-                {[...new Set([m.lab_names.lt, m.lab_names.en, ...m.aliases])].filter((n) => n !== m.names[lang]).join(' · ')}
+                {[...new Set([m.lab_names.lt, m.lab_names.en, ...m.aliases])].filter((n) => n !== m.names[lang])
+                  .map((n, i) => <>{i > 0 && ' · '}<span class="nowrap">{n}</span></>)}
               </dd>
             </div>
           ))}

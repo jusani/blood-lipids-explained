@@ -259,3 +259,5 @@ dl.names > div { padding: 10px 12px; border-radius: 10px; background: var(--grou
 dl.names > div.on { border: 2px solid var(--accent); background: var(--accent-soft); }
 dl.names dt { font-weight: 700; }
 dl.names dd { margin: 2px 0 0; }
+
+.nowrap { white-space: nowrap; }
