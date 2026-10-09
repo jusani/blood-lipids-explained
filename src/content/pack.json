@@ -1,0 +1,3240 @@
+{
+  "manifest": {
+    "version": "2026.3",
+    "released": "2026-10-09",
+    "approved_by": "Justina",
+    "approved_date": "2026-10-09",
+    "approval_record": "Justina, evidence thread 2026-10-09 04:30 UTC: 'Yes' to approving 2026.3 (draft 3), which includes all of 2026.2-draft.1",
+    "supersedes": "2026.1",
+    "reviewed_by_clinician": null,
+    "languages": [
+      "en",
+      "lt"
+    ],
+    "lt_native_review": false,
+    "evidence_standard": "guideline_or_sr_of_rcts (architect); society consensus statements for lab thresholds only",
+    "sources_list": "evidence/sources.md",
+    "canary": "evidence/canary.yaml",
+    "placeholder": false,
+    "ui_languages": [
+      "lt",
+      "en"
+    ],
+    "imported_from": "evidence/content-pack-2026.3.yaml"
+  },
+  "display": {
+    "status_labels": false
+  },
+  "features": {
+    "accounts": false
+  },
+  "official_address": "jusani.github.io/blood-lipids-explained",
+  "feedback_email": "justina.aniulyte@gmail.com",
+  "markers": [
+    {
+      "id": "ldl",
+      "kind": "measured",
+      "names": {
+        "lt": "MTL cholesterolis",
+        "en": "LDL cholesterol"
+      },
+      "lab_names": {
+        "lt": "MTL cholesterolis",
+        "en": "LDL cholesterol"
+      },
+      "aliases": [
+        "MTL-C",
+        "LDL-C",
+        "LDL",
+        "MTL",
+        "Mažo tankio lipoproteinų cholesterolis"
+      ],
+      "mg_dl_factor": 38.67,
+      "display_order": 1,
+      "plausible": {
+        "min": 0.3,
+        "max": 15
+      },
+      "typical": {
+        "min": 0.5,
+        "max": 9
+      }
+    },
+    {
+      "id": "total",
+      "kind": "measured",
+      "names": {
+        "lt": "Bendrasis cholesterolis",
+        "en": "Total cholesterol"
+      },
+      "lab_names": {
+        "lt": "Cholesterolis",
+        "en": "Total cholesterol"
+      },
+      "aliases": [
+        "Bendras cholesterolis",
+        "Cholesterolis bendras",
+        "TC",
+        "CHOL"
+      ],
+      "mg_dl_factor": 38.67,
+      "display_order": 2,
+      "plausible": {
+        "min": 1,
+        "max": 25
+      },
+      "typical": {
+        "min": 2,
+        "max": 14
+      }
+    },
+    {
+      "id": "hdl",
+      "kind": "measured",
+      "names": {
+        "lt": "DTL cholesterolis",
+        "en": "HDL cholesterol"
+      },
+      "lab_names": {
+        "lt": "DTL cholesterolis",
+        "en": "HDL cholesterol"
+      },
+      "aliases": [
+        "DTL-C",
+        "HDL-C",
+        "HDL",
+        "DTL",
+        "Didelio tankio lipoproteinų cholesterolis"
+      ],
+      "mg_dl_factor": 38.67,
+      "display_order": 3,
+      "plausible": {
+        "min": 0.2,
+        "max": 5
+      },
+      "typical": {
+        "min": 0.4,
+        "max": 3.5
+      }
+    },
+    {
+      "id": "tg",
+      "kind": "measured",
+      "names": {
+        "lt": "Trigliceridai",
+        "en": "Triglycerides"
+      },
+      "lab_names": {
+        "lt": "Triacilgliceroliai",
+        "en": "Triglycerides"
+      },
+      "aliases": [
+        "TG",
+        "TAG",
+        "Trigliceridai"
+      ],
+      "mg_dl_factor": 88.6,
+      "display_order": 4,
+      "plausible": {
+        "min": 0.1,
+        "max": 100
+      },
+      "typical": {
+        "min": 0.3,
+        "max": 9.9
+      },
+      "ambiguous": {
+        "min": 10,
+        "max": 100
+      }
+    }
+  ],
+  "calculated": [
+    {
+      "id": "non_hdl",
+      "kind": "calculated",
+      "names": {
+        "lt": "Ne DTL cholesterolis",
+        "en": "Non-HDL cholesterol"
+      },
+      "formula": "total - hdl",
+      "display_order": 5
+    },
+    {
+      "id": "athero_index",
+      "kind": "calculated",
+      "names": {
+        "lt": "Aterogeniškumo koeficientas",
+        "en": "Atherogenic index"
+      },
+      "formula": "(total - hdl) / hdl",
+      "display_order": 6
+    }
+  ],
+  "bar_scale": {
+    "ldl": {
+      "min": 0,
+      "max": 7
+    },
+    "non_hdl": {
+      "min": 0,
+      "max": 7
+    },
+    "tg": {
+      "min": 0,
+      "max": 12
+    },
+    "hdl": {
+      "min": 0,
+      "max": 3
+    },
+    "total": {
+      "min": 0,
+      "max": 10
+    }
+  },
+  "source_types": [
+    "guideline",
+    "consensus_statement",
+    "systematic_review",
+    "meta_analysis",
+    "rct",
+    "observational",
+    "other"
+  ],
+  "sources": [
+    {
+      "id": "src_esc2019",
+      "citation": "Mach F, Baigent C, Catapano AL, et al. 2019 ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk. Eur Heart J. 2020;41(1):111-188.",
+      "correction_note": null,
+      "type": "guideline",
+      "doi": "10.1093/eurheartj/ehz455",
+      "open_link": "https://academic.oup.com/eurheartj/article/41/1/111/5556353",
+      "full_text_free": true,
+      "summary": {
+        "en": "The main European guideline on blood lipids. It sets the LDL goals and the triglyceride level linked with lower risk, and lists which lifestyle changes move which lipid.",
+        "lt": "Pagrindinės Europos kraujo lipidų gairės. Jose nustatyti MTL tikslai ir su mažesne rizika siejamas trigliceridų lygis, taip pat nurodyta, kurie gyvensenos pokyčiai veikia kuriuos lipidus."
+      },
+      "checked": "2026-10-07"
+    },
+    {
+      "id": "src_esc2025",
+      "citation": "Mach F, Koskinas KC, Roeters van Lennep JE, et al. 2025 Focused Update of the 2019 ESC/EAS Guidelines for the management of dyslipidaemias. Eur Heart J. 2025;46(42):4359-4378.",
+      "correction_note": null,
+      "type": "guideline",
+      "doi": "10.1093/eurheartj/ehaf190",
+      "open_link": "https://academic.oup.com/eurheartj/article/46/42/4359/8234482",
+      "full_text_free": true,
+      "summary": {
+        "en": "A 2025 update to the European guideline. It keeps the 2019 LDL goals and advises against supplements whose effect is not proven.",
+        "lt": "2025 m. Europos gairių atnaujinimas. Jame paliekami 2019 m. MTL tikslai ir nerekomenduojami papildai, kurių poveikis neįrodytas."
+      },
+      "checked": "2026-10-07"
+    },
+    {
+      "id": "src_acc_aha2018",
+      "citation": "Grundy SM, Stone NJ, Bailey AL, et al. 2018 AHA/ACC/AACVPR/AAPA/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Blood Cholesterol. Circulation. 2019;139(25):e1082-e1143.",
+      "correction_note": "Correction 2023 (older-adult age wording only; does not touch any value used here).",
+      "type": "guideline",
+      "doi": "10.1161/CIR.0000000000000625",
+      "open_link": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000625",
+      "full_text_free": true,
+      "summary": {
+        "en": "The main US guideline on blood cholesterol. We use it for the LDL and triglyceride levels at which it suggests acting with a doctor, and for converting mg/dL.",
+        "lt": "Pagrindinės JAV cholesterolio gairės. Iš jų imame MTL ir trigliceridų lygius, nuo kurių siūloma veikti kartu su gydytoju, ir mg/dl perskaičiavimą."
+      },
+      "checked": "2026-10-07"
+    },
+    {
+      "id": "src_nice_cg71",
+      "citation": "NICE. Familial hypercholesterolaemia: identification and management. Clinical guideline CG71. Published 27 August 2008, last updated 4 October 2019.",
+      "correction_note": null,
+      "type": "guideline",
+      "doi": null,
+      "open_link": "https://www.nice.org.uk/guidance/cg71",
+      "full_text_free": true,
+      "summary": {
+        "en": "The UK national guideline on inherited high cholesterol. We use it for the total cholesterol level and the family history that should prompt a check.",
+        "lt": "JK nacionalinės gairės dėl paveldimo didelio cholesterolio. Iš jų imame bendrojo cholesterolio lygį ir šeimos istoriją, dėl kurių verta pasitikrinti."
+      },
+      "checked": "2026-10-07"
+    },
+    {
+      "id": "src_eas_eflm2016",
+      "citation": "Nordestgaard BG, Langsted A, Mora S, et al. Fasting is not routinely required for determination of a lipid profile: clinical and laboratory implications including flagging at desirable concentration cut-points. A joint consensus statement from the European Atherosclerosis Society and European Federation of Clinical Chemistry and Laboratory Medicine. Eur Heart J. 2016;37(25):1944-1958.",
+      "correction_note": null,
+      "type": "consensus_statement",
+      "doi": "10.1093/eurheartj/ehw152",
+      "open_link": "https://academic.oup.com/eurheartj/article/37/25/1944/1748712",
+      "full_text_free": true,
+      "summary": {
+        "en": "Joint advice from European lipid and laboratory specialists. It explains that fasting is usually not needed and which results labs should flag.",
+        "lt": "Europos lipidų ir laboratorinės medicinos specialistų bendros rekomendacijos. Jose paaiškinta, kad nevalgyti prieš tyrimą paprastai nebūtina, ir kuriuos rezultatus laboratorijos turėtų pažymėti."
+      },
+      "checked": "2026-10-07"
+    },
+    {
+      "id": "src_eas2013_fh",
+      "citation": "Nordestgaard BG, Chapman MJ, Humphries SE, et al. Familial hypercholesterolaemia is underdiagnosed and undertreated in the general population: guidance for clinicians to prevent coronary heart disease. Consensus Statement of the European Atherosclerosis Society. Eur Heart J. 2013;34(45):3478-3490.",
+      "correction_note": null,
+      "type": "consensus_statement",
+      "doi": "10.1093/eurheartj/eht273",
+      "open_link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3844152",
+      "full_text_free": true,
+      "summary": {
+        "en": "A statement by European lipid specialists on inherited high cholesterol: how common it is and when to look for it.",
+        "lt": "Europos lipidų specialistų pareiškimas apie paveldimą didelį cholesterolį: kaip dažnai jis pasitaiko ir kada jo ieškoti."
+      },
+      "checked": "2026-10-07"
+    }
+  ],
+  "rules": {
+    "units": {
+      "mg_dl_rule": "either_cut_off_more_cautious",
+      "chol_mg_dl_per_mmol": 38.67,
+      "tg_mg_dl_per_mmol": 88.6,
+      "thresholds_in_entered_unit": true
+    },
+    "markers": [
+      {
+        "id": "ldl",
+        "kind": "measured",
+        "names": {
+          "en": "LDL cholesterol",
+          "lt": "MTL cholesterolis"
+        },
+        "plausible": {
+          "min": 0.3,
+          "max": 15
+        },
+        "headline": true,
+        "bar_scale": {
+          "min": 0,
+          "max": 7
+        },
+        "zones": [
+          {
+            "below": 2.6,
+            "below_mg_dl": 100,
+            "status": "usual",
+            "label": "zone_ldl_goal_moderate",
+            "claim": "claim_ldl_goals"
+          },
+          {
+            "below": 3,
+            "below_mg_dl": 116,
+            "status": "work_on",
+            "label": "zone_ldl_goal_low_only",
+            "claim": "claim_ldl_goals"
+          },
+          {
+            "below": 4.9,
+            "below_mg_dl": 190,
+            "status": "work_on",
+            "label": "zone_ldl_above_goals",
+            "claim": "claim_ldl_goals"
+          },
+          {
+            "from": 4.9,
+            "from_mg_dl": 190,
+            "status": "doctor",
+            "label": "zone_ldl_doctor",
+            "claim": "claim_fh_ldl_threshold"
+          }
+        ],
+        "guideline_text": "str_ldl_guideline",
+        "note": "The guideline gives LDL goals by risk group (3.0 low / 2.6 moderate / 1.8 high / 1.4 very high). The app cannot assess risk (MDR rule), so the bar shows the two goals for people without known disease and says a doctor decides which applies. Cautious default: \"usual\" (labels on) only below 2.6, not 3.0.\n"
+      },
+      {
+        "id": "non_hdl",
+        "kind": "calculated",
+        "formula": "total - hdl",
+        "zones": [
+          {
+            "below": 3.4,
+            "below_mg_dl": 130,
+            "status": "usual",
+            "label": "zone_nonhdl_goal_moderate",
+            "claim": "claim_nonhdl_goals"
+          },
+          {
+            "from": 3.4,
+            "from_mg_dl": 130,
+            "status": "work_on",
+            "label": "zone_nonhdl_above",
+            "claim": "claim_nonhdl_goals"
+          }
+        ],
+        "guideline_text": "str_nonhdl_guideline",
+        "note": "Guideline gives no non-HDL goal for low risk; 3.4 (moderate) is the highest goal it gives. No doctor zone: no source sets one."
+      },
+      {
+        "id": "tg",
+        "kind": "measured",
+        "plausible": {
+          "min": 0.1,
+          "max": 100
+        },
+        "bar_scale": {
+          "min": 0,
+          "max": 12
+        },
+        "zones": [
+          {
+            "below": 1.7,
+            "below_mg_dl": 150,
+            "status": "usual",
+            "label": "zone_tg_lower",
+            "claim": "claim_tg_lower_risk"
+          },
+          {
+            "below": 5.6,
+            "below_mg_dl": 500,
+            "status": "work_on",
+            "label": "zone_tg_above",
+            "claim": "claim_tg_lower_risk"
+          },
+          {
+            "below": 10,
+            "below_mg_dl": 880,
+            "status": "doctor",
+            "label": "zone_tg_doctor_weeks",
+            "claim": "claim_tg_high_doctor"
+          },
+          {
+            "from": 10,
+            "from_mg_dl": 880,
+            "status": "doctor",
+            "label": "zone_tg_doctor_soon",
+            "claim": "claim_tg_very_high"
+          }
+        ],
+        "guideline_text": "str_tg_guideline"
+      },
+      {
+        "id": "hdl",
+        "kind": "measured",
+        "sex_specific": false,
+        "zones": [
+          {
+            "below_or_equal": 1,
+            "below_or_equal_mg_dl": 40,
+            "status": "work_on",
+            "label": "zone_hdl_low_flag",
+            "claim": "claim_hdl_flag"
+          },
+          {
+            "above": 1,
+            "above_mg_dl": 40,
+            "status": "usual",
+            "label": "zone_hdl_above_flag",
+            "claim": "claim_hdl_flag"
+          }
+        ],
+        "guideline_text": "str_hdl_guideline",
+        "note": "ESC 2019 sets no HDL goal. The EAS/EFLM lab flag is ≤1.0; its Table 5 footnote allows sex-specific cut-offs but gives no number for women. Pass 2: a single 1.0 is the less cautious choice for women. No doctor flag depends on HDL. Open for Justina: keep 1.0 for everyone, or drop the HDL zones and show the value with the no-goal text only."
+      },
+      {
+        "id": "total",
+        "kind": "measured",
+        "zones": [
+          {
+            "below": 5,
+            "below_mg_dl": 190,
+            "status": "usual",
+            "label": "zone_total_below_flag",
+            "claim": "claim_total_flag"
+          },
+          {
+            "from": 5,
+            "from_mg_dl": 190,
+            "status": "work_on",
+            "label": "zone_total_flag",
+            "claim": "claim_total_flag"
+          },
+          {
+            "from": 7.5,
+            "from_mg_dl": 290,
+            "status": "doctor",
+            "label": "zone_total_doctor",
+            "claim": "claim_fh_total_threshold"
+          }
+        ],
+        "guideline_text": "str_total_guideline"
+      },
+      {
+        "id": "athero_index",
+        "kind": "calculated",
+        "formula": "(total - hdl) / hdl",
+        "zones": [],
+        "guideline_text": "str_athero_no_range"
+      }
+    ],
+    "flags": [
+      {
+        "id": "tg_very_high",
+        "when": "tg >= 10",
+        "when_mg_dl": "tg >= 880",
+        "severity": "doctor_soon",
+        "time_frame": "str_tf_soon",
+        "card": "flag_tg_very_high_card",
+        "blocks_lifestyle_first": true,
+        "claim": "claim_tg_very_high"
+      },
+      {
+        "id": "tg_high",
+        "when": "tg >= 5.6 and tg < 10",
+        "when_mg_dl": "tg >= 500 and tg < 880",
+        "severity": "doctor_weeks",
+        "time_frame": "str_tf_weeks",
+        "card": "flag_tg_high_card",
+        "claim": "claim_tg_high_doctor"
+      },
+      {
+        "id": "fh_by_ldl",
+        "when": "ldl >= 4.9 and on_chol_medicine != yes",
+        "when_mg_dl": "ldl >= 190 and on_chol_medicine != yes",
+        "severity": "doctor_weeks",
+        "time_frame": "str_tf_weeks",
+        "card": "flag_fh_by_ldl_card",
+        "repeat_before": [
+          "options"
+        ],
+        "claim": "claim_fh_ldl_threshold"
+      },
+      {
+        "id": "fh_by_ldl_on_medicine",
+        "when": "ldl >= 4.9 and on_chol_medicine == yes",
+        "when_mg_dl": "ldl >= 190 and on_chol_medicine == yes",
+        "severity": "doctor_weeks",
+        "time_frame": "str_tf_weeks",
+        "card": "flag_ldl_high_on_medicine_card",
+        "repeat_before": [
+          "options"
+        ],
+        "claim": "claim_fh_ldl_threshold"
+      },
+      {
+        "id": "fh_by_total",
+        "when": "total >= 7.5 and not flag(fh_by_ldl) and not flag(fh_by_ldl_on_medicine)",
+        "when_mg_dl": "total >= 290 and not flag(fh_by_ldl) and not flag(fh_by_ldl_on_medicine)",
+        "severity": "doctor_weeks",
+        "time_frame": "str_tf_weeks",
+        "card": "flag_fh_by_total_card",
+        "repeat_before": [
+          "options"
+        ],
+        "claim": "claim_fh_total_threshold"
+      },
+      {
+        "id": "fh_by_family",
+        "when": "(family_early_chd == yes or family_known_fh == yes) and not any_flag_of(fh_by_ldl, fh_by_ldl_on_medicine, fh_by_total)",
+        "severity": "doctor_weeks",
+        "time_frame": "str_tf_weeks",
+        "card": "flag_fh_by_family_card",
+        "repeat_before": [
+          "options"
+        ],
+        "claim": "claim_fh_family"
+      },
+      {
+        "id": "known_condition",
+        "when": "known_cvd_diabetes_ckd == yes",
+        "severity": "info",
+        "effect": {
+          "suppress_status": [
+            "ldl",
+            "non_hdl"
+          ]
+        },
+        "card": "note_doctor_sets_target",
+        "claim": "claim_ldl_goals"
+      },
+      {
+        "id": "ldl_calc_unreliable",
+        "when": "tg > 4.5 and ldl != null",
+        "severity": "info",
+        "attach_to": "ldl",
+        "card": "note_ldl_unreliable",
+        "claim": "claim_friedewald"
+      },
+      {
+        "id": "pregnancy",
+        "when": "pregnant == yes",
+        "severity": "info",
+        "effect": {
+          "hide": [
+            "plan",
+            "options"
+          ]
+        },
+        "card": "note_pregnancy",
+        "claim": "claim_pregnancy"
+      }
+    ],
+    "flags_display": {
+      "max_cards": 2,
+      "overflow": "more_to_discuss",
+      "order": [
+        "doctor_soon",
+        "doctor_weeks",
+        "info"
+      ]
+    },
+    "claims": [
+      {
+        "id": "claim_ldl_goals",
+        "text": [
+          "str_ldl_guideline",
+          "note_doctor_sets_target_lower_goals"
+        ],
+        "sources": [
+          "src_esc2019",
+          "src_esc2025"
+        ],
+        "evidence": "guideline",
+        "population": "adults; goals by cardiovascular risk group",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "For individuals at low risk, an LDL-C goal of <3.0 mmol/L (<116 mg/dL) may be considered.",
+            "locator": "p. 120, 'What is new' summary",
+            "number_in_quote": "3.0"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "For individuals at moderate risk, an LDL-C goal of <2.6 mmol/L (<100 mg/dL) should be considered.",
+            "locator": "p. 120, 'What is new' summary",
+            "number_in_quote": "2.6"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "For patients at high risk, an LDL-C reduction of ≥50% from baseline and an LDL-C goal of <1.8 mmol/L (<70 mg/dL) are recommended.",
+            "locator": "p. 120",
+            "number_in_quote": "1.8"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "For secondary prevention in very-high-risk patients, an LDL-C reduction of ≥50% from baseline and an LDL-C goal of <1.4 mmol/L (<55 mg/dL) are recommended.",
+            "locator": "p. 120",
+            "number_in_quote": "1.4"
+          },
+          {
+            "source": "src_esc2025",
+            "quote": "It is important to note that the LDL-C treatment goals (Figure 1) and therapeutic guidance (Table 4) for persons in each risk category have not changed from the 2019 ESC/EAS Guidelines.",
+            "locator": "§3",
+            "number_in_quote": null
+          }
+        ],
+        "cautious_default": "Bar boundary for 'in the guideline range' set at 2.6 (moderate-risk goal) rather than 3.0, because the app cannot tell who is low risk."
+      },
+      {
+        "id": "claim_nonhdl_goals",
+        "text": "str_nonhdl_guideline",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "population": "adults; very high / high / moderate risk",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Non-HDL-C secondary goals are <2.2, 2.6, and 3.4 mmol/L (<85, 100, and 130 mg/dL) for very-high-, high-, and moderate-risk people, respectively.",
+            "locator": "Table 7 / §6",
+            "number_in_quote": "3.4"
+          }
+        ]
+      },
+      {
+        "id": "claim_tg_lower_risk",
+        "text": "str_tg_guideline",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "population": "adults",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "No goal, but <1.7 mmol/L (<150 mg/dL) indicates lower risk and higher levels indicate a need to look for other risk factors.",
+            "locator": "Table 7, triglycerides row",
+            "number_in_quote": "1.7"
+          }
+        ]
+      },
+      {
+        "id": "claim_hdl_flag",
+        "text": "str_hdl_guideline",
+        "sources": [
+          "src_eas_eflm2016",
+          "src_esc2019"
+        ],
+        "evidence": "consensus_statement",
+        "population": "adults; lab flag, not a treatment goal",
+        "quotes": [
+          {
+            "source": "src_eas_eflm2016",
+            "quote": "HDL cholesterol ≤1 mmol/L (40 mg/dL)",
+            "locator": "Abstract, abnormal concentrations",
+            "number_in_quote": "1"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "To date, no specific goals for HDL-C or TG levels have been determined in clinical trials",
+            "locator": "§6",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_total_flag",
+        "text": "str_total_guideline",
+        "sources": [
+          "src_eas_eflm2016"
+        ],
+        "evidence": "consensus_statement",
+        "population": "adults; lab flag, not a treatment goal",
+        "quotes": [
+          {
+            "source": "src_eas_eflm2016",
+            "quote": "total cholesterol ≥5 mmol/L (190 mg/dL)",
+            "locator": "Abstract, abnormal concentrations",
+            "number_in_quote": "5"
+          }
+        ]
+      },
+      {
+        "id": "claim_tg_very_high",
+        "text": "flag_tg_very_high_card",
+        "sources": [
+          "src_esc2019",
+          "src_eas_eflm2016"
+        ],
+        "evidence": "guideline",
+        "population": "adults, any sample",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "The risk of pancreatitis is clinically significant if TGs are >10 mmol/L (880 mg/dL)",
+            "locator": "§9.1.4.1",
+            "number_in_quote": "10"
+          },
+          {
+            "source": "src_eas_eflm2016",
+            "quote": "Life-threatening concentrations require separate referral when triglycerides >10 mmol/L (880 mg/dL) for the risk of pancreatitis",
+            "locator": "Abstract",
+            "number_in_quote": "10"
+          }
+        ],
+        "cautious_default": "Sources say >10 (880 mg/dL); the app flags at 10 or higher (sends people sooner), and the card says so. Time frame 'today or tomorrow' is in no source: cautious default from design."
+      },
+      {
+        "id": "claim_tg_high_doctor",
+        "text": "flag_tg_high_card",
+        "sources": [
+          "src_acc_aha2018"
+        ],
+        "evidence": "guideline",
+        "population": "adults, fasting",
+        "quotes": [
+          {
+            "source": "src_acc_aha2018",
+            "quote": "Elevations of chylomicrons typically are present when triglycerides are ≥500 mg/dL (≥5.6 mmol/L), and chylomicronemia may cause acute pancreatitis.",
+            "locator": "§4.5.2, supportive text 4",
+            "number_in_quote": "5.6"
+          },
+          {
+            "source": "src_acc_aha2018",
+            "quote": "To prevent acute pancreatitis, it is reasonable to reduce triglycerides whenever levels exceed 500 mg/dL (5.6 mmol/L).",
+            "locator": "§4.5.2, supportive text 4",
+            "number_in_quote": "5.6"
+          },
+          {
+            "source": "src_eas_eflm2016",
+            "quote": "When non-fasting plasma triglyceride concentration >5 mmol/L (440 mg/dL), consideration should be given to repeating the lipid profile in the fasting state",
+            "locator": "Table 1, key recommendations",
+            "number_in_quote": "5"
+          }
+        ],
+        "cautious_default": "Time frame 'in the next few weeks' is in no source: cautious default from design. The 5.6 level is defined on fasting samples; the app applies it to any sample, which flags more people (cautious). The doctor can repeat a fasting test."
+      },
+      {
+        "id": "claim_fh_ldl_threshold",
+        "text": "flag_fh_by_ldl_card",
+        "sources": [
+          "src_acc_aha2018",
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "population": "adults",
+        "quotes": [
+          {
+            "source": "src_acc_aha2018",
+            "quote": "Severe Hypercholesterolemia (LDL-C ≥190 mg/dL [≥4.9 mmol/L])",
+            "locator": "§4.2 heading",
+            "number_in_quote": "4.9"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "in people with severely elevated LDL-C [in adults >5 mmol/L (>190 mg/dL), in children >4 mmol/L (>150 mg/dL)], and in first-degree relatives of FH patients.",
+            "locator": "§9.1.2.1, p. 150",
+            "number_in_quote": "190"
+          }
+        ],
+        "cautious_default": "ESC 2019 says >5 mmol/L (>190 mg/dL); AHA/ACC 2018 says ≥4.9 (≥190 mg/dL). The app uses ≥4.9, the lower. The card names no condition."
+      },
+      {
+        "id": "claim_fh_total_threshold",
+        "text": "flag_fh_by_total_card",
+        "sources": [
+          "src_nice_cg71",
+          "src_eas2013_fh"
+        ],
+        "evidence": "guideline",
+        "population": "adults",
+        "quotes": [
+          {
+            "source": "src_nice_cg71",
+            "quote": "a total cholesterol level greater than 7.5 mmol/l",
+            "locator": "Recommendation 1.1.1",
+            "number_in_quote": "7.5"
+          },
+          {
+            "source": "src_eas2013_fh",
+            "quote": "plasma cholesterol level in an adult ≥8 mmol/L(≥310 mg/dL)",
+            "locator": "Abstract",
+            "number_in_quote": "8"
+          }
+        ],
+        "cautious_default": "NICE says >7.5; EAS 2013 says ≥8. The app uses ≥7.5, the most cautious, and the card says '7.5 or higher' (draft 4). NICE 1.1.1 applies total cholesterol on its own, so the rule also fires when LDL is known and below 4.9 (QA question 3 for the clinician)."
+      },
+      {
+        "id": "claim_fh_family",
+        "text": "flag_fh_by_family_card",
+        "sources": [
+          "src_nice_cg71",
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "population": "adults with a parent, brother, sister or child who had heart disease young, or a relative with known FH",
+        "quotes": [
+          {
+            "source": "src_nice_cg71",
+            "quote": "a personal or family history of premature coronary heart disease (an event before 60 years in an index individual or first-degree relative).",
+            "locator": "Recommendation 1.1.1",
+            "number_in_quote": "60"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "in people with relatives with premature fatal or non-fatal CVD",
+            "locator": "§9.1.2.1, p. 150",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "and in first-degree relatives of FH patients.",
+            "locator": "§9.1.2.1, p. 150",
+            "number_in_quote": null
+          }
+        ],
+        "note": "Supports the S4 question wording 'before 60' for a parent, brother, sister or child."
+      },
+      {
+        "id": "claim_friedewald",
+        "text": "note_ldl_unreliable",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "With high TG values (>4.5 mmol/L or >400 mg/dL) the formula cannot be used.",
+            "locator": "§5.4.2",
+            "number_in_quote": "4.5"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "ApoB analysis is recommended for risk assessment, particularly in people with high TG levels",
+            "locator": "§5 recommendations",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_pregnancy",
+        "text": "note_pregnancy",
+        "sources": [
+          "src_acc_aha2018"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_acc_aha2018",
+            "quote": "Both cholesterol and triglycerides rise with pregnancy",
+            "locator": "§4.5.3, women",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_conv_chol",
+        "text": null,
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Cholesterol: 1 mmol/L = 38.67 mg/dL.",
+            "locator": "Figure 2 caption (SCORE chart)",
+            "number_in_quote": "38.67"
+          }
+        ]
+      },
+      {
+        "id": "claim_conv_tg",
+        "text": null,
+        "sources": [
+          "src_acc_aha2018"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_acc_aha2018",
+            "quote": "To convert to mmol/L, the values in mg/dL for TC, LDL-C, HDL-C, and non–HDL-C were divided by 38.6 and for triglycerides, by 88.6.",
+            "locator": "§1.1 methods, PDF p. 5 (applies to the whole guideline)",
+            "number_in_quote": "88.6"
+          }
+        ],
+        "note": "No stored source states 88.57. Using 88.6 changes a converted value by under 0.05%."
+      },
+      {
+        "id": "claim_non_fasting",
+        "text": "str_fasting_fact",
+        "sources": [
+          "src_eas_eflm2016",
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "For general risk screening, non-fasting samples seem to have at least the same prognostic value as fasting samples.",
+            "locator": "§5.4.3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_eas_eflm2016",
+            "quote": "Fasting is not routinely required for determination of a lipid profile",
+            "locator": "Title",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_fh_prevalence",
+        "text": "str_fh_prevalence",
+        "sources": [
+          "src_eas2013_fh"
+        ],
+        "evidence": "consensus_statement",
+        "quotes": [
+          {
+            "source": "src_eas2013_fh",
+            "quote": "Based on prevalences between 1/500 and 1/200, between 14 and 34 million individuals worldwide have FH.",
+            "locator": "Abstract",
+            "number_in_quote": "1/200"
+          }
+        ],
+        "note": "General 'Why might it be high?' screen only, never next to a person's numbers (QA A3). Not a lab threshold, so under the strict rule this needs Justina's OK on consensus statements, or it is dropped."
+      },
+      {
+        "id": "claim_ldl_events",
+        "text": "str_why_ldl_matters",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "for each 1 mmol/L reduction in LDL-C, statin/more statin reduced major vascular events (MI, CAD death, or any stroke or coronary revascularization) by 22%",
+            "locator": "§8.1, CTT meta-analysis",
+            "number_in_quote": "22%"
+          }
+        ],
+        "note": "Statin trials. Shown without a number and never on habit screens (QA)."
+      },
+      {
+        "id": "claim_satfat_ldl",
+        "text": "effect_ldl_swap_sat_fat",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Reduce dietary saturated fats",
+            "locator": "Table 8, 'reduce TC and LDL-C' block: ++, level A",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "The magnitude of the effect (+++ = >10%, ++ = 5–10%, + = <5%)",
+            "locator": "Table 8 footnote",
+            "number_in_quote": "5–10%"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Unsaturated fat-rich oils from safflower, sunflower, rapeseed, flaxseed, corn, olives, or soybean were shown to reduce LDL-C levels (-0.42 to -0.20 mmol/L) when used in substitution of SFA-rich foods like butter or lard.",
+            "locator": "§7.1",
+            "number_in_quote": "0.42"
+          }
+        ],
+        "note": "'LDL often 5–10% lower' is back: ESC Table 8 rates this change '++' = 5–10%. Hooper 2020 no longer needed."
+      },
+      {
+        "id": "claim_fibre_ldl",
+        "text": "effect_ldl_oats",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Available evidence consistently demonstrates a TC- and LDL-C-lowering effect of β-glucan, a viscous fibre from oat and barley.",
+            "locator": "§7.5.3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "the dosage needed to achieve a clinically relevant reduction in levels of LDL-C of 3–5% varies from 3–10 g per day according to the specific type of fibre.",
+            "locator": "§7.5.3",
+            "number_in_quote": "3–5%"
+          }
+        ],
+        "note": "Replaces Whitehead 2014 (no stored copy) as the carrying source. The 3–5% applies to oat and barley (β-glucan) fibre at 3–10 g a day; the cards say so."
+      },
+      {
+        "id": "claim_alcohol_tg",
+        "text": "effect_tg_alcohol",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Alcohol intake has a [...] major impact on TG levels, particularly in individuals with HTG.",
+            "locator": "§7.2 (crosses page 134 to 135)",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Reduce alcohol intake",
+            "locator": "Table 8, 'reduce TG' block: +++ (>10%), level A",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_sugar_tg",
+        "text": "effect_tg_sweet_drinks",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Soft drinks should be used with moderation by the general population, and should be drastically limited in those individuals with elevated TG values or visceral adiposity.",
+            "locator": "§7.4.3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Reduce intake of mono- and disaccharides",
+            "locator": "Table 8, 'reduce TG' block: ++, level B",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_weight_tg",
+        "text": "effect_tg_weight",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Weight reduction improves insulin sensitivity and decreases TG levels.",
+            "locator": "§7.2",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_exercise_tg_hdl",
+        "text": "effect_tg_exercise",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Regular physical exercise reduces plasma TG levels over and above the effect of weight reduction.",
+            "locator": "§7.2",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Increase habitual physical activity",
+            "locator": "Table 8, 'reduce TC and LDL-C' block: + (<5%), level B",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Aerobic physical activity, such as 25–30 km of brisk walking per week (or any equivalent activity), may increase HDL-C levels by 0.08–0.15 mmol/L (3.1–6 mg/dL).",
+            "locator": "§7.3",
+            "number_in_quote": "0.08–0.15"
+          }
+        ]
+      },
+      {
+        "id": "claim_smoking",
+        "text": "effect_smoking_vessels",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Smoking cessation has clear benefits regarding overall CV risk, and specifically on HDL-C levels.",
+            "locator": "§7.4.5",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Smoking cessation may also contribute to HDL-C elevation, provided that weight gain is prevented.",
+            "locator": "§7.3",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_supplements",
+        "text": "str_supplements_answer",
+        "sources": [
+          "src_esc2025"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2025",
+            "quote": "Dietary supplements or vitamins without documented safety and significant LDL-C-lowering efficacy are not recommended to lower the risk of [...] ASCVD.",
+            "locator": "Recommendation Table 8 (Class III, Level B; class/level cells interrupt the text)",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_family_testing",
+        "text": "str_family_may_test",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Once the index case is diagnosed, family cascade screening is recommended.",
+            "locator": "§9.1.2.1, p. 150",
+            "number_in_quote": null
+          }
+        ],
+        "note": "Supports testing relatives only once a doctor has diagnosed inherited high cholesterol in a family member (pass 2 fix)."
+      },
+      {
+        "id": "claim_transfat",
+        "text": "lever_avoid_trans_fat_text",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Quantitatively, dietary trans fatty acids have a similar elevating effect on LDL-C to that of SFAs; however, while SFAs increase HDL-C levels, trans fats decrease them.",
+            "locator": "§7.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Avoid dietary trans fats",
+            "locator": "Table 8: ++ (5–10%) level A for LDL-C, ++ level A for HDL-C",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "‘Partially hydrogenated fatty acids’ of industrial origin represent the major source of trans fatty acids in the diet",
+            "locator": "§7.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Trans fats and hard margarines",
+            "locator": "Table 9, cooking fat row, column 'to be chosen occasionally in limited amounts', marked '(better to avoid them)'",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_fibre_foods",
+        "text": "lever_more_fibre_text",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Dietary fibre (particularly of the soluble type)—which is present in legumes, fruits, vegetables, and wholegrain cereals (e.g. oats and barley)—has a hypocholesterolaemic effect",
+            "locator": "§7.4.3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Increase dietary fibre",
+            "locator": "Table 8: ++ (5–10%) level A for LDL-C",
+            "number_in_quote": null
+          }
+        ],
+        "note": "The 3–5% shown on the card comes from claim_fibre_ldl (§7.5.3, at 3–10 g fibre a day). Table 8's '++' is the broader 'increase dietary fibre'; the card uses the smaller, more specific figure so oats are not overstated (QA A4)."
+      },
+      {
+        "id": "claim_weight_lipids",
+        "text": "lever_lose_weight_text",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Weight reduction increases HDL-C levels; a 0.01 mmol/L (0.4 mg/dL) increase is observed for every kilogram decrease in body weight when weight reduction has stabilized.",
+            "locator": "§7.3",
+            "number_in_quote": "0.01"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Body weight reduction also influences TC and LDL-C levels, but the magnitude of the effect is small",
+            "locator": "§7.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Reduce excessive body weight",
+            "locator": "Table 8: LDL-C ++ A; TG + A; HDL-C ++ A",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_retest_interval",
+        "text": "str_retest_no_interval",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Response to therapy can be assessed at 6–8 weeks from initiation of therapy, but response to lifestyle may take longer.",
+            "locator": "§11",
+            "number_in_quote": "6–8"
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Recommendations stem from consensus rather than evidence-based medicine.",
+            "locator": "§11",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_acc_aha2018",
+            "quote": "Adherence to changes in lifestyle and effects of LDL-C–lowering medication should be assessed by measurement of fasting lipids and appropriate safety indicators 4 to 12 weeks after statin initiation or dose adjustment",
+            "locator": "§4.4.3, COR I, LOE A",
+            "number_in_quote": "4 to 12"
+          }
+        ],
+        "note": "No stored source sets a re-test interval for lifestyle change. ESC's 8 (±4) weeks and AHA/ACC's 4–12 weeks are for after starting or changing medicine (AHA/ACC names lifestyle too, but its clock starts at the statin). The only lifestyle-only window, AHA/ACC's \"3 to 6 months of lifestyle therapy\", is for children with very high LDL before a statin decision, not an adult re-test. ESC says lifestyle response \"may take longer\". So the pack sets no interval: the person picks their own date (ideally with their doctor). The date picker starts empty, with no pre-filled suggestion (QA LV1).\n"
+      },
+      {
+        "id": "claim_test_variation",
+        "text": "str_before_after_variation",
+        "status": "blocked_no_quote",
+        "note": "No stored source gives a number for test-to-test variation. Before/after shows numbers and the difference only."
+      }
+    ],
+    "levers": [
+      {
+        "id": "swap_sat_fat",
+        "helps": {
+          "ldl": "++",
+          "total": "++",
+          "non_hdl": "++",
+          "tg": "+"
+        },
+        "evidence": "guideline",
+        "effort": "small",
+        "title": "lever_swap_sat_fat_title",
+        "text": "effect_ldl_swap_sat_fat",
+        "claim": "claim_satfat_ldl"
+      },
+      {
+        "id": "more_fibre",
+        "helps": {
+          "ldl": "++",
+          "total": "++",
+          "non_hdl": "++"
+        },
+        "evidence": "guideline",
+        "effort": "small",
+        "title": "lever_more_fibre_title",
+        "text": "lever_more_fibre_text",
+        "claim": [
+          "claim_fibre_ldl",
+          "claim_fibre_foods"
+        ]
+      },
+      {
+        "id": "avoid_trans_fat",
+        "helps": {
+          "ldl": "++",
+          "total": "++",
+          "non_hdl": "++",
+          "hdl": "++"
+        },
+        "evidence": "guideline",
+        "effort": "small",
+        "title": "lever_avoid_trans_fat_title",
+        "text": "lever_avoid_trans_fat_text",
+        "claim": "claim_transfat"
+      },
+      {
+        "id": "less_alcohol",
+        "helps": {
+          "tg": "+++"
+        },
+        "evidence": "guideline",
+        "effort": "small",
+        "title": "lever_less_alcohol_title",
+        "text": "effect_tg_alcohol",
+        "claim": "claim_alcohol_tg"
+      },
+      {
+        "id": "cut_sweet_drinks",
+        "helps": {
+          "tg": "++"
+        },
+        "evidence": "guideline",
+        "effort": "small",
+        "title": "lever_cut_sweet_drinks_title",
+        "text": "effect_tg_sweet_drinks",
+        "claim": "claim_sugar_tg"
+      },
+      {
+        "id": "move_more",
+        "helps": {
+          "tg": "++",
+          "hdl": "+++",
+          "ldl": "+",
+          "total": "+",
+          "non_hdl": "+"
+        },
+        "evidence": "guideline",
+        "effort": "medium",
+        "title": "lever_move_more_title",
+        "text": "effect_tg_exercise",
+        "claim": "claim_exercise_tg_hdl"
+      },
+      {
+        "id": "lose_weight",
+        "helps": {
+          "ldl": "+",
+          "total": "+",
+          "non_hdl": "++",
+          "tg": "+",
+          "hdl": "++"
+        },
+        "evidence": "guideline",
+        "effort": "large",
+        "title": "lever_lose_weight_title",
+        "text": "lever_lose_weight_text",
+        "claim": [
+          "claim_weight_lipids",
+          "claim_weight_tg"
+        ]
+      },
+      {
+        "id": "stop_smoking",
+        "helps": {
+          "hdl": "+"
+        },
+        "evidence": "guideline",
+        "effort": "large",
+        "title": "lever_stop_smoking_title",
+        "text": "effect_smoking_vessels",
+        "claim": "claim_smoking"
+      }
+    ],
+    "levers_config": {
+      "ordering": "1. levers helping a marker outside its guideline range, markers in fixed order tg (doctor zones) > ldl > total > non_hdl > tg > hdl; 2. higher Table 8 magnitude for that marker; 3. effort small > medium > large",
+      "use_answers": false,
+      "show_only_when_out_of_range": [
+        "ldl",
+        "non_hdl",
+        "total",
+        "tg"
+      ],
+      "rank_last": [
+        "avoid_trans_fat"
+      ],
+      "show": {
+        "min": 3,
+        "max": 5
+      },
+      "never_offer": [
+        "supplements"
+      ],
+      "heading": "lever_heading",
+      "note_with_doctor_flag": "lever_alongside_doctor",
+      "note_on_medicine": "lever_alongside_medicine",
+      "note": "Supplements: answered on request only by str_supplements_answer (claim_supplements)."
+    },
+    "retest": {
+      "interval_weeks": null,
+      "person_picks_date": true,
+      "suggested_weeks": null,
+      "text": "str_retest_no_interval"
+    }
+  },
+  "lint": {
+    "forbidden": {
+      "en": [
+        "you have",
+        "you probably",
+        "your risk",
+        "at risk",
+        "risk score",
+        "heart age",
+        "stop taking",
+        "stop your",
+        "pause your",
+        "cut down your dose",
+        "reduce your dose",
+        "lower your dose",
+        "instead of medicine",
+        "instead of your medicine",
+        "no longer need",
+        "come off",
+        "danger",
+        "alarming",
+        "normal",
+        "safe",
+        "healthy level",
+        "nothing to worry",
+        "good cholesterol",
+        "bad cholesterol",
+        "!"
+      ],
+      "lt": [
+        "jūs sergate",
+        "tikriausiai sergate",
+        "jūsų rizik",
+        "rizikos bal",
+        "rizikos grupė",
+        "širdies amžius",
+        "nutraukti",
+        "nutraukite",
+        "nebevartok",
+        "nebevartoti",
+        "sumažinti dozę",
+        "sumažinkite dozę",
+        "mažinti dozę",
+        "pakeisti vaist",
+        "pakeiskite vaist",
+        "vietoj vaist",
+        "mesti vartoti",
+        "metę vartoti",
+        "pavoj",
+        "normal",
+        "saugu",
+        "sveikas lygis",
+        "nėra ko nerimauti",
+        "gerasis",
+        "blogasis",
+        "!"
+      ]
+    },
+    "allowed_phrases": {
+      "en": [
+        "told you that you have",
+        "told them that they have",
+        "if you have strong belly pain"
+      ],
+      "lt": []
+    }
+  },
+  "strings": {
+    "app_name": {
+      "en": "Blood Lipids Explained",
+      "lt": "Kraujo lipidai paprastai"
+    },
+    "back": {
+      "en": "Back",
+      "lt": "Atgal"
+    },
+    "more": {
+      "en": "More",
+      "lt": "Daugiau"
+    },
+    "continue": {
+      "en": "Continue",
+      "lt": "Toliau"
+    },
+    "text_size": {
+      "en": "Text size",
+      "lt": "Teksto dydis"
+    },
+    "text_size_1": {
+      "en": "Standard",
+      "lt": "Įprastas"
+    },
+    "text_size_2": {
+      "en": "Larger",
+      "lt": "Didesnis"
+    },
+    "text_size_3": {
+      "en": "Largest",
+      "lt": "Didžiausias"
+    },
+    "language": {
+      "en": "Language",
+      "lt": "Kalba"
+    },
+    "switch_language": {
+      "en": "Change language",
+      "lt": "Keisti kalbą"
+    },
+    "preview_banner": {
+      "en": "Preview for testing. The content is not checked yet, so please use example numbers, not your own.",
+      "lt": "Bandomoji versija. Turinys dar nepatikrintas, todėl naudokite pavyzdinius skaičius, ne savo."
+    },
+    "trust_line": {
+      "en": "Not a medical advisor and not a diagnosis. This app shares published guidelines in short form; open the sources to read them yourself. Not reviewed by a doctor.",
+      "lt": "Tai ne medicinos patarėja ir ne diagnozė. Programėlė trumpai perteikia paskelbtas gaires; atsiverskite šaltinius ir perskaitykite juos patys. Gydytojo neperžiūrėta."
+    },
+    "sources": {
+      "en": "Sources",
+      "lt": "Šaltiniai"
+    },
+    "welcome_title": {
+      "en": "Understand your cholesterol results in plain words.",
+      "lt": "Supraskite savo cholesterolio tyrimo rezultatus paprastais žodžiais."
+    },
+    "welcome_sub": {
+      "en": "Type in the numbers from your lab sheet. We'll explain what they mean, which one matters most, and when published guidelines suggest talking to a doctor.",
+      "lt": "Įveskite skaičius iš tyrimo lapo. Paaiškinsime, ką jie reiškia, kuris svarbiausias ir kada paskelbtos gairės siūlo pasikalbėti su gydytoju."
+    },
+    "explain_btn": {
+      "en": "Explain my results",
+      "lt": "Paaiškinti mano rezultatus"
+    },
+    "promise_free": {
+      "en": "Free, made by volunteers, no ads",
+      "lt": "Nemokama, sukurta savanorių, be reklamų"
+    },
+    "promise_data": {
+      "en": "No account needed. Your numbers stay on this phone",
+      "lt": "Paskyros nereikia. Jūsų skaičiai lieka šiame telefone"
+    },
+    "promise_edu": {
+      "en": "Not a medical advisor: shares published guidelines in plain words, with links to read them yourself",
+      "lt": "Ne medicinos patarėja: paprastai perteikia paskelbtas gaires su nuorodomis, kad galėtumėte jas perskaityti patys"
+    },
+    "adults_only": {
+      "en": "For adults 18 and over",
+      "lt": "Suaugusiesiems nuo 18 metų"
+    },
+    "official_address": {
+      "en": "Official address: {address}",
+      "lt": "Oficialus adresas: {address}"
+    },
+    "saved_results_title": {
+      "en": "Saved on this phone",
+      "lt": "Išsaugota šiame telefone"
+    },
+    "saved_result_row": {
+      "en": "Test of {date}",
+      "lt": "{date} tyrimas"
+    },
+    "date_not_known": {
+      "en": "Test date not known",
+      "lt": "Tyrimo data nežinoma"
+    },
+    "whose_title": {
+      "en": "Whose results are these?",
+      "lt": "Kieno tai rezultatai?"
+    },
+    "whose_self": {
+      "en": "My own results",
+      "lt": "Mano rezultatai"
+    },
+    "whose_self_sub": {
+      "en": "I'll get an explanation of my numbers.",
+      "lt": "Gausiu savo skaičių paaiškinimą."
+    },
+    "whose_helper": {
+      "en": "Someone I'm helping",
+      "lt": "Žmogaus, kuriam padedu"
+    },
+    "whose_helper_sub": {
+      "en": "For example a parent. Nothing is saved unless you choose.",
+      "lt": "Pavyzdžiui, mamos ar tėčio. Nieko neišsaugome, nebent pasirinksite."
+    },
+    "helper_name_label": {
+      "en": "Their first name (optional)",
+      "lt": "Vardas (nebūtina)"
+    },
+    "helper_name_hint": {
+      "en": "Only used on the summary for their doctor",
+      "lt": "Naudojamas tik santraukoje gydytojui"
+    },
+    "entry_title": {
+      "en": "Type in the numbers from the lab sheet",
+      "lt": "Įveskite skaičius iš tyrimo lapo"
+    },
+    "entry_order_note": {
+      "en": "The sheet may list these in a different order. Leave empty any number that isn't there.",
+      "lt": "Tyrimo lape jie gali būti kita tvarka. Jei kurio nors skaičiaus nėra, palikite tuščią."
+    },
+    "unit_label": {
+      "en": "Units on the sheet",
+      "lt": "Vienetai lape"
+    },
+    "unit_mmol": {
+      "en": "mmol/L",
+      "lt": "mmol/l"
+    },
+    "unit_mg": {
+      "en": "mg/dL",
+      "lt": "mg/dl"
+    },
+    "read_as": {
+      "en": "Read as {value}",
+      "lt": "Suprasta kaip {value}"
+    },
+    "where_find": {
+      "en": "Other names for this",
+      "lt": "Kiti pavadinimai"
+    },
+    "test_date_label": {
+      "en": "Test date",
+      "lt": "Tyrimo data"
+    },
+    "date_unknown": {
+      "en": "I don't know the date",
+      "lt": "Datos nežinau"
+    },
+    "fill_example": {
+      "en": "Fill in example numbers",
+      "lt": "Įrašyti pavyzdinius skaičius"
+    },
+    "continue_needs": {
+      "en": "Type at least LDL, total cholesterol or triglycerides to continue.",
+      "lt": "Kad galėtumėte tęsti, įveskite bent MTL, bendrąjį cholesterolį arba trigliceridus."
+    },
+    "continue_answer_first": {
+      "en": "Please answer the question above first.",
+      "lt": "Pirmiausia atsakykite į klausimą aukščiau."
+    },
+    "continue_with": {
+      "en": "Continue with {list}",
+      "lt": "Toliau: {list}"
+    },
+    "err_not_number": {
+      "en": "Please type one number, like 4,1 or 4.1.",
+      "lt": "Įveskite vieną skaičių, pavyzdžiui, 4,1."
+    },
+    "ask_unusual": {
+      "en": "{value} is unusual for {marker} in {unit}.",
+      "lt": "{marker}: {value} {unit} yra neįprasta reikšmė."
+    },
+    "ask_others_look": {
+      "en": "Your other numbers look like {unit}.",
+      "lt": "Kiti skaičiai panašūs į {unit}."
+    },
+    "ask_which": {
+      "en": "Which is it?",
+      "lt": "Kuris teisingas?"
+    },
+    "ask_tg_ambiguous": {
+      "en": "Triglycerides of {value} could be in mmol/L or in mg/dL, and the two mean very different things. Which unit does the sheet show?",
+      "lt": "Trigliceridų reikšmė {value} gali būti tiek mmol/l, tiek mg/dl, o tai labai skirtingi dalykai. Kokie vienetai nurodyti lape?"
+    },
+    "ask_decimals": {
+      "en": "Lab results usually have one or two decimals. Please check this number.",
+      "lt": "Tyrimų rezultatai paprastai turi vieną ar du skaitmenis po kablelio. Patikrinkite šį skaičių."
+    },
+    "opt_as_typed": {
+      "en": "{value} {unit}, as typed",
+      "lt": "{value} {unit}, kaip įvesta"
+    },
+    "opt_retype": {
+      "en": "Neither, let me retype",
+      "lt": "Nė vienas, įvesiu iš naujo"
+    },
+    "opt_right_as_typed": {
+      "en": "It's right as typed",
+      "lt": "Įvesta teisingai"
+    },
+    "cross_check": {
+      "en": "These numbers don't usually go together. Could two of them be swapped? Please check LDL, total cholesterol and HDL.",
+      "lt": "Šie skaičiai paprastai taip nedera. Gal du iš jų sukeisti vietomis? Patikrinkite MTL, bendrąjį cholesterolį ir DTL."
+    },
+    "cross_ok": {
+      "en": "They're right as typed",
+      "lt": "Įvesta teisingai"
+    },
+    "converted_from": {
+      "en": "converted from {value} {unit}",
+      "lt": "perskaičiuota iš {value} {unit}"
+    },
+    "decimal_fixed_from": {
+      "en": "you typed {value}",
+      "lt": "įvedėte {value}"
+    },
+    "guide_title": {
+      "en": "Names labs use for these values",
+      "lt": "Kaip laboratorijos vadina šias reikšmes"
+    },
+    "guide_also_printed": {
+      "en": "Also printed as",
+      "lt": "Dar gali būti užrašyta"
+    },
+    "guide_ranges_note": {
+      "en": "The ranges printed by your lab may differ a little from the guideline ranges this app uses.",
+      "lt": "Laboratorijos nurodytos ribos gali šiek tiek skirtis nuo gairių ribų, kurias naudoja ši programėlė."
+    },
+    "guide_close": {
+      "en": "Got it",
+      "lt": "Supratau"
+    },
+    "safety_title": {
+      "en": "A few quick questions",
+      "lt": "Keli trumpi klausimai"
+    },
+    "safety_sub": {
+      "en": "So we explain the results correctly. You can skip any of them.",
+      "lt": "Kad teisingai paaiškintume rezultatus. Bet kurį klausimą galite praleisti."
+    },
+    "q_med": {
+      "en": {
+        "self": "Are you taking a medicine to lower cholesterol, for example a statin?",
+        "helper": "Are they taking a medicine to lower cholesterol, for example a statin?"
+      },
+      "lt": {
+        "self": "Ar vartojate vaistus cholesteroliui mažinti, pavyzdžiui, statinus?",
+        "helper": "Ar šis žmogus vartoja vaistus cholesteroliui mažinti, pavyzdžiui, statinus?"
+      }
+    },
+    "q_family": {
+      "en": {
+        "self": "Has a parent, brother, sister or child had heart disease before 60, or been told they have inherited high cholesterol?",
+        "helper": "Has one of their parents, brothers, sisters or children had heart disease before 60, or been told they have inherited high cholesterol?"
+      },
+      "lt": {
+        "self": "Ar kuris nors iš jūsų tėvų, brolių, seserų ar vaikų sirgo širdies liga iki 60 metų arba jam nustatytas paveldimas didelis cholesterolis?",
+        "helper": "Ar kuris nors iš šio žmogaus tėvų, brolių, seserų ar vaikų sirgo širdies liga iki 60 metų arba jam nustatytas paveldimas didelis cholesterolis?"
+      }
+    },
+    "q_known": {
+      "en": {
+        "self": "Has a doctor told you that you have heart disease, had a stroke, or have diabetes or kidney disease?",
+        "helper": "Has a doctor told them that they have heart disease, had a stroke, or have diabetes or kidney disease?"
+      },
+      "lt": {
+        "self": "Ar gydytojas jums yra nustatęs širdies ligą, cukrinį diabetą ar inkstų ligą, arba ar esate patyrę insultą?",
+        "helper": "Ar gydytojas šiam žmogui yra nustatęs širdies ligą, cukrinį diabetą ar inkstų ligą, arba ar šis žmogus yra patyręs insultą?"
+      }
+    },
+    "q_pregnant": {
+      "en": {
+        "self": "Are you pregnant?",
+        "helper": "Are they pregnant?"
+      },
+      "lt": {
+        "self": "Ar esate nėščia?",
+        "helper": "Ar ji nėščia?"
+      }
+    },
+    "ans_yes": {
+      "en": "Yes",
+      "lt": "Taip"
+    },
+    "ans_no": {
+      "en": "No",
+      "lt": "Ne"
+    },
+    "ans_not_sure": {
+      "en": "Not sure",
+      "lt": "Nesu tikras (-a)"
+    },
+    "ans_dont_know": {
+      "en": "Don't know",
+      "lt": "Nežinau"
+    },
+    "ans_none": {
+      "en": "not answered",
+      "lt": "neatsakyta"
+    },
+    "skip_these": {
+      "en": "Skip these",
+      "lt": "Praleisti"
+    },
+    "lbl_med": {
+      "en": "Cholesterol medicine",
+      "lt": "Vaistai cholesteroliui"
+    },
+    "lbl_family": {
+      "en": "Heart disease before 60 or inherited high cholesterol in the family",
+      "lt": "Širdies liga iki 60 metų ar paveldimas didelis cholesterolis šeimoje"
+    },
+    "lbl_known": {
+      "en": "Heart disease, stroke, diabetes or kidney disease",
+      "lt": "Širdies liga, insultas, diabetas ar inkstų liga"
+    },
+    "lbl_pregnant": {
+      "en": "Pregnant",
+      "lt": "Nėštumas"
+    },
+    "confirm_title": {
+      "en": "Check the numbers",
+      "lt": "Patikrinkite skaičius"
+    },
+    "confirm_date": {
+      "en": "Test date: {date}",
+      "lt": "Tyrimo data: {date}"
+    },
+    "edit": {
+      "en": "Edit",
+      "lt": "Taisyti"
+    },
+    "calculated": {
+      "en": "calculated",
+      "lt": "apskaičiuota"
+    },
+    "answers_heading": {
+      "en": "Answers",
+      "lt": "Atsakymai"
+    },
+    "show_explanation": {
+      "en": "Show the explanation",
+      "lt": "Rodyti paaiškinimą"
+    },
+    "consent_title": {
+      "en": "Keep these results on this phone?",
+      "lt": "Išsaugoti šiuos rezultatus šiame telefone?"
+    },
+    "consent_body": {
+      "en": "If you keep them, they are saved only in this browser on this phone, so you can come back to them. Nothing is sent anywhere. You can delete everything at any time under More.",
+      "lt": "Jei išsaugosite, jie bus laikomi tik šioje naršyklėje šiame telefone, kad galėtumėte prie jų grįžti. Niekur nieko nesiunčiame. Viską galite bet kada ištrinti skiltyje „Daugiau“."
+    },
+    "consent_keep": {
+      "en": "Keep on this phone",
+      "lt": "Išsaugoti šiame telefone"
+    },
+    "consent_none": {
+      "en": "Don't keep anything",
+      "lt": "Nieko neišsaugoti"
+    },
+    "consent_note": {
+      "en": "Phones can clear saved website data, iPhones especially after a week without a visit. A backup file (under More) lets you bring your results back.",
+      "lt": "Telefonai gali ištrinti išsaugotus svetainių duomenis, ypač „iPhone“, jei svetainėje nesilankote savaitę. Atsarginės kopijos failas (skiltyje „Daugiau“) leidžia rezultatus atkurti."
+    },
+    "results_title": {
+      "en": "Results · {date}",
+      "lt": "Rezultatai · {date}"
+    },
+    "results_values_heading": {
+      "en": "The numbers entered",
+      "lt": "Įvesti skaičiai"
+    },
+    "keep_quiet": {
+      "en": "Keep these results on this phone",
+      "lt": "Išsaugoti šiuos rezultatus šiame telefone"
+    },
+    "saved_note": {
+      "en": "Saved on this phone.",
+      "lt": "Išsaugota šiame telefone."
+    },
+    "not_saved_note": {
+      "en": "Not saved. These results are gone when you close this page.",
+      "lt": "Neišsaugota. Uždarius šį puslapį, rezultatai išnyks."
+    },
+    "remove_result": {
+      "en": "Remove these results",
+      "lt": "Pašalinti šiuos rezultatus"
+    },
+    "remove_confirm": {
+      "en": "Remove these results from this phone? This can't be undone.",
+      "lt": "Pašalinti šiuos rezultatus iš šio telefono? To nebus galima atšaukti."
+    },
+    "remove_yes": {
+      "en": "Remove",
+      "lt": "Pašalinti"
+    },
+    "cancel": {
+      "en": "Cancel",
+      "lt": "Atšaukti"
+    },
+    "share_prompt": {
+      "en": "Know someone with a lab sheet? Share this app",
+      "lt": "Pažįstate žmogų, kuris gavo tyrimo lapą? Pasidalykite programėle"
+    },
+    "start_over": {
+      "en": "Enter other results",
+      "lt": "Įvesti kitus rezultatus"
+    },
+    "home": {
+      "en": "Start page",
+      "lt": "Pradžia"
+    },
+    "helper_track_note": {
+      "en": "If they'd like to keep their results, they can use the app on their own phone.",
+      "lt": "Jei šis žmogus norėtų saugoti savo rezultatus, programėle gali naudotis savo telefone."
+    },
+    "settings_title": {
+      "en": "More",
+      "lt": "Daugiau"
+    },
+    "mode_label": {
+      "en": "Results are for",
+      "lt": "Rezultatai"
+    },
+    "mode_self": {
+      "en": "Me",
+      "lt": "Mano"
+    },
+    "mode_helper": {
+      "en": "Someone I'm helping",
+      "lt": "Žmogaus, kuriam padedu"
+    },
+    "storage_label": {
+      "en": "Saving on this phone",
+      "lt": "Saugojimas šiame telefone"
+    },
+    "storage_on": {
+      "en": "On: results are kept in this browser.",
+      "lt": "Įjungta: rezultatai laikomi šioje naršyklėje."
+    },
+    "storage_off": {
+      "en": "Off: nothing is kept after you close the page.",
+      "lt": "Išjungta: uždarius puslapį, niekas neišsaugoma."
+    },
+    "storage_turn_on": {
+      "en": "Turn on",
+      "lt": "Įjungti"
+    },
+    "storage_turn_off": {
+      "en": "Turn off and remove saved results",
+      "lt": "Išjungti ir pašalinti išsaugotus rezultatus"
+    },
+    "backup_title": {
+      "en": "Backup file",
+      "lt": "Atsarginė kopija"
+    },
+    "backup_body": {
+      "en": "A backup file holds all your saved results, including your health numbers. Keep it somewhere private. You can use it to bring your results back on this phone or a new one.",
+      "lt": "Atsarginės kopijos faile yra visi išsaugoti rezultatai, įskaitant jūsų sveikatos skaičius. Laikykite jį privačioje vietoje. Juo galėsite atkurti rezultatus šiame ar naujame telefone."
+    },
+    "backup_save": {
+      "en": "Save a backup file",
+      "lt": "Išsaugoti atsarginės kopijos failą"
+    },
+    "backup_restore": {
+      "en": "Restore from a backup file",
+      "lt": "Atkurti iš atsarginės kopijos failo"
+    },
+    "backup_nothing": {
+      "en": "Nothing is saved yet, so there is nothing to back up.",
+      "lt": "Kol kas niekas neišsaugota, todėl nėra ko kopijuoti."
+    },
+    "backup_saved": {
+      "en": "Backup file made. Check your downloads.",
+      "lt": "Atsarginės kopijos failas sukurtas. Patikrinkite atsisiuntimus."
+    },
+    "restore_keeps": {
+      "en": "Restoring keeps the results on this phone.",
+      "lt": "Atkurti rezultatai bus išsaugoti šiame telefone."
+    },
+    "restore_done": {
+      "en": "Results restored: {count}.",
+      "lt": "Atkurta rezultatų: {count}."
+    },
+    "restore_error": {
+      "en": "This file could not be read. Please choose a backup file saved by this app.",
+      "lt": "Šio failo nepavyko perskaityti. Pasirinkite šios programėlės sukurtą atsarginės kopijos failą."
+    },
+    "restore_newer": {
+      "en": "This backup was made by a newer version of the app. Please reload the app and try again.",
+      "lt": "Ši kopija sukurta naujesne programėlės versija. Perkraukite programėlę ir bandykite dar kartą."
+    },
+    "delete_all": {
+      "en": "Delete all my data",
+      "lt": "Ištrinti visus mano duomenis"
+    },
+    "delete_confirm": {
+      "en": "This removes all your results and settings from this phone. It can't be undone.",
+      "lt": "Bus pašalinti visi jūsų rezultatai ir nustatymai šiame telefone. To nebus galima atšaukti."
+    },
+    "delete_yes": {
+      "en": "Delete everything",
+      "lt": "Ištrinti viską"
+    },
+    "delete_keep": {
+      "en": "Keep my data",
+      "lt": "Palikti mano duomenis"
+    },
+    "deleted_done": {
+      "en": "Everything is removed from this phone. Files you downloaded, like a backup file, are not affected.",
+      "lt": "Viskas pašalinta iš šio telefono. Jūsų atsisiųsti failai, pavyzdžiui, atsarginė kopija, lieka."
+    },
+    "about_link": {
+      "en": "About this app",
+      "lt": "Apie programėlę"
+    },
+    "share_link": {
+      "en": "Share this app",
+      "lt": "Pasidalyti programėle"
+    },
+    "content_version": {
+      "en": "Content version {version}",
+      "lt": "Turinio versija {version}"
+    },
+    "content_unchecked": {
+      "en": "draft, not yet approved",
+      "lt": "juodraštis, dar nepatvirtintas"
+    },
+    "about_title": {
+      "en": "About this app",
+      "lt": "Apie programėlę"
+    },
+    "intended_purpose": {
+      "en": "An educational tool, not a medical advisor. It shares published guidelines on blood lipids in short, plain words, with links so anyone can read the sources themselves, and helps people build healthier habits. It does not diagnose, assess risk or recommend treatment.",
+      "lt": "Šviečiamoji priemonė, ne medicinos patarėja. Ji trumpai ir paprastai perteikia paskelbtas kraujo lipidų gaires su nuorodomis, kad kiekvienas galėtų šaltinius perskaityti pats, ir padeda kurti sveikesnius įpročius. Ji nediagnozuoja ligų, nevertina rizikos ir nerekomenduoja gydymo."
+    },
+    "about_made_by": {
+      "en": "Made by volunteers. Free, no ads, no data selling.",
+      "lt": "Sukurta savanorių. Nemokama, be reklamų, duomenimis neprekiaujama."
+    },
+    "about_checked": {
+      "en": "The content is checked against the published sources listed in the app and approved before each release. It is not reviewed by a doctor.",
+      "lt": "Turinys tikrinamas pagal programėlėje nurodytus paskelbtus šaltinius ir patvirtinamas prieš kiekvieną versiją. Jo neperžiūrėjo gydytojas."
+    },
+    "about_privacy_title": {
+      "en": "Your data",
+      "lt": "Jūsų duomenys"
+    },
+    "about_privacy": {
+      "en": "Your numbers stay in this browser on this phone. There are no accounts, no analytics and no ads, and the app sends nothing anywhere after it has loaded.",
+      "lt": "Jūsų skaičiai lieka šioje naršyklėje šiame telefone. Nėra paskyrų, analitikos ar reklamų, o įsikrovusi programėlė niekur nieko nesiunčia."
+    },
+    "about_disclaimer_title": {
+      "en": "Please note",
+      "lt": "Svarbu"
+    },
+    "about_disclaimer": {
+      "en": "This app explains lab numbers and what published guidelines say about them. It is not a diagnosis and does not replace a doctor. If you take medicine for cholesterol, keep taking it as prescribed. If you feel unwell, contact your doctor; in an emergency call 112.",
+      "lt": "Ši programėlė paaiškina tyrimų skaičius ir tai, ką apie juos sako paskelbtos gairės. Tai ne diagnozė, ir ji nepakeičia gydytojo. Jei vartojate vaistus cholesteroliui, vartokite juos taip, kaip paskirta. Jei jaučiatės blogai, kreipkitės į gydytoją, o skubiu atveju skambinkite 112."
+    },
+    "share_title": {
+      "en": "Share this app",
+      "lt": "Pasidalyti programėle"
+    },
+    "share_lang": {
+      "en": "Message language",
+      "lt": "Žinutės kalba"
+    },
+    "share_preview_label": {
+      "en": "This is the message that will be sent:",
+      "lt": "Bus išsiųsta ši žinutė:"
+    },
+    "share_text": {
+      "en": "I used this free app to understand my cholesterol results in plain words. It is not a medical advisor: it shares published guidelines, with links to read them yourself. Your numbers stay on your phone.",
+      "lt": "Ši nemokama programėlė padėjo man paprastais žodžiais suprasti cholesterolio tyrimo rezultatus. Ji nėra medicinos patarėja: perteikia paskelbtas gaires su nuorodomis, kad galėtumėte jas perskaityti patys. Jūsų skaičiai lieka jūsų telefone."
+    },
+    "share_never": {
+      "en": "Your results are never included.",
+      "lt": "Jūsų rezultatai niekada nesiunčiami."
+    },
+    "share_btn": {
+      "en": "Share",
+      "lt": "Dalintis"
+    },
+    "copy_link": {
+      "en": "Copy message and link",
+      "lt": "Kopijuoti žinutę ir nuorodą"
+    },
+    "copied": {
+      "en": "Copied.",
+      "lt": "Nukopijuota."
+    },
+    "copy_failed": {
+      "en": "Copying didn't work here. You can select the text above and copy it.",
+      "lt": "Nukopijuoti nepavyko. Galite pažymėti tekstą aukščiau ir jį nukopijuoti."
+    },
+    "sources_title": {
+      "en": "Where this comes from",
+      "lt": "Iš kur ši informacija"
+    },
+    "sources_intro": {
+      "en": "Every fact in the app links to one of these sources. Links go to free full text where it exists.",
+      "lt": "Kiekvienas programėlės teiginys susietas su vienu iš šių šaltinių. Kur įmanoma, nuorodos veda į nemokamą visą tekstą."
+    },
+    "sources_placeholder": {
+      "en": "Draft list for this test version. It becomes final when this content version is approved.",
+      "lt": "Šios bandomosios versijos šaltinių juodraštis. Jis taps galutinis, kai ši turinio versija bus patvirtinta."
+    },
+    "source_open": {
+      "en": "Open the source",
+      "lt": "Atidaryti šaltinį"
+    },
+    "source_free": {
+      "en": "Free full text",
+      "lt": "Nemokamas visas tekstas"
+    },
+    "source_library": {
+      "en": "Full article may need a library",
+      "lt": "Visam straipsniui gali prireikti bibliotekos prieigos"
+    },
+    "source_type_guideline": {
+      "en": "Guideline",
+      "lt": "Gairės"
+    },
+    "source_type_systematic_review": {
+      "en": "Systematic review",
+      "lt": "Sisteminė apžvalga"
+    },
+    "source_type_meta_analysis": {
+      "en": "Meta-analysis",
+      "lt": "Metaanalizė"
+    },
+    "source_type_rct": {
+      "en": "Trial",
+      "lt": "Klinikinis tyrimas"
+    },
+    "source_type_observational": {
+      "en": "Observational study",
+      "lt": "Stebėjimo tyrimas"
+    },
+    "source_type_other": {
+      "en": "Other",
+      "lt": "Kita"
+    },
+    "source_type_consensus_statement": {
+      "en": "Consensus statement",
+      "lt": "Bendras sutarimas"
+    },
+    "source_group_guideline": {
+      "en": "Clinical guidelines",
+      "lt": "Klinikinės gairės"
+    },
+    "source_group_consensus_statement": {
+      "en": "Statements by the guideline societies",
+      "lt": "Gairių rengėjų draugijų pareiškimai"
+    },
+    "source_group_systematic_review": {
+      "en": "Systematic reviews",
+      "lt": "Sisteminės apžvalgos"
+    },
+    "source_group_meta_analysis": {
+      "en": "Meta-analyses",
+      "lt": "Metaanalizės"
+    },
+    "source_group_rct": {
+      "en": "Trials",
+      "lt": "Klinikiniai tyrimai"
+    },
+    "source_group_observational": {
+      "en": "Observational studies",
+      "lt": "Stebėjimo tyrimai"
+    },
+    "source_group_other": {
+      "en": "Other",
+      "lt": "Kita"
+    },
+    "source_copy_saved": {
+      "en": "Copy saved {date}",
+      "lt": "Kopija išsaugota {date}"
+    },
+    "not_medical_advisor": {
+      "en": "This app is not a medical advisor. It shares the latest published guidelines in short, plain words, and links to each source so you can open and read it yourself.",
+      "lt": "Ši programėlė nėra medicinos patarėja. Ji trumpai ir paprastai perteikia naujausias paskelbtas gaires ir pateikia nuorodą į kiekvieną šaltinį, kad galėtumėte jį atsiverti ir perskaityti patys."
+    },
+    "results_headline_neutral": {
+      "en": "Here is where the numbers sit against published guideline ranges.",
+      "lt": "Štai kur skaičiai yra, palyginti su paskelbtų gairių ribomis."
+    },
+    "results_headline_doctor": {
+      "en": "Guidelines suggest talking to a doctor about some of these results.",
+      "lt": "Gairės siūlo pasikalbėti su gydytoju dėl kai kurių šių rezultatų."
+    },
+    "flag_label": {
+      "en": "For your doctor",
+      "lt": "Gydytojui"
+    },
+    "flag_head_tg_very_high": {
+      "en": {
+        "self": "Please contact a doctor soon about your triglycerides",
+        "helper": "Please help them contact a doctor soon about their triglycerides"
+      },
+      "lt": {
+        "self": "Netrukus kreipkitės į gydytoją dėl trigliceridų",
+        "helper": "Padėkite šiam žmogui netrukus kreiptis į gydytoją dėl trigliceridų"
+      }
+    },
+    "flag_head_tg_high": {
+      "en": {
+        "self": "Please talk to a doctor about your triglycerides",
+        "helper": "Please help them talk to a doctor about their triglycerides"
+      },
+      "lt": {
+        "self": "Pasikalbėkite su gydytoju apie trigliceridus",
+        "helper": "Padėkite šiam žmogui pasikalbėti su gydytoju apie trigliceridus"
+      }
+    },
+    "flag_head_ldl": {
+      "en": {
+        "self": "Please talk to a doctor about your LDL",
+        "helper": "Please help them talk to a doctor about their LDL"
+      },
+      "lt": {
+        "self": "Pasikalbėkite su gydytoju apie MTL cholesterolį",
+        "helper": "Padėkite šiam žmogui pasikalbėti su gydytoju apie MTL cholesterolį"
+      }
+    },
+    "flag_head_total": {
+      "en": {
+        "self": "Please talk to a doctor about your cholesterol",
+        "helper": "Please help them talk to a doctor about their cholesterol"
+      },
+      "lt": {
+        "self": "Pasikalbėkite su gydytoju apie cholesterolį",
+        "helper": "Padėkite šiam žmogui pasikalbėti su gydytoju apie cholesterolį"
+      }
+    },
+    "flag_head_family": {
+      "en": {
+        "self": "Please talk to a doctor about your family history",
+        "helper": "Please help them talk to a doctor about their family history"
+      },
+      "lt": {
+        "self": "Pasikalbėkite su gydytoju apie ligas šeimoje",
+        "helper": "Padėkite šiam žmogui pasikalbėti su gydytoju apie ligas šeimoje"
+      }
+    },
+    "get_summary": {
+      "en": {
+        "self": "Get a summary for my doctor",
+        "helper": "Get a summary for their doctor"
+      },
+      "lt": {
+        "self": "Gauti santrauką gydytojui",
+        "helper": "Gauti santrauką šio žmogaus gydytojui"
+      }
+    },
+    "more_to_discuss": {
+      "en": "Also to discuss with a doctor:",
+      "lt": "Taip pat aptarti su gydytoju:"
+    },
+    "medicine_note": {
+      "en": {
+        "self": "You said you take cholesterol medicine. Keep taking it as prescribed.",
+        "helper": "You said they take cholesterol medicine. They can keep taking it as prescribed."
+      },
+      "lt": {
+        "self": "Nurodėte, kad vartojate vaistus cholesteroliui. Vartokite juos taip, kaip paskirta.",
+        "helper": "Nurodėte, kad šis žmogus vartoja vaistus cholesteroliui. Jis gali juos toliau vartoti taip, kaip paskirta."
+      }
+    },
+    "most_important": {
+      "en": "Most important number",
+      "lt": "Svarbiausias skaičius"
+    },
+    "other_numbers": {
+      "en": "Other numbers",
+      "lt": "Kiti skaičiai"
+    },
+    "more_numbers": {
+      "en": "More numbers",
+      "lt": "Daugiau skaičių"
+    },
+    "value_sits": {
+      "en": "Where this value sits: {zone}",
+      "lt": "Kur yra ši reikšmė: {zone}"
+    },
+    "detail_open": {
+      "en": "Details and sources",
+      "lt": "Daugiau ir šaltiniai"
+    },
+    "detail_sources": {
+      "en": "Where this comes from",
+      "lt": "Iš kur ši informacija"
+    },
+    "quote_from": {
+      "en": "From {source}:",
+      "lt": "Iš šaltinio „{source}“:"
+    },
+    "guideline_ranges": {
+      "en": "Guideline ranges",
+      "lt": "Gairių ribos"
+    },
+    "lt_fallback_note": {
+      "en": "Some explanations are only in English for now. A Lithuanian version is on its way.",
+      "lt": "Kai kurie paaiškinimai kol kas pateikiami tik anglų kalba. Lietuviška versija ruošiama."
+    },
+    "bar_label": {
+      "en": "{marker} {value} on the guideline range bar",
+      "lt": "{marker} {value} gairių ribų juostoje"
+    },
+    "scale_above": {
+      "en": "above the scale",
+      "lt": "už skalės ribų"
+    },
+    "summary_title": {
+      "en": "Summary for the doctor",
+      "lt": "Santrauka gydytojui"
+    },
+    "summary_lang": {
+      "en": "Summary language",
+      "lt": "Santraukos kalba"
+    },
+    "summary_doc_title": {
+      "en": "Cholesterol test summary",
+      "lt": "Cholesterolio tyrimo santrauka"
+    },
+    "summary_test_date": {
+      "en": "Test date: {date}",
+      "lt": "Tyrimo data: {date}"
+    },
+    "summary_to_discuss": {
+      "en": "To discuss with the doctor",
+      "lt": "Aptarti su gydytoju"
+    },
+    "summary_flag_line": {
+      "en": "{marker} {value}. Guideline level for talking to a doctor: {threshold} or higher.",
+      "lt": "{marker} {value}. Gairėse nurodytas lygis, nuo kurio verta kreiptis į gydytoją: {threshold} ir daugiau."
+    },
+    "summary_family_line": {
+      "en": "Family history given: heart disease before 60 or inherited high cholesterol in a parent, brother, sister or child.",
+      "lt": "Nurodyta šeimos istorija: tėvų, brolių, seserų ar vaikų širdies liga iki 60 metų arba paveldimas didelis cholesterolis."
+    },
+    "summary_col_marker": {
+      "en": "Test",
+      "lt": "Tyrimas"
+    },
+    "summary_col_result": {
+      "en": "Result",
+      "lt": "Rezultatas"
+    },
+    "summary_col_range": {
+      "en": "Guideline range",
+      "lt": "Gairių riba"
+    },
+    "summary_range_none": {
+      "en": "no range set",
+      "lt": "riba nenustatyta"
+    },
+    "summary_range_doctor": {
+      "en": "set by the doctor",
+      "lt": "nustato gydytojas"
+    },
+    "summary_answers": {
+      "en": "Answers given",
+      "lt": "Pateikti atsakymai"
+    },
+    "summary_questions": {
+      "en": "Questions to ask",
+      "lt": "Klausimai gydytojui"
+    },
+    "summary_footer": {
+      "en": "Educational summary, not a diagnosis. Not a medical advisor: it repeats published guidelines, listed with links in the app. Content version {version}, checked against the sources listed, not reviewed by a doctor.",
+      "lt": "Šviečiamoji santrauka, ne diagnozė. Ne medicinos patarėja: kartoja paskelbtas gaires, kurių sąrašas su nuorodomis pateiktas programėlėje. Turinio versija {version}, patikrinta pagal nurodytus šaltinius, gydytojo neperžiūrėta."
+    },
+    "print_btn": {
+      "en": "Print or save as PDF",
+      "lt": "Spausdinti arba išsaugoti PDF"
+    },
+    "summary_name": {
+      "en": "Name: {name}",
+      "lt": "Vardas: {name}"
+    },
+    "q_fh": {
+      "en": "Should this result be looked into further, and should close relatives be tested too?",
+      "lt": "Ar šį rezultatą reikėtų ištirti išsamiau ir ar reikėtų ištirti artimuosius?"
+    },
+    "q_treat_enough": {
+      "en": "Is the current treatment enough?",
+      "lt": "Ar dabartinio gydymo pakanka?"
+    },
+    "q_my_target": {
+      "en": "What LDL target applies here?",
+      "lt": "Koks MTL tikslas taikomas šiuo atveju?"
+    },
+    "q_tg_high": {
+      "en": "What should be done about the triglycerides? Should the test be repeated after fasting?",
+      "lt": "Ką daryti dėl trigliceridų? Ar reikėtų pakartoti tyrimą nevalgius?"
+    },
+    "q_family_check": {
+      "en": "Should the family history of high cholesterol be looked into?",
+      "lt": "Ar verta išsiaiškinti, ar šeimoje yra didelio cholesterolio atvejų?"
+    },
+    "q_apob": {
+      "en": "Would a direct LDL or ApoB test help?",
+      "lt": "Ar padėtų tiesioginis MTL arba ApoB tyrimas?"
+    },
+    "q_treat": {
+      "en": "Is any treatment advised?",
+      "lt": "Ar rekomenduojamas koks nors gydymas?"
+    },
+    "q_retest": {
+      "en": "When should the test be repeated?",
+      "lt": "Kada pakartoti tyrimą?"
+    },
+    "plan_offer_title": {
+      "en": "Make a small plan",
+      "lt": "Susikurkite nedidelį planą"
+    },
+    "plan_offer_body": {
+      "en": "Choose up to three small daily habits and decide when you will do them. You can tick them off each day.",
+      "lt": "Pasirinkite iki trijų mažų kasdienių įpročių ir nuspręskite, kada juos darysite. Kiekvieną dieną galėsite juos pažymėti."
+    },
+    "plan_btn": {
+      "en": "Make a plan",
+      "lt": "Kurti planą"
+    },
+    "plan_title": {
+      "en": "Your plan",
+      "lt": "Jūsų planas"
+    },
+    "plan_alongside_treatment": {
+      "en": "Habits work alongside a doctor's care, not instead of it.",
+      "lt": "Įpročiai papildo gydytojo priežiūrą, bet jos nepakeičia."
+    },
+    "plan_alongside_medicine": {
+      "en": "Habits work alongside your medicine. Keep taking it as prescribed.",
+      "lt": "Įpročiai papildo jūsų vaistus. Toliau vartokite juos, kaip paskirta."
+    },
+    "options_pending": {
+      "en": "Suggested habits, each with its sources, are still being checked. For now you can write your own.",
+      "lt": "Siūlomi įpročiai su šaltiniais dar tikrinami. Kol kas galite įrašyti savo."
+    },
+    "ifthen_title": {
+      "en": "Write it as an if-then plan",
+      "lt": "Užrašykite kaip planą „kai – tada“"
+    },
+    "ifthen_why": {
+      "en": "Link it to something you already do each day.",
+      "lt": "Susiekite tai su tuo, ką jau darote kiekvieną dieną."
+    },
+    "ifthen_when": {
+      "en": "When…",
+      "lt": "Kai…"
+    },
+    "ifthen_will": {
+      "en": "then I will…",
+      "lt": "tada aš…"
+    },
+    "ifthen_cues": {
+      "en": "I have my morning coffee|I shop on Saturday|I finish dinner|I get home from work",
+      "lt": "išgeriu rytinę kavą|šeštadienį apsiperku|pavakarieniauju|grįžtu iš darbo"
+    },
+    "ifthen_cue_ph": {
+      "en": "for example: I have my morning coffee",
+      "lt": "pavyzdžiui: išgeriu rytinę kavą"
+    },
+    "ifthen_action_ph": {
+      "en": "for example: go for a 10-minute walk",
+      "lt": "pavyzdžiui: išeinu pasivaikščioti 10 minučių"
+    },
+    "ifthen_save": {
+      "en": "Save this habit",
+      "lt": "Išsaugoti šį įprotį"
+    },
+    "ifthen_save_keep": {
+      "en": "Keep this habit on this phone",
+      "lt": "Išsaugoti šį įprotį šiame telefone"
+    },
+    "ifthen_keep_note": {
+      "en": "Saving a habit also keeps these results on this phone. Nothing is sent anywhere. You can delete everything in More.",
+      "lt": "Išsaugojus įprotį, šiame telefone išsaugomi ir šie rezultatai. Niekas niekur nesiunčiama. Viską galite ištrinti skiltyje „Daugiau“."
+    },
+    "ifthen_count": {
+      "en": "{n} of 3 habits",
+      "lt": "{n} iš 3 įpročių"
+    },
+    "ifthen_full": {
+      "en": "You can add another once one of these feels easy.",
+      "lt": "Kitą galėsite pridėti, kai kuris nors iš šių taps lengvas."
+    },
+    "ifthen_missing": {
+      "en": "Fill in both parts first.",
+      "lt": "Pirmiausia užpildykite abi dalis."
+    },
+    "habit_sentence": {
+      "en": "When {cue}, I will {action}.",
+      "lt": "Kai {cue}, tada {action}."
+    },
+    "habit_remove": {
+      "en": "Remove",
+      "lt": "Pašalinti"
+    },
+    "habit_removed": {
+      "en": "Habit removed.",
+      "lt": "Įprotis pašalintas."
+    },
+    "retest_title": {
+      "en": "When will you re-test?",
+      "lt": "Kada kartosite tyrimą?"
+    },
+    "retest_body": {
+      "en": "Pick the date you plan to have your next test. Your doctor can tell you when it makes sense to repeat it.",
+      "lt": "Pasirinkite datą, kada planuojate kitą tyrimą. Gydytojas gali patarti, kada jį tikslinga kartoti."
+    },
+    "retest_date_label": {
+      "en": "Re-test date",
+      "lt": "Pakartotinio tyrimo data"
+    },
+    "retest_save": {
+      "en": "Save the date",
+      "lt": "Išsaugoti datą"
+    },
+    "retest_calendar": {
+      "en": "Add to my calendar",
+      "lt": "Pridėti į kalendorių"
+    },
+    "retest_calendar_note": {
+      "en": "This saves a calendar file. Open it to add the reminder to your phone's calendar.",
+      "lt": "Bus išsaugotas kalendoriaus failas. Atidarykite jį, kad priminimas atsirastų telefono kalendoriuje."
+    },
+    "retest_backup_note": {
+      "en": "Phones can clear a website's saved data. A backup file keeps a copy of your results until the re-test.",
+      "lt": "Telefonai gali ištrinti svetainių išsaugotus duomenis. Atsarginėje kopijoje rezultatai išliks iki pakartotinio tyrimo."
+    },
+    "retest_backup_btn": {
+      "en": "Save a backup file",
+      "lt": "Išsaugoti atsarginę kopiją"
+    },
+    "retest_line": {
+      "en": "Re-test on {date}",
+      "lt": "Pakartotinis tyrimas {date}"
+    },
+    "retest_days_left": {
+      "en": "{n} days left",
+      "lt": "liko {n} d."
+    },
+    "retest_today": {
+      "en": "Your re-test is today.",
+      "lt": "Pakartotinis tyrimas šiandien."
+    },
+    "retest_passed": {
+      "en": "Your re-test date has passed. You can enter the new results once they arrive.",
+      "lt": "Pakartotinio tyrimo data praėjo. Naujus rezultatus galite įvesti, kai tik juos turėsite."
+    },
+    "retest_btn": {
+      "en": "Set a re-test date",
+      "lt": "Nustatyti pakartotinio tyrimo datą"
+    },
+    "ics_summary": {
+      "en": "Blood test",
+      "lt": "Kraujo tyrimas"
+    },
+    "ics_description": {
+      "en": "Bring your earlier results.",
+      "lt": "Pasiimkite ankstesnius rezultatus."
+    },
+    "today_title": {
+      "en": "Today",
+      "lt": "Šiandien"
+    },
+    "today_done": {
+      "en": "Done",
+      "lt": "Padariau"
+    },
+    "today_not": {
+      "en": "Not today",
+      "lt": "Ne šiandien"
+    },
+    "today_marked_done": {
+      "en": "Done today.",
+      "lt": "Šiandien padaryta."
+    },
+    "today_marked_not": {
+      "en": "Marked as not today.",
+      "lt": "Pažymėta: ne šiandien."
+    },
+    "today_undo": {
+      "en": "Change",
+      "lt": "Keisti"
+    },
+    "today_welcome_back": {
+      "en": "Welcome back. Today is a good day to pick it up again.",
+      "lt": "Sveiki sugrįžę. Šiandien gera diena vėl pradėti."
+    },
+    "today_btn": {
+      "en": "Today's habits",
+      "lt": "Šiandienos įpročiai"
+    },
+    "today_empty": {
+      "en": "No habits yet.",
+      "lt": "Įpročių dar nėra."
+    },
+    "progress_title": {
+      "en": "Progress",
+      "lt": "Kaip sekasi"
+    },
+    "progress_btn": {
+      "en": "See progress",
+      "lt": "Peržiūrėti, kaip sekasi"
+    },
+    "progress_days": {
+      "en": "Days done: {n}",
+      "lt": "Padaryta dienų: {n}"
+    },
+    "progress_week": {
+      "en": "Done {n} days this week.",
+      "lt": "Šią savaitę padaryta {n} d."
+    },
+    "progress_legend": {
+      "en": "Last 4 weeks. Filled: done. Hollow: not today. Grey: no answer.",
+      "lt": "Paskutinės 4 savaitės. Užpildytas: padaryta. Tuščias: ne šiandien. Pilkas: neatsakyta."
+    },
+    "progress_dots_label": {
+      "en": "{done} days done in the last 4 weeks",
+      "lt": "Per paskutines 4 savaites padaryta {done} d."
+    },
+    "plan_edit": {
+      "en": "Change the plan",
+      "lt": "Keisti planą"
+    },
+    "ba_title": {
+      "en": "Before and after",
+      "lt": "Prieš ir po"
+    },
+    "ba_lower": {
+      "en": "{marker}: {now}, {diff} lower than on {date} ({before}).",
+      "lt": "{marker}: {now}, {diff} mažiau nei {date} ({before})."
+    },
+    "ba_higher": {
+      "en": "{marker}: {now}, {diff} higher than on {date} ({before}).",
+      "lt": "{marker}: {now}, {diff} daugiau nei {date} ({before})."
+    },
+    "ba_same": {
+      "en": "{marker}: {now}, the same as on {date}.",
+      "lt": "{marker}: {now}, tiek pat kaip {date}."
+    },
+    "ba_bar_label": {
+      "en": "{marker}: before {before}, now {now}",
+      "lt": "{marker}: anksčiau {before}, dabar {now}"
+    },
+    "summary_range_ldl": {
+      "en": "< {low} / < {moderate} (low / moderate risk)",
+      "lt": "< {low} / < {moderate} (maža / vidutinė rizika)"
+    },
+    "ba_key": {
+      "en": "○ before · ● now",
+      "lt": "○ anksčiau · ● dabar"
+    },
+    "retest_in_month_1": {
+      "en": "In 1 month",
+      "lt": "Po 1 mėn."
+    },
+    "retest_in_months": {
+      "en": "In {n} months",
+      "lt": "Po {n} mėn."
+    },
+    "plan_supplements_q": {
+      "en": "What about supplements?",
+      "lt": "O kaip papildai?"
+    },
+    "lever_choose": {
+      "en": "Choose this",
+      "lt": "Rinktis"
+    },
+    "lever_effort_small": {
+      "en": "Easy to start",
+      "lt": "Lengva pradėti"
+    },
+    "lever_effort_medium": {
+      "en": "Takes some effort",
+      "lt": "Reikia šiek tiek pastangų"
+    },
+    "lever_effort_large": {
+      "en": "Takes more effort",
+      "lt": "Reikia daugiau pastangų"
+    },
+    "lever_chosen": {
+      "en": "Now write when you will do it.",
+      "lt": "Dabar užrašykite, kada tai darysite."
+    },
+    "lever_sources": {
+      "en": "Where this comes from",
+      "lt": "Iš kur ši informacija"
+    },
+    "plan_own": {
+      "en": "Or write your own habit below.",
+      "lt": "Arba žemiau įrašykite savo įprotį."
+    },
+    "hq_intro_title": {
+      "en": {
+        "self": "A few questions about your habits",
+        "helper": "A few questions about their habits"
+      },
+      "lt": {
+        "self": "Keli klausimai apie jūsų įpročius",
+        "helper": "Keli klausimai apie šio žmogaus įpročius"
+      }
+    },
+    "hq_intro": {
+      "en": {
+        "self": "Optional. Your answers only suggest moments for your if-then plan. They don't change which options are shown.",
+        "helper": "Optional. The answers only suggest moments for their if-then plan. They don't change which options are shown."
+      },
+      "lt": {
+        "self": "Neprivaloma. Atsakymai tik pasiūlo akimirkas jūsų planui „kai – tada“. Jie nekeičia, kokios galimybės rodomos.",
+        "helper": "Neprivaloma. Atsakymai tik pasiūlo akimirkas šio žmogaus planui „kai – tada“. Jie nekeičia, kokios galimybės rodomos."
+      }
+    },
+    "hq_start": {
+      "en": "Answer the questions",
+      "lt": "Atsakyti į klausimus"
+    },
+    "hq_progress": {
+      "en": "Question {n} of {total}",
+      "lt": "Klausimas {n} iš {total}"
+    },
+    "hq_skip": {
+      "en": "Skip",
+      "lt": "Praleisti"
+    },
+    "hq_done_btn": {
+      "en": "Back to the plan",
+      "lt": "Grįžti į planą"
+    },
+    "hq_finished": {
+      "en": "Thank you. Suggested moments are added to your plan.",
+      "lt": "Ačiū. Siūlomos akimirkos pridėtos prie plano."
+    },
+    "hq_answered": {
+      "en": "Habit questions answered. Change answers",
+      "lt": "Klausimai apie įpročius atsakyti. Keisti atsakymus"
+    },
+    "hq_fats": {
+      "en": {
+        "self": "How often do you cook with or spread butter, lard or hard margarine?",
+        "helper": "How often do they cook with or spread butter, lard or hard margarine?"
+      },
+      "lt": {
+        "self": "Kaip dažnai gaminate su sviestu, taukais ar kietuoju margarinu arba juos tepate?",
+        "helper": "Kaip dažnai šis žmogus gamina su sviestu, taukais ar kietuoju margarinu arba juos tepa?"
+      }
+    },
+    "hq_fibre": {
+      "en": {
+        "self": "How often do you eat oats, barley, beans or lentils?",
+        "helper": "How often do they eat oats, barley, beans or lentils?"
+      },
+      "lt": {
+        "self": "Kaip dažnai valgote avižų, miežių, pupelių ar lęšių?",
+        "helper": "Kaip dažnai šis žmogus valgo avižų, miežių, pupelių ar lęšių?"
+      }
+    },
+    "hq_sweet": {
+      "en": {
+        "self": "How often do you drink sugary drinks or eat sweets?",
+        "helper": "How often do they drink sugary drinks or eat sweets?"
+      },
+      "lt": {
+        "self": "Kaip dažnai geriate saldžius gėrimus ar valgote saldumynų?",
+        "helper": "Kaip dažnai šis žmogus geria saldžius gėrimus ar valgo saldumynų?"
+      }
+    },
+    "hq_alcohol": {
+      "en": {
+        "self": "How often do you drink alcohol?",
+        "helper": "How often do they drink alcohol?"
+      },
+      "lt": {
+        "self": "Kaip dažnai geriate alkoholio?",
+        "helper": "Kaip dažnai šis žmogus geria alkoholio?"
+      }
+    },
+    "hq_activity": {
+      "en": {
+        "self": "How often do you go for a brisk walk or do other exercise?",
+        "helper": "How often do they go for a brisk walk or do other exercise?"
+      },
+      "lt": {
+        "self": "Kaip dažnai sparčiai vaikštote ar kitaip sportuojate?",
+        "helper": "Kaip dažnai šis žmogus sparčiai vaikšto ar kitaip sportuoja?"
+      }
+    },
+    "hq_smoking": {
+      "en": {
+        "self": "Do you smoke?",
+        "helper": "Do they smoke?"
+      },
+      "lt": {
+        "self": "Ar rūkote?",
+        "helper": "Ar šis žmogus rūko?"
+      }
+    },
+    "hq_most_days": {
+      "en": "Most days",
+      "lt": "Beveik kasdien"
+    },
+    "hq_few_week": {
+      "en": "A few times a week",
+      "lt": "Kelis kartus per savaitę"
+    },
+    "hq_rarely": {
+      "en": "Rarely",
+      "lt": "Retai"
+    },
+    "hq_never": {
+      "en": "Never",
+      "lt": "Niekada"
+    },
+    "hq_smoke_yes": {
+      "en": "Yes",
+      "lt": "Taip"
+    },
+    "hq_smoke_sometimes": {
+      "en": "Sometimes",
+      "lt": "Kartais"
+    },
+    "hq_smoke_no": {
+      "en": "No",
+      "lt": "Ne"
+    },
+    "cue_cook": {
+      "en": "I cook dinner",
+      "lt": "gaminu vakarienę"
+    },
+    "cue_breakfast": {
+      "en": "I have breakfast",
+      "lt": "pusryčiauju"
+    },
+    "cue_snack": {
+      "en": "I want a snack",
+      "lt": "noriu užkąsti"
+    },
+    "cue_offered_drink": {
+      "en": "I'm offered a drink",
+      "lt": "man pasiūlo išgerti"
+    },
+    "cue_after_lunch": {
+      "en": "I finish lunch",
+      "lt": "papietauju"
+    },
+    "cue_crave_smoke": {
+      "en": "I feel like smoking",
+      "lt": "užsinoriu parūkyti"
+    },
+    "feedback_title": {
+      "en": "Feedback",
+      "lt": "Atsiliepimai"
+    },
+    "feedback_body": {
+      "en": "Tell us whether the app helped you understand your results and how it made you feel. Please don't include your numbers. Feedback goes by email to Justina, who runs this project.",
+      "lt": "Parašykite, ar programėlė padėjo suprasti rezultatus ir kaip jautėtės. Prašome nenurodyti savo skaičių. Atsiliepimai el. paštu siunčiami Justinai, kuri vykdo šį projektą."
+    },
+    "feedback_btn": {
+      "en": "Send feedback by email",
+      "lt": "Siųsti atsiliepimą el. paštu"
+    },
+    "feedback_subject": {
+      "en": "Feedback on the app",
+      "lt": "Atsiliepimas apie programėlę"
+    },
+    "feedback_template": {
+      "en": "Did this help you understand your results?\n\nDid you feel calmer or more worried afterwards?\n\nAnything else?\n",
+      "lt": "Ar tai padėjo suprasti rezultatus?\n\nAr po to jautėtės ramiau, ar labiau nerimavote?\n\nKą nors dar?\n"
+    },
+    "hq_previous": {
+      "en": "Previous question",
+      "lt": "Ankstesnis klausimas"
+    },
+    "guide_names_intro": {
+      "en": "Every lab lays out its sheet differently. Look for any of these names or abbreviations and type in the number next to it.",
+      "lt": "Kiekviena laboratorija lapą išdėsto savaip. Ieškokite bet kurio iš šių pavadinimų ar santrumpų ir įveskite šalia esantį skaičių."
+    },
+    "str_ldl_guideline": {
+      "en": {
+        "self": "European guidelines aim for below 3.0 mmol/L for people at low risk and below 2.6 for people at moderate risk, and lower for people at higher risk. A doctor can tell you which applies to you.",
+        "helper": "European guidelines aim for below 3.0 mmol/L for people at low risk and below 2.6 for people at moderate risk, and lower for people at higher risk. A doctor can tell them which applies."
+      },
+      "lt": {
+        "self": "Europos gairės siekia, kad MTL būtų mažiau nei 3,0 mmol/l mažos rizikos žmonėms ir mažiau nei 2,6 vidutinės rizikos žmonėms, o didesnės rizikos žmonėms – dar mažiau. Kuris tikslas taikomas jums, gali pasakyti gydytojas.",
+        "helper": "Europos gairės siekia, kad MTL būtų mažiau nei 3,0 mmol/l mažos rizikos žmonėms ir mažiau nei 2,6 vidutinės rizikos žmonėms, o didesnės rizikos žmonėms – dar mažiau. Kuris tikslas taikomas šiam žmogui, gali pasakyti gydytojas."
+      }
+    },
+    "zone_ldl_goal_moderate": {
+      "en": "Below 2.6: within the guideline goals for low and moderate risk",
+      "lt": "Mažiau nei 2,6: atitinka gairių tikslus mažai ir vidutinei rizikai"
+    },
+    "zone_ldl_goal_low_only": {
+      "en": "2.6 to 2.9: within the low-risk goal only",
+      "lt": "Nuo 2,6 iki 2,9: atitinka tik mažos rizikos tikslą"
+    },
+    "zone_ldl_above_goals": {
+      "en": "3.0 to 4.8: above these guideline goals",
+      "lt": "Nuo 3,0 iki 4,8: viršija šiuos gairių tikslus"
+    },
+    "zone_ldl_doctor": {
+      "en": "4.9 or higher: guidelines suggest talking to a doctor",
+      "lt": "4,9 ar daugiau: gairės siūlo pasitarti su gydytoju"
+    },
+    "str_nonhdl_guideline": {
+      "en": {
+        "self": "European guidelines aim for non-HDL cholesterol below 3.4 mmol/L for people at moderate risk, and lower for people at higher risk.",
+        "helper": "European guidelines aim for non-HDL cholesterol below 3.4 mmol/L for people at moderate risk, and lower for people at higher risk."
+      },
+      "lt": {
+        "self": "Europos gairės siekia, kad ne DTL cholesterolis būtų mažiau nei 3,4 mmol/l vidutinės rizikos žmonėms, o didesnės rizikos žmonėms – dar mažiau.",
+        "helper": "Europos gairės siekia, kad ne DTL cholesterolis būtų mažiau nei 3,4 mmol/l vidutinės rizikos žmonėms, o didesnės rizikos žmonėms – dar mažiau."
+      }
+    },
+    "str_tg_guideline": {
+      "en": {
+        "self": "European guidelines set no goal for triglycerides, but say below 1.7 mmol/L goes with lower risk.",
+        "helper": "European guidelines set no goal for triglycerides, but say below 1.7 mmol/L goes with lower risk."
+      },
+      "lt": {
+        "self": "Europos gairės trigliceridams tikslo nenustato, tačiau nurodo, kad mažiau nei 1,7 mmol/l siejama su mažesne rizika.",
+        "helper": "Europos gairės trigliceridams tikslo nenustato, tačiau nurodo, kad mažiau nei 1,7 mmol/l siejama su mažesne rizika."
+      }
+    },
+    "zone_tg_lower": {
+      "en": "Below 1.7: guidelines link this with lower risk",
+      "lt": "Mažiau nei 1,7: gairės sieja su mažesne rizika"
+    },
+    "zone_tg_above": {
+      "en": "1.7 to 5.5: above that level",
+      "lt": "Nuo 1,7 iki 5,5: viršija šį lygį"
+    },
+    "zone_tg_doctor_weeks": {
+      "en": "5.6 to 9.9: guidelines suggest a doctor's help",
+      "lt": "Nuo 5,6 iki 9,9: gairės siūlo gydytojo pagalbą"
+    },
+    "zone_tg_doctor_soon": {
+      "en": "10 or higher: guidelines suggest seeing a doctor promptly",
+      "lt": "10 ar daugiau: gairės siūlo nedelsiant kreiptis į gydytoją"
+    },
+    "zone_nonhdl_goal_moderate": {
+      "en": "Below 3.4: within the guideline goal for moderate risk",
+      "lt": "Mažiau nei 3,4: atitinka gairių tikslą vidutinei rizikai"
+    },
+    "zone_nonhdl_above": {
+      "en": "3.4 or higher: above that goal",
+      "lt": "3,4 ar daugiau: viršija šį tikslą"
+    },
+    "zone_hdl_low_flag": {
+      "en": "1.0 or lower: flagged by European lab guidance",
+      "lt": "1,0 ar mažiau: pažymima pagal Europos laboratorijų gaires"
+    },
+    "zone_hdl_above_flag": {
+      "en": "Above 1.0",
+      "lt": "Daugiau nei 1,0"
+    },
+    "zone_total_below_flag": {
+      "en": "Below 5.0",
+      "lt": "Mažiau nei 5,0"
+    },
+    "zone_total_flag": {
+      "en": "5.0 to 7.4: flagged by European lab guidance",
+      "lt": "Nuo 5,0 iki 7,4: pažymima pagal Europos laboratorijų gaires"
+    },
+    "str_hdl_guideline": {
+      "en": {
+        "self": "There is no treatment goal for HDL. European laboratory guidance flags HDL at 1.0 mmol/L or lower.",
+        "helper": "There is no treatment goal for HDL. European laboratory guidance flags HDL at 1.0 mmol/L or lower."
+      },
+      "lt": {
+        "self": "DTL gydymo tikslo nėra. Europos laboratorijų gairės pažymi DTL, kai jis yra 1,0 mmol/l ar mažesnis.",
+        "helper": "DTL gydymo tikslo nėra. Europos laboratorijų gairės pažymi DTL, kai jis yra 1,0 mmol/l ar mažesnis."
+      }
+    },
+    "str_total_guideline": {
+      "en": {
+        "self": "European laboratory guidance flags total cholesterol at 5.0 mmol/L or higher.",
+        "helper": "European laboratory guidance flags total cholesterol at 5.0 mmol/L or higher."
+      },
+      "lt": {
+        "self": "Europos laboratorijų gairės pažymi bendrąjį cholesterolį, kai jis yra 5,0 mmol/l ar didesnis.",
+        "helper": "Europos laboratorijų gairės pažymi bendrąjį cholesterolį, kai jis yra 5,0 mmol/l ar didesnis."
+      }
+    },
+    "zone_total_doctor": {
+      "en": "7.5 or higher: guidelines suggest talking to a doctor",
+      "lt": "7,5 ar daugiau: gairės siūlo pasitarti su gydytoju"
+    },
+    "str_athero_no_range": {
+      "en": {
+        "self": "This ratio is worked out from total and HDL cholesterol. The guidelines we use do not set a range for it.",
+        "helper": "This ratio is worked out from total and HDL cholesterol. The guidelines we use do not set a range for it."
+      },
+      "lt": {
+        "self": "Šis santykis apskaičiuojamas iš bendrojo ir DTL cholesterolio. Mūsų naudojamos gairės jam ribų nenustato.",
+        "helper": "Šis santykis apskaičiuojamas iš bendrojo ir DTL cholesterolio. Mūsų naudojamos gairės jam ribų nenustato."
+      }
+    },
+    "str_tf_soon": {
+      "en": "Today or tomorrow. If you have strong belly pain, call 112.",
+      "lt": "Šiandien arba rytoj. Jei stipriai skauda pilvą, skambinkite 112."
+    },
+    "str_tf_weeks": {
+      "en": "In the next few weeks. This is not an emergency.",
+      "lt": "Per artimiausias kelias savaites. Tai nėra skubu."
+    },
+    "flag_tg_very_high_card": {
+      "en": {
+        "self": "European guidelines suggest seeing a doctor promptly when triglycerides are 10 mmol/L (880 mg/dL) or higher. Yours is {tg}.",
+        "helper": "European guidelines suggest seeing a doctor promptly when triglycerides are 10 mmol/L (880 mg/dL) or higher. Theirs is {tg}."
+      },
+      "lt": {
+        "self": "Europos gairės siūlo nedelsiant kreiptis į gydytoją, kai trigliceridų yra 10 mmol/l (880 mg/dl) ar daugiau. Jūsų rezultatas: {tg}.",
+        "helper": "Europos gairės siūlo nedelsiant kreiptis į gydytoją, kai trigliceridų yra 10 mmol/l (880 mg/dl) ar daugiau. Šio žmogaus rezultatas: {tg}."
+      }
+    },
+    "flag_tg_high_card": {
+      "en": {
+        "self": "Guidelines suggest acting on triglycerides of 5.6 mmol/L or higher with a doctor's help. Yours is {tg}. If you had eaten before the test, the doctor may repeat it after fasting.",
+        "helper": "Guidelines suggest acting on triglycerides of 5.6 mmol/L or higher with a doctor's help. Theirs is {tg}. If they had eaten before the test, the doctor may repeat it after fasting."
+      },
+      "lt": {
+        "self": "Gairės siūlo, kai trigliceridų yra 5,6 mmol/l ar daugiau, juos mažinti padedant gydytojui. Jūsų rezultatas: {tg}. Jei prieš tyrimą valgėte, gydytojas gali jį pakartoti nevalgius.",
+        "helper": "Gairės siūlo, kai trigliceridų yra 5,6 mmol/l ar daugiau, juos mažinti padedant gydytojui. Šio žmogaus rezultatas: {tg}. Jei prieš tyrimą buvo valgyta, gydytojas gali jį pakartoti nevalgius."
+      }
+    },
+    "flag_fh_by_ldl_card": {
+      "en": {
+        "self": "Guidelines suggest talking to a doctor when LDL is 4.9 mmol/L or higher. Yours is {ldl}. Doctors see this often and know how to help.",
+        "helper": "Guidelines suggest talking to a doctor when LDL is 4.9 mmol/L or higher. Theirs is {ldl}. Doctors see this often and know how to help."
+      },
+      "lt": {
+        "self": "Gairės siūlo pasitarti su gydytoju, kai MTL yra 4,9 mmol/l ar daugiau. Jūsų rezultatas: {ldl}. Gydytojai su tuo susiduria dažnai ir žino, kaip padėti.",
+        "helper": "Gairės siūlo pasitarti su gydytoju, kai MTL yra 4,9 mmol/l ar daugiau. Šio žmogaus rezultatas: {ldl}. Gydytojai su tuo susiduria dažnai ir žino, kaip padėti."
+      }
+    },
+    "flag_ldl_high_on_medicine_card": {
+      "en": {
+        "self": "Your LDL is {ldl}, at or above the 4.9 mmol/L level where guidelines suggest talking to a doctor. Bring this to your doctor, and keep taking your medicine as prescribed.",
+        "helper": "Their LDL is {ldl}, at or above the 4.9 mmol/L level where guidelines suggest talking to a doctor. They can bring this to their doctor and keep taking their medicine as prescribed."
+      },
+      "lt": {
+        "self": "Jūsų MTL yra {ldl}: tai siekia arba viršija 4,9 mmol/l lygį, nuo kurio gairės siūlo pasitarti su gydytoju. Aptarkite tai su gydytoju ir toliau vartokite vaistus, kaip paskirta.",
+        "helper": "Šio žmogaus MTL yra {ldl}: tai siekia arba viršija 4,9 mmol/l lygį, nuo kurio gairės siūlo pasitarti su gydytoju. Tai verta aptarti su gydytoju, o vaistus toliau vartoti, kaip paskirta."
+      }
+    },
+    "flag_fh_by_total_card": {
+      "en": {
+        "self": "Guidelines suggest talking to a doctor when total cholesterol is 7.5 mmol/L or higher. Yours is {total}.",
+        "helper": "Guidelines suggest talking to a doctor when total cholesterol is 7.5 mmol/L or higher. Theirs is {total}."
+      },
+      "lt": {
+        "self": "Gairės siūlo pasitarti su gydytoju, kai bendrasis cholesterolis yra 7,5 mmol/l ar daugiau. Jūsų rezultatas: {total}.",
+        "helper": "Gairės siūlo pasitarti su gydytoju, kai bendrasis cholesterolis yra 7,5 mmol/l ar daugiau. Šio žmogaus rezultatas: {total}."
+      }
+    },
+    "flag_fh_by_family_card": {
+      "en": {
+        "self": "Guidelines suggest checking cholesterol with a doctor when a parent, brother, sister or child had heart disease before 60, or was told they have inherited high cholesterol.",
+        "helper": "Guidelines suggest checking cholesterol with a doctor when a parent, brother, sister or child had heart disease before 60, or was told they have inherited high cholesterol."
+      },
+      "lt": {
+        "self": "Gairės siūlo pasitikrinti cholesterolį pas gydytoją, kai vienas iš tėvų, brolis, sesuo ar vaikas iki 60 metų turėjo širdies ligą arba jam buvo pasakyta, kad turi paveldimą didelį cholesterolį.",
+        "helper": "Gairės siūlo pasitikrinti cholesterolį pas gydytoją, kai vienas iš tėvų, brolis, sesuo ar vaikas iki 60 metų turėjo širdies ligą arba jam buvo pasakyta, kad turi paveldimą didelį cholesterolį."
+      }
+    },
+    "str_family_may_test": {
+      "en": {
+        "self": "If a doctor diagnoses inherited high cholesterol in someone in your family, guidelines recommend testing their close relatives too.",
+        "helper": "If a doctor diagnoses inherited high cholesterol in someone in their family, guidelines recommend testing that person's close relatives too."
+      },
+      "lt": {
+        "self": "Jei gydytojas kuriam nors jūsų šeimos nariui nustato paveldimą didelį cholesterolį, gairės rekomenduoja ištirti ir jo artimuosius giminaičius.",
+        "helper": "Jei gydytojas kuriam nors šio žmogaus šeimos nariui nustato paveldimą didelį cholesterolį, gairės rekomenduoja ištirti ir jo artimuosius giminaičius."
+      }
+    },
+    "note_ldl_unreliable": {
+      "en": {
+        "self": "When triglycerides are above 4.5 mmol/L, the usual way labs calculate LDL cannot be used, so this LDL figure may be less accurate. You could ask about a direct LDL or ApoB test.",
+        "helper": "When triglycerides are above 4.5 mmol/L, the usual way labs calculate LDL cannot be used, so this LDL figure may be less accurate. They could ask about a direct LDL or ApoB test."
+      },
+      "lt": {
+        "self": "Kai trigliceridų yra daugiau nei 4,5 mmol/l, įprastu laboratorijos skaičiavimo būdu MTL nustatyti negalima, todėl šis MTL rezultatas gali būti mažiau tikslus. Galite paklausti apie tiesioginį MTL arba ApoB tyrimą.",
+        "helper": "Kai trigliceridų yra daugiau nei 4,5 mmol/l, įprastu laboratorijos skaičiavimo būdu MTL nustatyti negalima, todėl šis MTL rezultatas gali būti mažiau tikslus. Galima paklausti apie tiesioginį MTL arba ApoB tyrimą."
+      }
+    },
+    "note_doctor_sets_target": {
+      "en": {
+        "self": "You said a doctor has told you about heart disease, stroke, diabetes or kidney disease. Your doctor sets your LDL target.",
+        "helper": "You said a doctor has told them about heart disease, stroke, diabetes or kidney disease. Their doctor sets their LDL target."
+      },
+      "lt": {
+        "self": "Nurodėte, kad gydytojas jums yra minėjęs širdies ligą, insultą, diabetą ar inkstų ligą. Jūsų MTL tikslą nustato gydytojas.",
+        "helper": "Nurodėte, kad gydytojas šiam žmogui yra minėjęs širdies ligą, insultą, diabetą ar inkstų ligą. Šio žmogaus MTL tikslą nustato gydytojas."
+      }
+    },
+    "note_pregnancy": {
+      "en": {
+        "self": "Cholesterol and triglycerides rise in pregnancy. Your midwife or doctor will interpret these results.",
+        "helper": "Cholesterol and triglycerides rise in pregnancy. Their midwife or doctor will interpret these results."
+      },
+      "lt": {
+        "self": "Nėštumo metu cholesterolio ir trigliceridų kiekis padidėja. Šiuos rezultatus įvertins jūsų akušerė ar gydytojas.",
+        "helper": "Nėštumo metu cholesterolio ir trigliceridų kiekis padidėja. Šiuos rezultatus įvertins jos akušerė ar gydytojas."
+      }
+    },
+    "note_doctor_sets_target_lower_goals": {
+      "en": {
+        "self": "Guidelines set much lower LDL goals for people with heart disease, stroke or diabetes, often below 1.8 or 1.4 mmol/L. Bring these results to your doctor.",
+        "helper": "Guidelines set much lower LDL goals for people with heart disease, stroke or diabetes, often below 1.8 or 1.4 mmol/L. They can bring these results to their doctor."
+      },
+      "lt": {
+        "self": "Žmonėms su širdies liga, po insulto ar su diabetu gairės nustato daug mažesnius MTL tikslus, dažnai mažiau nei 1,8 arba 1,4 mmol/l. Aptarkite šiuos rezultatus su gydytoju.",
+        "helper": "Žmonėms su širdies liga, po insulto ar su diabetu gairės nustato daug mažesnius MTL tikslus, dažnai mažiau nei 1,8 arba 1,4 mmol/l. Šiuos rezultatus verta aptarti su gydytoju."
+      }
+    },
+    "str_fasting_fact": {
+      "en": "You usually don't need to fast before a cholesterol test.",
+      "lt": "Prieš cholesterolio tyrimą paprastai nebūtina būti nevalgius."
+    },
+    "str_fh_prevalence": {
+      "en": "Inherited high cholesterol affects somewhere between 1 in 500 and 1 in 200 people.",
+      "lt": "Paveldimas didelis cholesterolis pasitaiko maždaug nuo 1 iš 500 iki 1 iš 200 žmonių."
+    },
+    "str_why_ldl_matters": {
+      "en": "The guidelines rest on large trials in which lowering LDL led to fewer heart attacks and strokes.",
+      "lt": "Gairės remiasi dideliais tyrimais, kuriuose sumažinus MTL buvo mažiau infarktų ir insultų."
+    },
+    "effect_ldl_swap_sat_fat": {
+      "en": "Swap butter and lard for plant oils such as rapeseed, sunflower or olive oil. Mainly moves LDL, often 5–10% lower.",
+      "lt": "Sviestą ir taukus pakeiskite augaliniais aliejais, pavyzdžiui, rapsų, saulėgrąžų ar alyvuogių. Daugiausia veikia MTL, dažnai jis sumažėja 5–10 %."
+    },
+    "effect_ldl_oats": {
+      "en": "Oats or barley every day. Their fibre lowers LDL a little, by about 3–5% when you eat enough of it.",
+      "lt": "Kasdien valgykite avižų ar miežių. Jų skaidulos šiek tiek sumažina MTL, maždaug 3–5 %, kai jų suvalgoma pakankamai."
+    },
+    "effect_tg_alcohol": {
+      "en": "Drink less alcohol. Alcohol has a large effect on triglycerides.",
+      "lt": "Gerkite mažiau alkoholio. Alkoholis stipriai veikia trigliceridus."
+    },
+    "effect_tg_sweet_drinks": {
+      "en": "Cut down on sugary drinks and sugar. Guidelines advise this especially when triglycerides are high.",
+      "lt": "Mažiau gėrimų su cukrumi ir cukraus. Gairės tai ypač rekomenduoja, kai trigliceridų daug."
+    },
+    "effect_tg_weight": {
+      "en": "If you carry extra weight, losing some lowers triglycerides.",
+      "lt": "Jei turite antsvorio, šiek tiek numetus svorio trigliceridų sumažėja."
+    },
+    "effect_tg_exercise": {
+      "en": "Move more, for example brisk walks. Regular exercise lowers triglycerides, on top of any effect from weight loss. It also lowers LDL slightly and raises HDL a little.",
+      "lt": "Judėkite daugiau, pavyzdžiui, sparčiai vaikščiokite. Reguliarus fizinis aktyvumas mažina trigliceridus net ir nepriklausomai nuo svorio metimo, šiek tiek sumažina MTL ir šiek tiek padidina DTL."
+    },
+    "effect_smoking_vessels": {
+      "en": "If you smoke, stopping is good for your heart and blood vessels, and may raise HDL a little.",
+      "lt": "Jei rūkote, mesti naudinga širdžiai ir kraujagyslėms, be to, gali šiek tiek padidėti DTL."
+    },
+    "str_supplements_answer": {
+      "en": "European guidelines (2025) do not recommend dietary supplements or vitamins for heart health unless they are proven to do no harm and to lower LDL clearly.",
+      "lt": "Europos gairės (2025) nerekomenduoja maisto papildų ar vitaminų širdies sveikatai, jei neįrodyta, kad jie nekenkia ir aiškiai mažina MTL."
+    },
+    "lever_heading": {
+      "en": "Options that often help people with results like these",
+      "lt": "Galimybės, kurios dažnai padeda žmonėms su tokiais rezultatais"
+    },
+    "lever_alongside_doctor": {
+      "en": "These work alongside a doctor's advice, not instead of it.",
+      "lt": "Tai papildo gydytojo patarimus, bet jų nepakeičia."
+    },
+    "lever_alongside_medicine": {
+      "en": "These work alongside prescribed medicine.",
+      "lt": "Tai papildo paskirtus vaistus."
+    },
+    "lever_swap_sat_fat_title": {
+      "en": "Swap butter and lard for plant oils",
+      "lt": "Sviestą ir taukus keiskite augaliniais aliejais"
+    },
+    "lever_more_fibre_title": {
+      "en": "Eat more fibre: oats, barley, beans and lentils",
+      "lt": "Valgykite daugiau skaidulų: avižų, miežių, pupelių ir lęšių"
+    },
+    "lever_more_fibre_text": {
+      "en": "Fibre from oats, barley, beans, lentils, vegetables and wholegrains lowers LDL. Oat and barley fibre lowers it by about 3–5% when you eat enough of it every day.",
+      "lt": "Skaidulos iš avižų, miežių, pupelių, lęšių, daržovių ir viso grūdo produktų mažina MTL. Avižų ir miežių skaidulos jį sumažina maždaug 3–5 %, kai jų kasdien suvalgoma pakankamai."
+    },
+    "lever_avoid_trans_fat_title": {
+      "en": "Avoid trans fats and hard margarine",
+      "lt": "Venkite transriebalų ir kietojo margarino"
+    },
+    "lever_avoid_trans_fat_text": {
+      "en": "Trans fats raise LDL about as much as saturated fat does, and they also lower HDL. Look for 'partially hydrogenated' on labels.",
+      "lt": "Transriebalai MTL padidina maždaug tiek pat, kiek sotieji riebalai, be to, sumažina DTL. Etiketėse ieškokite žodžių „iš dalies hidrinti“."
+    },
+    "lever_less_alcohol_title": {
+      "en": "Drink less alcohol, if you drink",
+      "lt": "Gerkite mažiau alkoholio, jei geriate"
+    },
+    "lever_cut_sweet_drinks_title": {
+      "en": "Cut down on sugary drinks and sugar",
+      "lt": "Mažiau gėrimų su cukrumi ir cukraus"
+    },
+    "lever_move_more_title": {
+      "en": "Move more, for example brisk walks",
+      "lt": "Daugiau judėkite, pavyzdžiui, sparčiai vaikščiokite"
+    },
+    "lever_lose_weight_title": {
+      "en": "Lose some weight, if you carry extra",
+      "lt": "Numeskite šiek tiek svorio, jei jo turite per daug"
+    },
+    "lever_lose_weight_text": {
+      "en": "Losing weight lowers triglycerides, lowers LDL a little and raises HDL a little.",
+      "lt": "Numetus svorio sumažėja trigliceridų, šiek tiek sumažėja MTL ir šiek tiek padidėja DTL."
+    },
+    "lever_stop_smoking_title": {
+      "en": "Stop smoking, if you smoke",
+      "lt": "Meskite rūkyti, jei rūkote"
+    },
+    "str_retest_no_interval": {
+      "en": {
+        "self": "The guidelines we use set no re-test date for lifestyle changes on their own. They say changes may take longer than the 6–8 weeks used for medicine. Pick a date that suits you, ideally with your doctor.",
+        "helper": "The guidelines we use set no re-test date for lifestyle changes on their own. They say changes may take longer than the 6–8 weeks used for medicine. Pick a date that suits them, ideally with their doctor."
+      },
+      "lt": {
+        "self": "Mūsų naudojamos gairės nenustato, kada pakartoti tyrimą vien pakeitus gyvenseną. Jose nurodoma, kad pokyčiai gali užtrukti ilgiau nei vaistams taikomos 6–8 savaitės. Pasirinkite jums tinkamą datą, geriausia kartu su gydytoju.",
+        "helper": "Mūsų naudojamos gairės nenustato, kada pakartoti tyrimą vien pakeitus gyvenseną. Jose nurodoma, kad pokyčiai gali užtrukti ilgiau nei vaistams taikomos 6–8 savaitės. Datą verta pasirinkti kartu su šio žmogaus gydytoju."
+      }
+    }
+  }
+}

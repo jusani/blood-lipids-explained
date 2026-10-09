@@ -1,0 +1,30 @@
+{
+  "name": "blood-lipids-explained",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Blood Lipids Explained: offline web app (pilot build, rules engine not yet included)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "import-pack": "node scripts/import-pack.mjs"
+  },
+  "dependencies": {
+    "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@fontsource/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource/literata": "^5.3.0",
+    "@playwright/test": "^1.63.0",
+    "@preact/preset-vite": "^2.10.6",
+    "fake-indexeddb": "^6.2.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3",
+    "yaml": "^2.9.1"
+  }
+}
