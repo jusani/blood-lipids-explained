@@ -26,10 +26,11 @@ import { Retest } from './screens/Retest';
 import { Today } from './screens/Today';
 import { Progress } from './screens/Progress';
 import { HabitQuestions } from './screens/HabitQuestions';
+import { LessonList, LessonScreen } from './screens/Lessons';
 
 export type Screen =
   | 'welcome' | 'whose' | 'entry' | 'safety' | 'confirm' | 'consent' | 'results'
-  | 'more' | 'about' | 'sources' | 'share' | 'detail' | 'summary' | 'plan' | 'retest' | 'today' | 'progress' | 'habitq';
+  | 'more' | 'about' | 'sources' | 'share' | 'detail' | 'summary' | 'plan' | 'retest' | 'today' | 'progress' | 'habitq' | 'lessons' | 'lesson';
 
 export interface AppCtx {
   lang: Lang;
@@ -55,6 +56,9 @@ export interface AppCtx {
   /** Which value the marker detail screen shows. */
   detail: ValueId | null;
   setDetail: (id: ValueId | null) => void;
+  /** Which lesson the lesson screen shows. */
+  lesson: string | null;
+  setLesson: (id: string | null) => void;
   /** Habits, check-ins and re-test date. Saved only while the person keeps data on this phone. */
   plan: Plan;
   setPlan: (p: Plan) => Promise<void>;
@@ -70,6 +74,7 @@ const screens: Record<Screen, () => preact.JSX.Element> = {
   welcome: Welcome, whose: Whose, entry: Entry, safety: SafetyQuestions, confirm: Confirm, consent: Consent,
   results: Results, more: More, about: About, sources: Sources, share: Share,
   detail: MarkerDetail, summary: DoctorSummary, plan: PlanScreen, retest: Retest, today: Today, progress: Progress, habitq: HabitQuestions,
+  lessons: LessonList, lesson: LessonScreen,
 };
 
 export function App() {
@@ -80,6 +85,7 @@ export function App() {
   const [saved, setSaved] = useState<Panel[]>([]);
   const [flash, setFlash] = useState<string | null>(null);
   const [detail, setDetail] = useState<ValueId | null>(null);
+  const [lesson, setLesson] = useState<string | null>(null);
   const [plan, setPlanState] = useState<Plan>(emptyPlan);
   const settingsRef = useRef<Settings>(defaultSettings);
 
@@ -182,9 +188,9 @@ export function App() {
       draft, setDraft, resetDraft: () => setDraft(emptyDraft()),
       current, setCurrent, saved, refreshSaved,
       isSaved: (id) => saved.some((p) => p.id === id),
-      keepPanel, flash, setFlash, detail, setDetail, plan, setPlan, reloadPlan,
+      keepPanel, flash, setFlash, detail, setDetail, lesson, setLesson, plan, setPlan, reloadPlan,
     };
-  }, [settings, lang, mode, screen, draft, current, saved, flash, detail, plan, setPlan, reloadPlan, updateSettings, go, back, backTo, refreshSaved, keepPanel]);
+  }, [settings, lang, mode, screen, draft, current, saved, flash, detail, lesson, plan, setPlan, reloadPlan, updateSettings, go, back, backTo, refreshSaved, keepPanel]);
 
   if (!ctx) return null;
   const View = screens[screen];

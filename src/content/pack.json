@@ -1,11 +1,11 @@
 {
   "manifest": {
-    "version": "2026.4",
+    "version": "2026.5",
     "released": "2026-10-12",
     "approved_by": "Justina",
     "approved_date": "2026-10-12",
-    "approval_record": "Justina, Lithuanian text review thread 2026-10-12 08:26 UTC: her only change was app text (privacy paragraph); the heading, the lower-goals LT phrase and version 2026.4 stand as asked",
-    "supersedes": "2026.3",
+    "approval_record": "Justina, Lithuanian text review thread 2026-10-12 13:37 UTC: 'yes' to the family note and seven lessons (2026.5-draft.3), no edits to the 19 LT rows",
+    "supersedes": "2026.4",
     "reviewed_by_clinician": null,
     "languages": [
       "en",
@@ -20,7 +20,7 @@
       "lt",
       "en"
     ],
-    "imported_from": "content/content-pack-2026.4.yaml"
+    "imported_from": "content/content-pack-2026.5.yaml"
   },
   "display": {
     "status_labels": false
@@ -745,7 +745,8 @@
         "id": "claim_tg_high_doctor",
         "text": "flag_tg_high_card",
         "sources": [
-          "src_acc_aha2018"
+          "src_acc_aha2018",
+          "src_eas_eflm2016"
         ],
         "evidence": "guideline",
         "population": "adults, fasting",
@@ -1304,9 +1305,273 @@
       },
       {
         "id": "claim_test_variation",
-        "text": "str_before_after_variation",
+        "text": [
+          "str_before_after_variation",
+          "lesson_7_body"
+        ],
         "status": "blocked_no_quote",
-        "note": "No stored source gives a number for test-to-test variation. Before/after shows numbers and the difference only."
+        "note": "No stored source gives a number for test-to-test variation. Before/after shows numbers and the difference only. Lesson 7 is dropped for the same reason (2026.5): EAS/EFLM 2016 only says fasting and non-fasting variation between two occasions is 'similar', with no size."
+      },
+      {
+        "id": "claim_family_cascade",
+        "text": [
+          "str_family_testing_prompt",
+          "lesson_6_body"
+        ],
+        "sources": [
+          "src_eas2013_fh",
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_eas2013_fh",
+            "quote": "In cases of probable or definite FH, cascade screening using LDL cholesterol measurement in the family should be conducted",
+            "locator": "'Whom to screen' / Diagnosis section",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_eas2013_fh",
+            "quote": "Initial family members to be tested are biological first-degree relatives, namely parents, siblings, and children.",
+            "locator": "'Whom to screen' / Diagnosis section",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Once the index case is diagnosed, family cascade screening is recommended.",
+            "locator": "§9.1.2.1, p. 150",
+            "number_in_quote": null
+          }
+        ],
+        "note": "The note is conditional on a doctor's judgement ('likely or certain' = EAS 'probable or definite'). It never says the person has FH."
+      },
+      {
+        "id": "claim_lipid_role",
+        "text": [
+          "lesson_1_body",
+          "lesson_4_body"
+        ],
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Lipoproteins in plasma transport lipids to tissues for energy utilization, lipid deposition, steroid hormone production, and bile acid formation.",
+            "locator": "§5.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Lipoproteins consist of esterified and unesterified cholesterol, TGs, and phospholipids and protein components",
+            "locator": "§5.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Plasma LDL-C is a measure of the cholesterol mass carried by LDL particles",
+            "locator": "§5.3.1",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_ldl_cause",
+        "text": [
+          "lesson_2_body",
+          "lesson_3_body",
+          "lesson_5_body"
+        ],
+        "sources": [
+          "src_esc2025",
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "by far the most numerous of the ApoB-containing lipoproteins",
+            "locator": "§5.3.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2025",
+            "quote": "Atherosclerosis is caused by the progressive deposition of LDL-C and other apolipoprotein-B (ApoB)-containing lipoproteins within the artery wall",
+            "locator": "§3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2025",
+            "quote": "As more atherogenic lipoproteins become accumulated within the arterial wall over time, the atherosclerotic plaque gradually enlarges and the risk of having an acute atherosclerotic CV event increases.",
+            "locator": "§3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2025",
+            "quote": "LDL-C is not only a risk factor for atherosclerotic CV disease (ASCVD), but like other ApoB-containing lipoproteins is a direct cause of ASCVD",
+            "locator": "§3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2025",
+            "quote": "lowering plasma LDL-C levels should be the main focus",
+            "locator": "§3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "lowering LDL-C reduces the risk of ASCVD proportionally to the absolute achieved reduction in LDL-C",
+            "locator": "§5.3.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "the effect of LDL-C on the risk of ASCVD appears to be determined by both the absolute magnitude and the total duration of exposure to LDL-C.",
+            "locator": "§5.3.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "a person’s total atherosclerotic plaque burden is likely to be proportional to the cumulative exposure to these lipoproteins.",
+            "locator": "§5.2",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_hdl_not_target",
+        "text": "lesson_3_body",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "The inverse association between plasma HDL-C and the risk of ASCVD is among the most consistent and reproducible associations in observational epidemiology.",
+            "locator": "§5.3.3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "In contrast, Mendelian randomization studies do not provide compelling evidence that HDL-C is causally associated with the risk of ASCVD.",
+            "locator": "§5.3.3",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "For raising high-density lipoprotein (HDL) cholesterol (HDL-C), recent studies have indicated that the currently available therapies do not reduce the risk of ASCVD.",
+            "locator": "§2 Introduction",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "To date, no specific goals for HDL-C or TG levels have been determined in clinical trials",
+            "locator": "§6",
+            "number_in_quote": null
+          }
+        ],
+        "note": "Brisk-walking HDL line rests on claim_exercise_tg_hdl (approved)."
+      },
+      {
+        "id": "claim_risk_age",
+        "text": "lesson_8_body",
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "The risk age of a person with several CV risk factors is the age of a person with the same level of risk but with ideal levels of risk factors.",
+            "locator": "§4.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Risk age can be estimated visually by looking at the SCORE chart",
+            "locator": "§4.1",
+            "number_in_quote": null
+          }
+        ],
+        "note": "General definition only (Justina's heart-age idea, v2-scope §2). Moved from lesson 5 to lesson 8 (pass 2) so it never sits next to the artery drawings. The app never calculates risk age or shows where a person's numbers fall; the five drawings are labelled as general stages."
+      },
+      {
+        "id": "claim_fh_lifelong",
+        "text": "lesson_6_body",
+        "sources": [
+          "src_eas2013_fh"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_eas2013_fh",
+            "quote": "Familial hypercholesterolaemia (FH) is a common genetic cause of premature coronary heart disease (CHD)",
+            "locator": "Introduction",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_eas2013_fh",
+            "quote": "due to lifelong elevated plasma low-density lipoprotein (LDL) cholesterol levels.",
+            "locator": "Introduction",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_eas2013_fh",
+            "quote": "The concept of a cumulative LDL cholesterol burden (Figure 8) illustrates the importance of early treatment.",
+            "locator": "Lifetime risk assessment section",
+            "number_in_quote": null
+          }
+        ]
+      },
+      {
+        "id": "claim_risk_factors",
+        "text": "lesson_8_body",
+        "sources": [
+          "src_esc2019",
+          "src_esc2025"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "based on the following risk factors: age, gender, smoking, systolic blood pressure, and total cholesterol.",
+            "locator": "§4.1, Figure 1 caption (SCORE)",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2025",
+            "quote": "Systematic Coronary Risk Evaluation 2 (SCORE2) [...] and Systematic Coronary Risk Evaluation 2-Older Persons (SCORE2-OP) for estimation of 10 year CV risk",
+            "locator": "§2",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Persons with documented ASCVD, type 1 or type 2 DM (T1DM and T2DM, respectively), very high levels of individual risk factors, or chronic kidney disease (CKD) are generally at very-high or high total CV risk.",
+            "locator": "§4.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "No risk estimation models are needed for such persons",
+            "locator": "§4.1.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "many people have several risk factors that, in combination, may result in high levels of total CV risk.",
+            "locator": "§4.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "For other, apparently healthy people, the use of a risk estimation system such as SCORE, which estimates the 10 year cumulative risk of a first fatal atherosclerotic event, is recommended to estimate total CV risk",
+            "locator": "§4.1",
+            "number_in_quote": null
+          }
+        ],
+        "note": "General only. The app does not compute SCORE2 or heart age (PM pick; EU MDR)."
       }
     ],
     "levers": [
@@ -1452,6 +1717,110 @@
       "text": "str_retest_no_interval"
     }
   },
+  "lessons": [
+    {
+      "id": "lesson_cholesterol",
+      "order": 1,
+      "title": "lesson_1_title",
+      "body": "lesson_1_body",
+      "linked_from": [
+        "total"
+      ],
+      "claims": [
+        "claim_lipid_role"
+      ]
+    },
+    {
+      "id": "lesson_ldl",
+      "order": 2,
+      "title": "lesson_2_title",
+      "body": "lesson_2_body",
+      "linked_from": [
+        "ldl",
+        "non_hdl"
+      ],
+      "claims": [
+        "claim_ldl_cause"
+      ]
+    },
+    {
+      "id": "lesson_hdl",
+      "order": 3,
+      "title": "lesson_3_title",
+      "body": "lesson_3_body",
+      "linked_from": [
+        "hdl"
+      ],
+      "claims": [
+        "claim_hdl_not_target",
+        "claim_exercise_tg_hdl",
+        "claim_ldl_cause"
+      ]
+    },
+    {
+      "id": "lesson_tg",
+      "order": 4,
+      "title": "lesson_4_title",
+      "body": "lesson_4_body",
+      "linked_from": [
+        "tg"
+      ],
+      "claims": [
+        "claim_lipid_role",
+        "claim_alcohol_tg",
+        "claim_sugar_tg",
+        "claim_weight_tg",
+        "claim_exercise_tg_hdl",
+        "claim_non_fasting",
+        "claim_tg_high_doctor"
+      ]
+    },
+    {
+      "id": "lesson_plaque",
+      "order": 5,
+      "title": "lesson_5_title",
+      "body": "lesson_5_body",
+      "linked_from": [
+        "ldl"
+      ],
+      "claims": [
+        "claim_ldl_cause"
+      ]
+    },
+    {
+      "id": "lesson_fh",
+      "order": 6,
+      "title": "lesson_6_title",
+      "body": "lesson_6_body",
+      "linked_from": [
+        "ldl",
+        "total"
+      ],
+      "claims": [
+        "claim_fh_lifelong",
+        "claim_fh_prevalence",
+        "claim_fh_ldl_threshold",
+        "claim_fh_total_threshold",
+        "claim_fh_family",
+        "claim_family_cascade"
+      ]
+    },
+    {
+      "id": "lesson_risk_factors",
+      "order": 8,
+      "title": "lesson_8_title",
+      "body": "lesson_8_body",
+      "linked_from": [],
+      "claims": [
+        "claim_risk_factors",
+        "claim_risk_age"
+      ]
+    }
+  ],
+  "lessons_config": {
+    "heading": "lessons_heading",
+    "general_note": "lessons_general_note"
+  },
   "lint": {
     "forbidden": {
       "en": [
@@ -1516,7 +1885,9 @@
         "told them that they have",
         "if you have strong belly pain"
       ],
-      "lt": []
+      "lt": [
+        "paprašykite gydytojo įvertinti jūsų riziką"
+      ]
     }
   },
   "strings": {
@@ -3255,6 +3626,84 @@
     "effect_ldl_swap_sat_fat": {
       "en": "Swap butter and lard for plant oils such as rapeseed, sunflower or olive oil. Mainly moves LDL, often 5–10% lower.",
       "lt": "Sviestą ir taukus pakeiskite augaliniais aliejais, pavyzdžiui, rapsų, saulėgrąžų ar alyvuogių. Daugiausia veikia MTL, dažnai jis sumažėja 5–10 %."
+    },
+    "str_family_testing_prompt": {
+      "en": "When a doctor finds that inherited high cholesterol is likely or certain, guidelines recommend checking the cholesterol of close relatives too: parents, brothers and sisters, and children.",
+      "lt": "Kai gydytojas nustato, kad paveldimas didelis cholesterolis tikėtinas ar patvirtintas, gairės rekomenduoja patikrinti ir artimųjų giminaičių cholesterolį: tėvų, brolių ir seserų, vaikų."
+    },
+    "str_share_with_relative": {
+      "en": "Share this app with a relative",
+      "lt": "Pasidalyti programėle su artimaisiais"
+    },
+    "lessons_heading": {
+      "en": "Learn in 60 seconds",
+      "lt": "Sužinokite per 60 sekundžių"
+    },
+    "lessons_general_note": {
+      "en": "These lessons are general. They do not use your results.",
+      "lt": "Šios pamokos yra bendro pobūdžio. Jose nenaudojami jūsų rezultatai."
+    },
+    "lesson_1_title": {
+      "en": "What cholesterol is",
+      "lt": "Kas yra cholesterolis"
+    },
+    "lesson_1_body": {
+      "en": "Cholesterol and triglycerides are fats your body uses. They are carried in the blood inside tiny particles called lipoproteins. These particles take fats to the body's tissues, where they are used for energy, stored, and used to make some hormones and bile. LDL and HDL are two kinds of these particles. A lipid test measures how much cholesterol they carry in the blood, and how much triglyceride.",
+      "lt": "Cholesterolis ir trigliceridai yra riebalai, kuriuos naudoja jūsų kūnas. Kraujyje jie pernešami mažytėse dalelėse, vadinamose lipoproteinais. Šios dalelės neša riebalus į kūno audinius, kur jie naudojami energijai, kaupiami ir naudojami kai kuriems hormonams bei tulžiai gaminti. MTL ir DTL yra dvi tokių dalelių rūšys. Lipidogramoje matuojama, kiek cholesterolio jos neša kraujyje ir kiek trigliceridų."
+    },
+    "lesson_2_title": {
+      "en": "LDL: why it is the main number",
+      "lt": "MTL: kodėl tai pagrindinis rodiklis"
+    },
+    "lesson_2_body": {
+      "en": "LDL particles are by far the most common of the particles that can build up in artery walls. Over time they collect in the wall and plaque slowly grows. European guidelines say LDL is not only a sign of risk but a direct cause of heart and blood vessel disease. Lowering LDL lowers that risk, and the bigger the drop, the bigger the benefit. How long LDL stays high matters too, not only how high it is. That is why guidelines make lowering LDL the main focus.",
+      "lt": "MTL dalelių yra gerokai daugiau nei kitų dalelių, kurios gali kauptis arterijų sienelėse. Laikui bėgant jos kaupiasi sienelėje, ir pamažu auga plokštelė. Europos gairėse rašoma, kad MTL yra ne tik rizikos ženklas, bet ir tiesioginė širdies ir kraujagyslių ligų priežastis. Sumažinus MTL, ši rizika mažėja, ir kuo labiau jis sumažėja, tuo didesnė nauda. Svarbu ne tik tai, koks didelis MTL, bet ir kiek laiko jis išlieka didelis. Todėl gairėse pagrindinis dėmesys skiriamas MTL mažinimui."
+    },
+    "lesson_3_title": {
+      "en": "HDL: why it is not a goal",
+      "lt": "DTL: kodėl jis nėra tikslas"
+    },
+    "lesson_3_body": {
+      "en": "In large population studies, people with higher HDL have fewer heart problems. This is one of the most consistent findings. But genetic studies do not show that HDL itself causes the difference, and medicines that raise HDL have not lowered heart risk. Guidelines set no HDL goal, and LDL is the main number. Regular brisk walking can raise HDL a little, and it lowers triglycerides too.",
+      "lt": "Dideliuose gyventojų tyrimuose žmonėms, kurių DTL didesnis, būna mažiau širdies ligų. Tai vienas nuosekliausių radinių. Tačiau genetiniai tyrimai nerodo, kad šį skirtumą lemia pats DTL, o vaistai, didinantys DTL, širdies ligų rizikos nesumažino. Gairės nenustato DTL tikslo, o pagrindinis rodiklis yra MTL. Reguliarus spartus vaikščiojimas gali šiek tiek padidinti DTL ir kartu sumažina trigliceridus."
+    },
+    "lesson_4_title": {
+      "en": "Triglycerides: what moves them",
+      "lt": "Trigliceridai: kas juos keičia"
+    },
+    "lesson_4_body": {
+      "en": "Triglycerides are fats the blood carries to the body's tissues for energy. Everyday habits can change them. Drinking less alcohol is one of the changes that lowers them the most. Cutting down on sugar and sugary drinks, losing excess weight and regular exercise lower them too. You usually don't need to fast before a lipid test. If triglycerides measured after eating are above 5 mmol/L, guidance says a doctor may repeat the test after fasting.",
+      "lt": "Trigliceridai yra riebalai, kuriuos kraujas neša į audinius energijai. Kasdieniai įpročiai gali juos pakeisti. Mažiau alkoholio – vienas pokyčių, labiausiai mažinančių trigliceridus. Juos mažina ir mažiau cukraus bei gėrimų su cukrumi, perteklinio svorio metimas ir reguliarus fizinis aktyvumas. Prieš lipidogramą paprastai nebūtina būti nevalgius. Jei po valgio išmatuoti trigliceridai viršija 5 mmol/l, gairėse nurodoma, kad gydytojas gali tyrimą pakartoti nevalgius."
+    },
+    "lesson_5_title": {
+      "en": "How plaque builds up",
+      "lt": "Kaip susidaro plokštelės"
+    },
+    "lesson_5_body": {
+      "en": "Plaque builds up in artery walls slowly, over time. It starts when LDL and similar particles get stuck in the wall. As more are trapped, the plaque grows and the chance of a heart attack or stroke rises. The total amount of plaque is thought to depend on how high LDL is and for how long. The five drawings show general stages, from an artery without plaque to a narrowed one. They do not show anyone's arteries.",
+      "lt": "Plokštelės arterijų sienelėse kaupiasi lėtai, laikui bėgant. Viskas prasideda, kai MTL ir panašios dalelės įstringa sienelėje. Joms kaupiantis, plokštelė didėja, o infarkto ar insulto tikimybė auga. Manoma, kad bendras plokštelių kiekis priklauso nuo to, koks didelis MTL ir kiek laiko. Penki piešiniai rodo bendrus etapus nuo arterijos be plokštelių iki susiaurėjusios arterijos. Jie nerodo nė vieno žmogaus arterijų."
+    },
+    "lesson_6_title": {
+      "en": "Inherited high cholesterol in plain words",
+      "lt": "Paveldimas didelis cholesterolis paprastai"
+    },
+    "lesson_6_body": {
+      "en": "Inherited high cholesterol (familial hypercholesterolaemia, FH) is genetic. It affects somewhere between 1 in 500 and 1 in 200 people. LDL is high for life, so the arteries are exposed to it for longer. That is why guidelines stress treating it early. Guidelines suggest checking for FH when LDL is 4.9 mmol/L or higher, total cholesterol is 7.5 mmol/L or higher, or a parent, brother, sister or child had heart disease before 60. Only a doctor can diagnose it. When a doctor finds FH likely or certain, guidelines recommend checking the cholesterol of parents, brothers and sisters, and children too.",
+      "lt": "Paveldimas didelis cholesterolis (šeiminė hipercholesterolemija, ŠH) yra genetinis. Jis pasitaiko maždaug nuo 1 iš 500 iki 1 iš 200 žmonių. MTL būna didelis visą gyvenimą, todėl arterijas jis veikia ilgiau. Todėl gairės pabrėžia ankstyvo gydymo svarbą. Gairės siūlo tikrinti, ar nėra ŠH, kai MTL yra 4,9 mmol/l ar daugiau, bendrasis cholesterolis 7,5 mmol/l ar daugiau, arba kai vienas iš tėvų, brolis, sesuo ar vaikas iki 60 metų amžiaus susirgo širdies liga. Diagnozę gali nustatyti tik gydytojas. Kai gydytojas nustato, kad ŠH tikėtina ar patvirtinta, gairės rekomenduoja patikrinti ir tėvų, brolių ir seserų bei vaikų cholesterolį."
+    },
+    "lesson_8_title": {
+      "en": "What a doctor looks at besides cholesterol",
+      "lt": "Ką gydytojas vertina be cholesterolio"
+    },
+    "lesson_8_body": {
+      "en": {
+        "self": "Cholesterol is one of several things doctors use to estimate the chance of heart and blood vessel disease. European risk charts use age, sex, smoking, blood pressure and cholesterol. The newer SCORE2 charts estimate this chance over the next 10 years. People who already have heart disease, diabetes or kidney disease, or one very high risk factor, are usually counted as high or very high risk without a chart. Several risk factors together can add up to a high risk. For everyone else, guidelines recommend estimating overall risk with such a chart. Doctors sometimes describe the result as a 'risk age': the age of a person with the same risk but ideal risk factors. Ask your doctor to estimate yours.",
+        "helper": "Cholesterol is one of several things doctors use to estimate the chance of heart and blood vessel disease. European risk charts use age, sex, smoking, blood pressure and cholesterol. The newer SCORE2 charts estimate this chance over the next 10 years. People who already have heart disease, diabetes or kidney disease, or one very high risk factor, are usually counted as high or very high risk without a chart. Several risk factors together can add up to a high risk. For everyone else, guidelines recommend estimating overall risk with such a chart. Doctors sometimes describe the result as a 'risk age': the age of a person with the same risk but ideal risk factors. Their doctor can estimate theirs."
+      },
+      "lt": {
+        "self": "Cholesterolis yra vienas iš kelių dalykų, pagal kuriuos gydytojai vertina širdies ir kraujagyslių ligų tikimybę. Europos rizikos lentelėse naudojamas amžius, lytis, rūkymas, kraujospūdis ir cholesterolis. Naujesnės SCORE2 lentelės vertina šią tikimybę artimiausių 10 metų laikotarpiui. Žmonės, jau sergantys širdies liga, diabetu ar inkstų liga, arba turintys vieną labai didelį rizikos veiksnį, paprastai priskiriami didelės ar labai didelės rizikos grupei ir be lentelės. Keli rizikos veiksniai kartu gali lemti didelę riziką. Visiems kitiems gairės rekomenduoja bendrą riziką įvertinti pagal tokią lentelę. Gydytojai rezultatą kartais apibūdina kaip „rizikos amžių“: tai žmogaus, kurio rizika tokia pati, bet rizikos veiksniai idealūs, amžius. Paprašykite gydytojo įvertinti jūsų riziką.",
+        "helper": "Cholesterolis yra vienas iš kelių dalykų, pagal kuriuos gydytojai vertina širdies ir kraujagyslių ligų tikimybę. Europos rizikos lentelėse naudojamas amžius, lytis, rūkymas, kraujospūdis ir cholesterolis. Naujesnės SCORE2 lentelės vertina šią tikimybę artimiausių 10 metų laikotarpiui. Žmonės, jau sergantys širdies liga, diabetu ar inkstų liga, arba turintys vieną labai didelį rizikos veiksnį, paprastai priskiriami didelės ar labai didelės rizikos grupei ir be lentelės. Keli rizikos veiksniai kartu gali lemti didelę riziką. Visiems kitiems gairės rekomenduoja bendrą riziką įvertinti pagal tokią lentelę. Gydytojai rezultatą kartais apibūdina kaip „rizikos amžių“: tai žmogaus, kurio rizika tokia pati, bet rizikos veiksniai idealūs, amžius. Riziką gali įvertinti šio žmogaus gydytojas."
+      }
     },
     "str_gtk_1": {
       "en": "The fibre in oats and barley lowers LDL a little, by about 3–5% when enough is eaten every day.",

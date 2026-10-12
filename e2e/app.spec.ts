@@ -61,7 +61,7 @@ test('full flow: per-field unit prompt, safety questions, consent, saved after r
   await expect(page.getByText('This app is not a medical advisor.')).toBeVisible();
   await expect(page.locator('.dcard')).toHaveCount(0);
   await expect(page.getByRole('img', { name: 'LDL cholesterol 4.1 on the guideline range bar' })).toBeVisible();
-  await expect(page.getByText('Content version 2026.4')).toBeVisible();
+  await expect(page.getByText('Content version 2026.5')).toBeVisible();
   await shot(page, '05-results-en');
 
   await page.reload();
@@ -236,7 +236,7 @@ test('doctor cards first, marker detail with quotes, doctor summary in its own l
   const sheet = page.locator('.docsheet');
   await expect(sheet).toContainText('Triglycerides 12.0 mmol/L. Guideline level for talking to a doctor: 10.0 mmol/L or higher.');
   await expect(sheet).toContainText('Would a direct LDL or ApoB test help?');
-  await expect(sheet).toContainText('Content version 2026.4');
+  await expect(sheet).toContainText('Content version 2026.5');
   await expect(sheet).not.toContainText(/your|my /i);
   await shot(page, '12-summary-en');
   await page.getByRole('button', { name: 'Lietuvių' }).click();
@@ -276,7 +276,7 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await shot(page, '14-results-before-after-en');
 
   await page.getByRole('button', { name: 'Make a plan' }).click();
-  // Approved 2026.4: sourced options, LDL levers first, trans fats last, never supplements.
+  // Approved 2026.5: sourced options, LDL levers first, trans fats last, never supplements.
   await expect(page.getByRole('heading', { name: 'Changes that often help people with results like these' })).toBeVisible();
   const titles = await page.locator('article.card h3').allTextContents();
   expect(titles[0]).toBe('Swap butter and lard for plant oils');
@@ -337,7 +337,7 @@ test('no plan offered when every value is inside the guideline ranges', async ({
   await expect(page.getByRole('button', { name: 'Make a plan' })).toHaveCount(0);
 });
 
-test('Lithuanian results use the approved Lithuanian explanations (2026.4)', async ({ page }) => {
+test('Lithuanian results use the approved Lithuanian explanations (2026.5)', async ({ page }) => {
   await page.goto('./?lang=lt');
   await page.getByRole('button', { name: 'Paaiškinti mano rezultatus' }).click();
   await page.getByRole('button', { name: /Mano rezultatai/ }).click();
@@ -376,7 +376,7 @@ test('habit questionnaire: skippable, one per screen, suggests moments, options 
   await expect(page.getByText('Question 2 of 6')).toBeVisible();
   await page.getByRole('button', { name: 'Skip' }).click();
   await page.getByRole('button', { name: 'Rarely' }).click();          // sweet
-  // Good to know after question 3 and question 6, whatever was answered (evidence 2026.4).
+  // Good to know after question 3 and question 6, whatever was answered (evidence 2026.5).
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Good to know');
   await expect(page.getByText(/fibre in oats and barley lowers LDL a little/)).toBeVisible();
   await shot(page, '24-good-to-know-en');
@@ -429,10 +429,86 @@ test('known heart disease: lower LDL goals line on results, not on the doctor su
   await expect(page.locator('.docsheet')).not.toContainText('much lower LDL goals');
 });
 
+<<<<<<< HEAD
 test('live build: no photo reading button and no reader files', async ({ page }) => {
   await startEn(page);
   await enterExample(page, {});
   await expect(page.getByRole('button', { name: /photo or PDF/ })).toHaveCount(0);
   expect(existsSync('dist/ocr')).toBe(false);
   expect(readdirSync('dist/assets').filter((f) => /^(pdf|src|sheetReader)-/.test(f))).toEqual([]);
+=======
+async function resultsFor(page: Page, values: Record<string, string>, familyYes = false) {
+  await startEn(page);
+  await enterExample(page, values);
+  await page.getByRole('button', { name: /Continue with/ }).click();
+  if (familyYes) await page.getByRole('group', { name: /heart disease before 60/ }).getByLabel('Yes', { exact: true }).check();
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByRole('button', { name: 'Show the explanation' }).click();
+  // Consent is asked only the first time.
+  const dontKeep = page.getByRole('button', { name: "Don't keep anything" });
+  await expect(dontKeep.or(page.getByRole('button', { name: 'Get a summary for my doctor' }))).toBeVisible();
+  if (await dontKeep.isVisible()) await dontKeep.click();
+}
+
+const FAMILY = 'When a doctor finds that inherited high cholesterol is likely or certain';
+
+test('2026.5 family note: under the family-history card on Results, never on the doctor summary (QA L1, L4)', async ({ page }) => {
+  const outside = watchNetwork(page);
+  await resultsFor(page, { 'LDL cholesterol': '3,1' }, true);
+  const card = page.locator('.dcard').filter({ hasText: FAMILY });
+  await expect(card).toHaveCount(1);
+  await shot(page, '40-family-note-en');
+
+  await page.getByRole('button', { name: 'Get a summary for my doctor' }).click();
+  await expect(page.locator('.docsheet')).not.toContainText('likely or certain');
+  await expect(page.locator('.docsheet')).not.toContainText('Share this app');
+  await page.goBack();
+
+  // L4: sharing with a relative sends the usual text and link only, never a value.
+  await page.getByRole('button', { name: 'Share this app with a relative' }).click();
+  const box = page.locator('.sharebox');
+  await expect(box).toContainText('?lang=en');
+  for (const v of ['3,1', '3.1']) await expect(box).not.toContainText(v);
+  expect(await box.locator('p.small').innerText()).toMatch(/^http:\/\/localhost:4173\/\?lang=en$/);
+  expect(outside).toEqual([]);
+});
+
+test('2026.5 family note is not shown without a family-history card', async ({ page }) => {
+  await resultsFor(page, { 'LDL cholesterol': '3,1' });
+  await expect(page.getByText(FAMILY)).toHaveCount(0);
+});
+
+test('2026.5 lessons: same links for everyone, no personal values, drawings only in lesson 5 (QA L2, L3)', async ({ page }) => {
+  const linksFor = async (ldl: string) => {
+    await resultsFor(page, { 'LDL cholesterol': ldl });
+    await page.getByRole('button', { name: 'Details and sources' }).first().click();
+    await expect(page.locator('.plaque')).toHaveCount(0);
+    return page.getByRole('region', { name: 'Learn in 60 seconds' }).getByRole('button').allTextContents();
+  };
+  const low = await linksFor('2,1');
+  const high = await linksFor('5,8');
+  expect(low).toEqual(high);
+  expect(low).toEqual(['LDL: why it is the main number', 'How plaque builds up', 'Inherited high cholesterol in plain words']);
+
+  // Open each lesson from the value detail: nothing personal on the page.
+  for (const title of low) {
+    await page.getByRole('button', { name: title }).click();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
+    await expect(page.getByText('These lessons are general. They do not use your results.')).toBeVisible();
+    const text = await page.locator('main').innerText();
+    for (const v of ['5,8', '5.8']) expect(text).not.toContain(v);
+    await expect(page.locator('.rbar, .mhead')).toHaveCount(0);
+    await expect(page.locator('.plaque')).toHaveCount(title === 'How plaque builds up' ? 1 : 0);
+    if (title === 'How plaque builds up') await shot(page, '41-lesson-plaque-en');
+    await page.goBack();
+  }
+  await page.goBack();
+  await expect(page.locator('.plaque')).toHaveCount(0);                // Results
+
+  // The full list on More.
+  await page.getByRole('button', { name: 'More' }).click();
+  await page.getByRole('button', { name: 'Learn in 60 seconds' }).click();
+  await expect(page.locator('.lessons button')).toHaveCount(7);
+  await shot(page, '42-lessons-en');
+>>>>>>> main
 });

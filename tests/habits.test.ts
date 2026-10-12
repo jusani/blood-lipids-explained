@@ -135,7 +135,7 @@ describe('re-test quick picks are calendar months, not a suggested interval (QA 
   });
 });
 
-describe('levers in the approved 2026.4 pack', async () => {
+describe('levers in the approved 2026.5 pack', async () => {
   const { pack } = await import('../src/content');
   const { rankLevers, runRules } = await import('../src/lib/rules');
   it('total cholesterol alone gets a non-empty options list', () => {
