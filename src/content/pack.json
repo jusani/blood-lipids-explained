@@ -1588,8 +1588,8 @@
       "lt": "Nemokama, sukurta savanorių, be reklamų"
     },
     "promise_data": {
-      "en": "No account needed. Your numbers stay on this phone",
-      "lt": "Paskyros nereikia. Jūsų skaičiai lieka šiame telefone"
+      "en": "No account needed. Your numbers stay on this device",
+      "lt": "Paskyros nereikia. Jūsų skaičiai lieka šiame įrenginyje"
     },
     "promise_edu": {
       "en": "Not a medical advisor: shares published guidelines in plain words, with links to read them yourself",
@@ -1604,8 +1604,8 @@
       "lt": "Oficialus adresas: {address}"
     },
     "saved_results_title": {
-      "en": "Saved on this phone",
-      "lt": "Išsaugota šiame telefone"
+      "en": "Saved on this device",
+      "lt": "Išsaugota šiame įrenginyje"
     },
     "saved_result_row": {
       "en": "Test of {date}",
@@ -1876,24 +1876,24 @@
       "lt": "Rodyti paaiškinimą"
     },
     "consent_title": {
-      "en": "Keep these results on this phone?",
-      "lt": "Išsaugoti šiuos rezultatus šiame telefone?"
+      "en": "Keep these results on this device?",
+      "lt": "Išsaugoti šiuos rezultatus šiame įrenginyje?"
     },
     "consent_body": {
-      "en": "If you keep them, they are saved only in this browser on this phone, so you can come back to them. Nothing is sent anywhere. You can delete everything at any time under More.",
-      "lt": "Jei išsaugosite, jie bus laikomi tik šioje naršyklėje šiame telefone, kad galėtumėte prie jų grįžti. Niekur nieko nesiunčiame. Viską galite bet kada ištrinti skiltyje „Daugiau“."
+      "en": "If you keep them, they are saved only in this browser on this device, so you can come back to them. Nothing is sent anywhere. You can delete everything at any time under More.",
+      "lt": "Jei išsaugosite, jie bus laikomi tik šioje naršyklėje šiame įrenginyje, kad galėtumėte prie jų grįžti. Niekur nieko nesiunčiame. Viską galite bet kada ištrinti skiltyje „Daugiau“."
     },
     "consent_keep": {
-      "en": "Keep on this phone",
-      "lt": "Išsaugoti šiame telefone"
+      "en": "Keep on this device",
+      "lt": "Išsaugoti šiame įrenginyje"
     },
     "consent_none": {
       "en": "Don't keep anything",
       "lt": "Nieko neišsaugoti"
     },
     "consent_note": {
-      "en": "Phones can clear saved website data, iPhones especially after a week without a visit. A backup file (under More) lets you bring your results back.",
-      "lt": "Telefonai gali ištrinti išsaugotus svetainių duomenis, ypač „iPhone“, jei svetainėje nesilankote savaitę. Atsarginės kopijos failas (skiltyje „Daugiau“) leidžia rezultatus atkurti."
+      "en": "Browsers can clear saved website data, iPhones especially after a week without a visit. A backup file (under More) lets you bring your results back.",
+      "lt": "Naršyklės gali ištrinti išsaugotus svetainių duomenis, ypač „iPhone“, jei svetainėje nesilankote savaitę. Atsarginės kopijos failas (skiltyje „Daugiau“) leidžia rezultatus atkurti."
     },
     "results_title": {
       "en": "Results · {date}",
@@ -1904,12 +1904,12 @@
       "lt": "Įvesti skaičiai"
     },
     "keep_quiet": {
-      "en": "Keep these results on this phone",
-      "lt": "Išsaugoti šiuos rezultatus šiame telefone"
+      "en": "Keep these results on this device",
+      "lt": "Išsaugoti šiuos rezultatus šiame įrenginyje"
     },
     "saved_note": {
-      "en": "Saved on this phone.",
-      "lt": "Išsaugota šiame telefone."
+      "en": "Saved on this device.",
+      "lt": "Išsaugota šiame įrenginyje."
     },
     "not_saved_note": {
       "en": "Not saved. These results are gone when you close this page.",
@@ -1920,8 +1920,8 @@
       "lt": "Pašalinti šiuos rezultatus"
     },
     "remove_confirm": {
-      "en": "Remove these results from this phone? This can't be undone.",
-      "lt": "Pašalinti šiuos rezultatus iš šio telefono? To nebus galima atšaukti."
+      "en": "Remove these results from this device? This can't be undone.",
+      "lt": "Pašalinti šiuos rezultatus iš šio įrenginio? To nebus galima atšaukti."
     },
     "remove_yes": {
       "en": "Remove",
@@ -1944,8 +1944,8 @@
       "lt": "Pradžia"
     },
     "helper_track_note": {
-      "en": "If they'd like to keep their results, they can use the app on their own phone.",
-      "lt": "Jei šis žmogus norėtų saugoti savo rezultatus, programėle gali naudotis savo telefone."
+      "en": "If they'd like to keep their results, they can use the app on their own device.",
+      "lt": "Jei šis žmogus norėtų saugoti savo rezultatus, programėle gali naudotis savo įrenginyje."
     },
     "settings_title": {
       "en": "More",
@@ -1964,8 +1964,8 @@
       "lt": "Žmogaus, kuriam padedu"
     },
     "storage_label": {
-      "en": "Saving on this phone",
-      "lt": "Saugojimas šiame telefone"
+      "en": "Saving on this device",
+      "lt": "Saugojimas šiame įrenginyje"
     },
     "storage_on": {
       "en": "On: results are kept in this browser.",
@@ -1988,8 +1988,8 @@
       "lt": "Atsarginė kopija"
     },
     "backup_body": {
-      "en": "A backup file holds all your saved results, including your health numbers. Keep it somewhere private. You can use it to bring your results back on this phone or a new one.",
-      "lt": "Atsarginės kopijos faile yra visi išsaugoti rezultatai, įskaitant jūsų sveikatos skaičius. Laikykite jį privačioje vietoje. Juo galėsite atkurti rezultatus šiame ar naujame telefone."
+      "en": "A backup file holds all your saved results, including your health numbers. Keep it somewhere private. You can use it to bring your results back on this device or another one.",
+      "lt": "Atsarginės kopijos faile yra visi išsaugoti rezultatai, įskaitant jūsų sveikatos skaičius. Laikykite jį privačioje vietoje. Juo galėsite atkurti rezultatus šiame ar kitame įrenginyje."
     },
     "backup_save": {
       "en": "Save a backup file",
@@ -2008,8 +2008,8 @@
       "lt": "Atsarginės kopijos failas sukurtas. Patikrinkite atsisiuntimus."
     },
     "restore_keeps": {
-      "en": "Restoring keeps the results on this phone.",
-      "lt": "Atkurti rezultatai bus išsaugoti šiame telefone."
+      "en": "Restoring keeps the results on this device.",
+      "lt": "Atkurti rezultatai bus išsaugoti šiame įrenginyje."
     },
     "restore_done": {
       "en": "Results restored: {count}.",
@@ -2028,8 +2028,8 @@
       "lt": "Ištrinti visus mano duomenis"
     },
     "delete_confirm": {
-      "en": "This removes all your results and settings from this phone. It can't be undone.",
-      "lt": "Bus pašalinti visi jūsų rezultatai ir nustatymai šiame telefone. To nebus galima atšaukti."
+      "en": "This removes all your results and settings from this device. It can't be undone.",
+      "lt": "Bus pašalinti visi jūsų rezultatai ir nustatymai šiame įrenginyje. To nebus galima atšaukti."
     },
     "delete_yes": {
       "en": "Delete everything",
@@ -2040,8 +2040,8 @@
       "lt": "Palikti mano duomenis"
     },
     "deleted_done": {
-      "en": "Everything is removed from this phone. Files you downloaded, like a backup file, are not affected.",
-      "lt": "Viskas pašalinta iš šio telefono. Jūsų atsisiųsti failai, pavyzdžiui, atsarginė kopija, lieka."
+      "en": "Everything is removed from this device. Files you downloaded, like a backup file, are not affected.",
+      "lt": "Viskas pašalinta iš šio įrenginio. Jūsų atsisiųsti failai, pavyzdžiui, atsarginė kopija, lieka."
     },
     "about_link": {
       "en": "About this app",
@@ -2080,8 +2080,8 @@
       "lt": "Jūsų duomenys"
     },
     "about_privacy": {
-      "en": "Your numbers stay in this browser on this phone. There are no accounts, no analytics and no ads, and the app never sends your numbers or answers anywhere. GitHub Pages, which hosts the app, keeps ordinary visit logs, such as your IP address, when the app loads or checks for updates.",
-      "lt": "Jūsų skaičiai lieka šioje naršyklėje šiame telefone. Nėra paskyrų, analitikos ar reklamų, programėlė niekur nesiunčia jūsų skaičių ar atsakymų. Programėlę talpinanti „GitHub Pages“ saugo įprastus apsilankymų žurnalus, pvz., jūsų IP adresą, kai programėlė užsikrauna ar tikrina atnaujinimus."
+      "en": "Your numbers stay in this browser on this device. There are no accounts, no analytics and no ads, and the app never sends your numbers or answers anywhere. GitHub Pages, which hosts the app, keeps ordinary visit logs, such as your IP address, when the app loads or checks for updates.",
+      "lt": "Jūsų skaičiai lieka šioje naršyklėje šiame įrenginyje. Nėra paskyrų, analitikos ar reklamų, programėlė niekur nesiunčia jūsų skaičių ar atsakymų. Programėlę talpinanti „GitHub Pages“ saugo įprastus apsilankymų žurnalus, pvz., jūsų IP adresą, kai programėlė užsikrauna ar tikrina atnaujinimus."
     },
     "about_disclaimer_title": {
       "en": "Please note",
@@ -2104,8 +2104,8 @@
       "lt": "Bus išsiųsta ši žinutė:"
     },
     "share_text": {
-      "en": "I used this free app to understand my cholesterol results in plain words. It is not a medical advisor: it shares published guidelines, with links to read them yourself. Your numbers stay on your phone.",
-      "lt": "Ši nemokama programėlė padėjo man paprastais žodžiais suprasti cholesterolio tyrimo rezultatus. Ji nėra medicinos patarėja: perteikia paskelbtas gaires su nuorodomis, kad galėtumėte jas perskaityti patys. Jūsų skaičiai lieka jūsų telefone."
+      "en": "I used this free app to understand my cholesterol results in plain words. It is not a medical advisor: it shares published guidelines, with links to read them yourself. Your numbers stay on your device.",
+      "lt": "Ši nemokama programėlė padėjo man paprastais žodžiais suprasti cholesterolio tyrimo rezultatus. Ji nėra medicinos patarėja: perteikia paskelbtas gaires su nuorodomis, kad galėtumėte jas perskaityti patys. Jūsų skaičiai lieka jūsų įrenginyje."
     },
     "share_never": {
       "en": "Your results are never included.",
@@ -2506,12 +2506,12 @@
       "lt": "Išsaugoti šį įprotį"
     },
     "ifthen_save_keep": {
-      "en": "Keep this habit on this phone",
-      "lt": "Išsaugoti šį įprotį šiame telefone"
+      "en": "Keep this habit on this device",
+      "lt": "Išsaugoti šį įprotį šiame įrenginyje"
     },
     "ifthen_keep_note": {
-      "en": "Saving a habit also keeps these results on this phone. Nothing is sent anywhere. You can delete everything in More.",
-      "lt": "Išsaugojus įprotį, šiame telefone išsaugomi ir šie rezultatai. Niekas niekur nesiunčiama. Viską galite ištrinti skiltyje „Daugiau“."
+      "en": "Saving a habit also keeps these results on this device. Nothing is sent anywhere. You can delete everything in More.",
+      "lt": "Išsaugojus įprotį, šiame įrenginyje išsaugomi ir šie rezultatai. Niekas niekur nesiunčiama. Viską galite ištrinti skiltyje „Daugiau“."
     },
     "ifthen_count": {
       "en": "{n} of 3 habits",
@@ -2558,12 +2558,12 @@
       "lt": "Pridėti į kalendorių"
     },
     "retest_calendar_note": {
-      "en": "This saves a calendar file. Open it to add the reminder to your phone's calendar.",
-      "lt": "Bus išsaugotas kalendoriaus failas. Atidarykite jį, kad priminimas atsirastų telefono kalendoriuje."
+      "en": "This saves a calendar file. Open it to add the reminder to your calendar.",
+      "lt": "Bus išsaugotas kalendoriaus failas. Atidarykite jį, kad priminimas atsirastų jūsų kalendoriuje."
     },
     "retest_backup_note": {
-      "en": "Phones can clear a website's saved data. A backup file keeps a copy of your results until the re-test.",
-      "lt": "Telefonai gali ištrinti svetainių išsaugotus duomenis. Atsarginėje kopijoje rezultatai išliks iki pakartotinio tyrimo."
+      "en": "Browsers can clear a website's saved data. A backup file keeps a copy of your results until the re-test.",
+      "lt": "Naršyklės gali ištrinti svetainių išsaugotus duomenis. Atsarginėje kopijoje rezultatai išliks iki pakartotinio tyrimo."
     },
     "retest_backup_btn": {
       "en": "Save a backup file",

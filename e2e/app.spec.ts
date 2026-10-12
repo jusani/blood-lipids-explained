@@ -52,9 +52,9 @@ test('full flow: per-field unit prompt, safety questions, consent, saved after r
   await shot(page, '04-confirm-en');
   await page.getByRole('button', { name: 'Show the explanation' }).click();
 
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Keep these results on this phone?');
-  await page.getByRole('button', { name: 'Keep on this phone' }).click();
-  await expect(page.getByText('Saved on this phone.')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Keep these results on this device?');
+  await page.getByRole('button', { name: 'Keep on this device' }).click();
+  await expect(page.getByText('Saved on this device.')).toBeVisible();
   await expect(page.getByText('not reviewed by a doctor')).toBeVisible();
   // No doctor card; neutral headline; the statement shows; values on guideline range bars.
   await expect(page.getByText('Here is where the numbers sit against published guideline ranges.')).toBeVisible();
@@ -101,7 +101,7 @@ test('helper mode saves nothing unless chosen', async ({ page }) => {
   await page.getByRole('button', { name: 'Show the explanation' }).click();
   await expect(page.getByText('Not saved.')).toBeVisible();
   await page.reload();
-  await expect(page.getByText('Saved on this phone')).toHaveCount(0);
+  await expect(page.getByText('Saved on this device')).toHaveCount(0);
 });
 
 test('backup, delete everything, restore', async ({ page }) => {
@@ -110,7 +110,7 @@ test('backup, delete everything, restore', async ({ page }) => {
   await page.getByRole('button', { name: /Continue with/ }).click();
   await page.getByRole('button', { name: 'Skip these' }).click();
   await page.getByRole('button', { name: 'Show the explanation' }).click();
-  await page.getByRole('button', { name: 'Keep on this phone' }).click();
+  await page.getByRole('button', { name: 'Keep on this device' }).click();
 
   await page.getByRole('button', { name: 'More', exact: true }).click();
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Save a backup file' }).click()]);
@@ -122,8 +122,8 @@ test('backup, delete everything, restore', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Delete all my data' }).click();
   await page.getByRole('button', { name: 'Delete everything' }).click();
-  await expect(page.getByText('Everything is removed from this phone.')).toBeVisible();
-  await expect(page.getByText('Saved on this phone')).toHaveCount(0);
+  await expect(page.getByText('Everything is removed from this device.')).toBeVisible();
+  await expect(page.getByText('Saved on this device')).toHaveCount(0);
   const left = await page.evaluate(() => new Promise<number>((resolve) => {
     const req = indexedDB.open('lipids');
     req.onsuccess = () => {
@@ -265,7 +265,7 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Skip these' }).click();
   await page.getByRole('button', { name: 'Show the explanation' }).click();
-  await page.getByRole('button', { name: 'Keep on this phone' }).click();
+  await page.getByRole('button', { name: 'Keep on this device' }).click();
   await page.getByRole('button', { name: 'Enter other results' }).click();
   await enterExample(page, { 'LDL cholesterol': '4,1' });
   await page.getByRole('button', { name: 'Continue' }).click();
@@ -363,7 +363,7 @@ test('habit questionnaire: skippable, one per screen, suggests moments, options 
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByRole('button', { name: 'Skip these' }).click();
   await page.getByRole('button', { name: 'Show the explanation' }).click();
-  await page.getByRole('button', { name: 'Keep on this phone' }).click();
+  await page.getByRole('button', { name: 'Keep on this device' }).click();
   await page.getByRole('button', { name: 'Make a plan' }).click();
   const before = await page.locator('article.card h3').allTextContents();
 
