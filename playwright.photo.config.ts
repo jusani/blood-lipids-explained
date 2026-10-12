@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// Photo/PDF reading prototype: runs against the photo test build (dist-photo/, flag on).
+// Photo/PDF reading: runs against the default build (flag on), on its own port.
 export default defineConfig({
   testDir: 'e2e',
   testMatch: 'photo.spec.ts',
@@ -11,5 +11,5 @@ export default defineConfig({
     ...devices['Pixel 7'],
     launchOptions: process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {},
   },
-  webServer: { command: 'npm run build:photo && vite preview --outDir dist-photo --port 4174 --strictPort', url: 'http://localhost:4174/', reuseExistingServer: true, timeout: 120_000 },
+  webServer: { command: 'npm run build && vite preview --port 4174 --strictPort', url: 'http://localhost:4174/', reuseExistingServer: true, timeout: 120_000 },
 });

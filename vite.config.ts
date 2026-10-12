@@ -4,7 +4,9 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
-const PHOTO = process.env.VITE_PHOTO_READING === '1';
+// Photo/PDF reading is on in the live build (Justina, 2026-10-12, testing mode). VITE_PHOTO_READING=0
+// builds without it (no reader files, stub module), e.g. to roll back quickly.
+const PHOTO = process.env.VITE_PHOTO_READING !== '0';
 const require = createRequire(import.meta.url);
 
 // Strict Content Security Policy for the built app (architect A9): nothing loads

@@ -429,12 +429,25 @@ test('known heart disease: lower LDL goals line on results, not on the doctor su
   await expect(page.locator('.docsheet')).not.toContainText('much lower LDL goals');
 });
 
-test('live build: no photo reading button and no reader files', async ({ page }) => {
+test('live build: photo reading on, reader files present but not precached or loaded until used', async ({ page }) => {
+  const requests: string[] = [];
+  page.on('request', (r) => requests.push(new URL(r.url()).pathname));
   await startEn(page);
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
   await enterExample(page, {});
-  await expect(page.getByRole('button', { name: /photo or PDF/ })).toHaveCount(0);
-  expect(existsSync('dist/ocr')).toBe(false);
-  expect(readdirSync('dist/assets').filter((f) => /^(pdf|src|sheetReader)-/.test(f))).toEqual([]);
+  await expect(page.getByRole('button', { name: 'Read the numbers from a photo or PDF' })).toBeVisible();
+  // The files are there to be fetched on demand...
+  for (const f of ['worker.min.js', 'lit.traineddata.gz', 'eng.traineddata.gz', 'pdf.worker.min.mjs', 'tesseract-core-simd-lstm.wasm.js']) {
+    expect(existsSync(`dist/ocr/${f}`), f).toBe(true);
+  }
+  // ...but the service worker does not precache them or the reader code,
+  const sw = readFileSync('dist/sw.js', 'utf8');
+  const assets: string[] = JSON.parse(/ASSETS = (\[.*\]);/.exec(sw)![1]);
+  const lazy = readdirSync('dist/assets').filter((f) => /^(pdf|src)-/.test(f));
+  expect(lazy.length).toBeGreaterThan(0);
+  expect(assets.filter((a) => a.includes('/ocr/') || lazy.some((l) => a.endsWith(l)))).toEqual([]);
+  // ...and a visit that does not read a sheet never fetches them.
+  expect(requests.filter((p) => p.includes('/ocr/') || lazy.some((l) => p.endsWith(l)))).toEqual([]);
 });
 
 async function resultsFor(page: Page, values: Record<string, string>, familyYes = false) {

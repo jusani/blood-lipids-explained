@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:photo": "VITE_PHOTO_READING=1 vite build --outDir dist-photo",
+    "build:nophoto": "VITE_PHOTO_READING=0 vite build --outDir dist-nophoto",
     "e2e:photo": "playwright test -c playwright.photo.config.ts",
     "preview": "vite preview --port 4173 --strictPort",
     "typecheck": "tsc --noEmit",
