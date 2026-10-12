@@ -6,7 +6,7 @@ import type { Safety, StoredValue } from '../lib/model';
 import { calculate } from '../lib/units';
 
 /** The person's numbers as a plain list; values shown in mmol/L with any conversion noted. */
-export function ValueRows({ values, onEdit }: { values: Partial<Record<MarkerId, StoredValue>>; onEdit?: (id: MarkerId) => void }) {
+export function ValueRows({ values, onEdit, marked }: { values: Partial<Record<MarkerId, StoredValue>>; onEdit?: (id: MarkerId) => void; marked?: MarkerId[] }) {
   const { t, lang } = useApp();
   const mmol = unitLabel(lang, 'mmol/L');
   const calc = calculate({ total: values.total?.canonicalMmol, hdl: values.hdl?.canonicalMmol });
@@ -24,6 +24,7 @@ export function ValueRows({ values, onEdit }: { values: Partial<Record<MarkerId,
             <span class="nm">
               {m.names[lang]}
               <small lang={lang === 'lt' ? 'en' : 'lt'}>{lang === 'lt' ? m.names.en : m.lab_names.lt}</small>
+              {marked?.includes(m.id) && <small class="fromsheet">{t('read_from_sheet_mark')}</small>}
               {v.unit === 'mg/dL' && (
                 <small>{t('converted_from', { value: formatNumber(v.entered, lang), unit: unitLabel(lang, 'mg/dL') })}</small>
               )}

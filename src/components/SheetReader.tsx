@@ -7,7 +7,7 @@ import type { SheetValues } from '../lib/readSheet';
 
 // v2 prototype (photoReading flag): fills the empty entry fields from a photo or PDF of the lab
 // sheet. Values only land in the form; the person checks each one there and on the confirm screen.
-export function SheetReader({ onFilled }: { onFilled: (ids: MarkerId[]) => void }) {
+export function SheetReader() {
   const { t, draft, setDraft } = useApp();
   const input = useRef<HTMLInputElement>(null);
   const [state, setState] = useState<{ kind: 'idle' } | { kind: 'busy'; p: number } | { kind: 'done'; n: number } | { kind: 'failed' }>({ kind: 'idle' });
@@ -33,8 +33,7 @@ export function SheetReader({ onFilled }: { onFilled: (ids: MarkerId[]) => void 
       if (v.unit && v.unit !== next.defaultUnit) next = { ...next, fields: { ...next.fields, [m.id]: { ...next.fields[m.id], unit: v.unit } } };
       filled.push(m.id);
     }
-    setDraft(next);
-    onFilled(filled);
+    setDraft({ ...next, readFromSheet: [...(next.readFromSheet ?? []), ...filled], sheetChecked: false });
     setState({ kind: 'done', n: filled.length });
     if (input.current) input.current.value = '';
   };

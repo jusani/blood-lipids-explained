@@ -1649,6 +1649,14 @@
       "en": "No, let me type it",
       "lt": "Ne, įvesiu ranka"
     },
+    "read_from_sheet_mark": {
+      "en": "Read from your sheet",
+      "lt": "Nuskaityta iš lapo"
+    },
+    "read_sheet_checked": {
+      "en": "I have checked these numbers against my sheet.",
+      "lt": "Šiuos skaičius patikrinau pagal savo lapą."
+    },
     "hq_gtk_title": {
       "en": "Good to know",
       "lt": "Verta žinoti"

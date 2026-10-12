@@ -24,6 +24,10 @@ export interface Draft {
   crossAcknowledgedFor?: string;
   /** Set when the explanation is first shown, so going back and editing updates the same panel. */
   panelId?: string;
+  /** Photo/PDF reading prototype: fields filled from a sheet and not edited since (QA R1). */
+  readFromSheet?: MarkerId[];
+  /** The person ticked "I have checked these numbers against my sheet". */
+  sheetChecked?: boolean;
 }
 
 export function todayIso(now = new Date()): string {
@@ -58,6 +62,7 @@ export function resolveField(id: MarkerId, f: FieldState): Resolved {
 export function setFieldText(d: Draft, id: MarkerId, text: string): Draft {
   return {
     ...d,
+    readFromSheet: d.readFromSheet?.filter((x) => x !== id),
     fields: { ...d.fields, [id]: { text, unit: d.defaultUnit, unitConfirmedBy: 'default' } },
   };
 }

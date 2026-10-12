@@ -42,6 +42,13 @@ test('PDF lab report: text layer read exactly, values land in the form for check
   await page.getByRole('button', { name: /Continue with/ }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
   await expect(page.getByText('4.2', { exact: false }).first()).toBeVisible();
+  // QA R1: the three values still as read are marked, and one tick is needed to go on.
+  await expect(page.locator('.rows .fromsheet')).toHaveCount(3);
+  const show = page.getByRole('button', { name: 'Show the explanation' });
+  await expect(show).toBeDisabled();
+  if (SHOTS) await page.screenshot({ path: `${SHOTS}/33-read-confirm-tick-en.png`, fullPage: true });
+  await page.getByLabel('I have checked these numbers against my sheet.').check();
+  await expect(show).toBeEnabled();
   expect(problems).toEqual([]);
 });
 

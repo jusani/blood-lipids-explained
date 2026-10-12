@@ -18,8 +18,9 @@ export function Entry() {
   const check = checkDraft(draft);
   const inputs = useRef<Partial<Record<MarkerId, HTMLInputElement | null>>>({});
   const [focusAfter, setFocusAfter] = useState<MarkerId | null>(null);
-  // Fields filled from a photo or PDF keep a "please check" hint until the person edits them.
-  const [fromSheet, setFromSheet] = useState<Partial<Record<MarkerId, boolean>>>({});
+  // Fields filled from a photo or PDF keep a "please check" hint until the person edits them
+  // (editing a field takes it off draft.readFromSheet).
+  const fromSheet: Partial<Record<MarkerId, boolean>> = Object.fromEntries((draft.readFromSheet ?? []).map((id) => [id, true]));
   // QA PR3: a value read from the sheet that would bring up a doctor card is asked about once
   // (a dropped decimal comma, 1,1 read as 11, can still look plausible).
   const [sheetOk, setSheetOk] = useState<Partial<Record<MarkerId, boolean>>>({});
@@ -56,7 +57,7 @@ export function Entry() {
       {!packSigned && (
         <button class="linkbtn" onClick={fillExample}>{t('fill_example')}</button>
       )}
-      {photoReading && <SheetReader onFilled={(ids) => setFromSheet(Object.fromEntries(ids.map((id) => [id, true])))} />}
+      {photoReading && <SheetReader />}
 
       <div class="stack">
         <span class="small" id="unit-label">{t('unit_label')}</span>
@@ -79,11 +80,10 @@ export function Entry() {
           onGuide={() => setGuideFor(m.id)}
           othersUnit={othersLookLike(m.id, check.resolved, draft.defaultUnit)}
           fromSheet={!!fromSheet[m.id]}
-          onEdited={() => { if (fromSheet[m.id]) setFromSheet((s) => ({ ...s, [m.id]: false })); setSheetOk((s) => ({ ...s, [m.id]: false })); }}
+          onEdited={() => setSheetOk((s) => ({ ...s, [m.id]: false }))}
           sheetAsk={sheetAsk.includes(m.id)}
           onSheetAnswer={(right) => {
             if (right) { setSheetOk((s) => ({ ...s, [m.id]: true })); return; }
-            setFromSheet((s) => ({ ...s, [m.id]: false }));
             setDraft((d) => setFieldText(d, m.id, ''));
             setFocusAfter(m.id);
           }}

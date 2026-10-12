@@ -7,6 +7,9 @@ import { AnswerRows, ValueRows } from '../components/Values';
 export function Confirm() {
   const { t, lang, mode, draft, setDraft, go, backTo, setCurrent, settings, keepPanel, isSaved } = useApp();
   const preview = buildPanel(draft, mode);
+  // QA R1: values read from a photo or PDF are marked, and one tick confirms they were checked
+  // against the sheet (a misread can lower a value without any question being asked).
+  const read = (draft.readFromSheet ?? []).filter((id) => preview.values[id]);
   if (!checkDraft(draft).ready) {
     return (
       <>
@@ -33,12 +36,18 @@ export function Confirm() {
     <>
       <h1 tabIndex={-1}>{t('confirm_title')}</h1>
       <p>{preview.testDate ? t('confirm_date', { date: formatDate(preview.testDate, lang) }) : t('date_not_known')}</p>
-      <ValueRows values={preview.values} onEdit={() => backTo('entry')} />
+      <ValueRows values={preview.values} onEdit={() => backTo('entry')} marked={read} />
+      {read.length > 0 && (
+        <label class="check">
+          <input type="checkbox" checked={!!draft.sheetChecked} onChange={(e) => setDraft((d) => ({ ...d, sheetChecked: (e.target as HTMLInputElement).checked }))} />
+          {t('read_sheet_checked')}
+        </label>
+      )}
       <h2>{t('answers_heading')}</h2>
       <AnswerRows safety={preview.safety} />
       <button class="linkbtn" onClick={() => backTo('safety')}>{t('edit')}: {t('answers_heading').toLowerCase()}</button>
       <Statement />
-      <button class="btn" onClick={show}>{t('show_explanation')}</button>
+      <button class="btn" onClick={show} disabled={read.length > 0 && !draft.sheetChecked}>{t('show_explanation')}</button>
     </>
   );
 }
