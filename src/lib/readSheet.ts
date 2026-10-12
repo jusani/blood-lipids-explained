@@ -22,10 +22,10 @@ export type SheetValues = Partial<Record<MarkerId, SheetValue>>;
 export const fold = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
 /**
- * Short forms LT labs print that the names list does not show yet: "TGL" (Antėja's test list) and
+ * Short forms labs print that the names list does not show yet:
  * "TRIG" (common analyser code). Reading only; nothing on screen changes.
  */
-const EXTRA_NAMES: Partial<Record<MarkerId, string[]>> = { tg: ['TGL', 'TRIG'] };
+const EXTRA_NAMES: Partial<Record<MarkerId, string[]>> = { tg: ['TRIG'] };
 
 /** Every name the guide lists, longest first, so "MTL cholesterolis" wins over "Cholesterolis". */
 function nameTable(): { name: string; id: MarkerId }[] {
