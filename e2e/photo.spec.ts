@@ -45,10 +45,15 @@ test('PDF lab report: text layer read exactly, values land in the form for check
   // QA R1: the three values still as read are marked, and one tick is needed to go on.
   await expect(page.locator('.rows .fromsheet')).toHaveCount(3);
   const show = page.getByRole('button', { name: 'Show the explanation' });
-  await expect(show).toBeDisabled();
+  await show.click();                                                   // stays on this screen and says why
+  await expect(page.getByText('Tick the box above once the numbers are checked against the sheet.')).toBeVisible();
+  await expect(page.getByLabel('I have checked these numbers against my sheet.')).toBeFocused();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Check the numbers');
   if (SHOTS) await page.screenshot({ path: `${SHOTS}/33-read-confirm-tick-en.png`, fullPage: true });
   await page.getByLabel('I have checked these numbers against my sheet.').check();
-  await expect(show).toBeEnabled();
+  await expect(page.getByText('Tick the box above once the numbers are checked against the sheet.')).toHaveCount(0);
+  await show.click();
+  await expect(page.getByRole('heading', { level: 1 })).not.toHaveText('Check the numbers');
   expect(problems).toEqual([]);
 });
 

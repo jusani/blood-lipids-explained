@@ -2954,6 +2954,10 @@
       "en": "I have checked these numbers against my sheet.",
       "lt": "Šiuos skaičius patikrinau pagal savo lapą."
     },
+    "read_sheet_tick_first": {
+      "en": "Tick the box above once the numbers are checked against the sheet.",
+      "lt": "Pažymėkite langelį aukščiau ir patvirtinkite, kad patikrinote skaičius."
+    },
     "hq_gtk_title": {
       "en": "Good to know",
       "lt": "Verta žinoti"

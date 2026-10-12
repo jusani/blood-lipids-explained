@@ -1,3 +1,4 @@
+import { useRef, useState } from 'preact/hooks';
 import { Statement } from '../components/Statement';
 import { useApp } from '../app';
 import { buildPanel, checkDraft } from '../lib/entry';
@@ -10,6 +11,8 @@ export function Confirm() {
   // QA R1: values read from a photo or PDF are marked, and one tick confirms they were checked
   // against the sheet (a misread can lower a value without any question being asked).
   const read = (draft.readFromSheet ?? []).filter((id) => preview.values[id]);
+  const tick = useRef<HTMLInputElement>(null);
+  const [needTick, setNeedTick] = useState(false);
   if (!checkDraft(draft).ready) {
     return (
       <>
@@ -38,16 +41,24 @@ export function Confirm() {
       <p>{preview.testDate ? t('confirm_date', { date: formatDate(preview.testDate, lang) }) : t('date_not_known')}</p>
       <ValueRows values={preview.values} onEdit={() => backTo('entry')} marked={read} />
       {read.length > 0 && (
-        <label class="check">
-          <input type="checkbox" checked={!!draft.sheetChecked} onChange={(e) => setDraft((d) => ({ ...d, sheetChecked: (e.target as HTMLInputElement).checked }))} />
-          {t('read_sheet_checked')}
-        </label>
+        <>
+          <label class="check">
+            <input ref={tick} type="checkbox" checked={!!draft.sheetChecked} aria-describedby="tick-why"
+              onChange={(e) => { setNeedTick(false); setDraft((d) => ({ ...d, sheetChecked: (e.target as HTMLInputElement).checked })); }} />
+            {t('read_sheet_checked')}
+          </label>
+          <p id="tick-why" class="err-text" aria-live="polite">{needTick ? t('read_sheet_tick_first') : ''}</p>
+        </>
       )}
       <h2>{t('answers_heading')}</h2>
       <AnswerRows safety={preview.safety} />
       <button class="linkbtn" onClick={() => backTo('safety')}>{t('edit')}: {t('answers_heading').toLowerCase()}</button>
       <Statement />
-      <button class="btn" onClick={show} disabled={read.length > 0 && !draft.sheetChecked}>{t('show_explanation')}</button>
+      <button class="btn" onClick={() => {
+        // The button stays enabled so it can say why it waits (screen readers often skip disabled ones).
+        if (read.length > 0 && !draft.sheetChecked) { setNeedTick(true); tick.current?.focus(); return; }
+        void show();
+      }}>{t('show_explanation')}</button>
     </>
   );
 }
