@@ -42,6 +42,7 @@ export function Confirm() {
       <ValueRows values={preview.values} onEdit={() => backTo('entry')} marked={read} />
       {read.length > 0 && (
         <>
+          <p class="testing">{t('read_sheet_testing')}</p>
           <label class="check">
             <input ref={tick} type="checkbox" checked={!!draft.sheetChecked} aria-describedby="tick-why"
               onChange={(e) => { setNeedTick(false); setDraft((d) => ({ ...d, sheetChecked: (e.target as HTMLInputElement).checked })); }} />

@@ -43,6 +43,7 @@ export function SheetReader() {
       <input ref={input} type="file" accept="image/*,application/pdf" hidden aria-hidden="true"
         onChange={(e) => void pick((e.target as HTMLInputElement).files?.[0])} />
       <button class="btn ghost" disabled={state.kind === 'busy'} onClick={() => input.current?.click()}>{t('read_sheet_btn')}</button>
+      <p class="testing">{t('read_sheet_testing')}</p>
       <p class="small">{t('read_sheet_note')}</p>
       <p class="small" aria-live="polite">
         {state.kind === 'busy' && t('read_sheet_busy', { pct: Math.round(state.p * 100) })}

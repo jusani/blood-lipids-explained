@@ -1661,6 +1661,10 @@
       "en": "Tick the box above once the numbers are checked against the sheet.",
       "lt": "Pažymėkite langelį aukščiau ir patvirtinkite, kad patikrinote skaičius."
     },
+    "read_sheet_testing": {
+      "en": "Photo reading is being tested. Please check every number against your sheet before you continue.",
+      "lt": "Nuotraukų skaitymas dar bandomas. Prieš tęsdami kiekvieną skaičių patikrinkite pagal savo lapą."
+    },
     "hq_gtk_title": {
       "en": "Good to know",
       "lt": "Verta žinoti"

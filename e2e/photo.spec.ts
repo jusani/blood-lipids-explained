@@ -30,6 +30,7 @@ test('PDF lab report: text layer read exactly, values land in the form for check
   await toEntry(page);
   await read(page, 'lab-report.pdf');
   await expect(page.getByText('Read 4 of 4 values.')).toBeVisible();
+  await expect(page.getByText('Photo reading is being tested. Please check every number against your sheet before you continue.')).toBeVisible();
   expect(await num(page, 'LDL cholesterol')).toBe('4.15');
   expect(await num(page, 'Total cholesterol')).toBe('6.32');
   expect(await num(page, 'HDL cholesterol')).toBe('1.28');
@@ -44,6 +45,7 @@ test('PDF lab report: text layer read exactly, values land in the form for check
   await expect(page.getByText('4.2', { exact: false }).first()).toBeVisible();
   // QA R1: the three values still as read are marked, and one tick is needed to go on.
   await expect(page.locator('.rows .fromsheet')).toHaveCount(3);
+  await expect(page.getByText('Photo reading is being tested.', { exact: false })).toBeVisible();
   const show = page.getByRole('button', { name: 'Show the explanation' });
   await show.click();                                                   // stays on this screen and says why
   await expect(page.getByText('Tick the box above once the numbers are checked against the sheet.')).toBeVisible();
