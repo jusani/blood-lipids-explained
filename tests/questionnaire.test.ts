@@ -30,7 +30,7 @@ describe('habit questionnaire (pm D1, designer S10, QA M2)', () => {
 });
 
 describe('feedback link (pm 11.4, QA L1, L2)', () => {
-  it('uses the address Justina gave', () => expect(pack.feedback_email).toBe('justina.aniulyte@gmail.com'));
+  it('uses the project address Justina gave', () => expect(pack.feedback_email).toBe('bloodlipidsexplained@gmail.com'));
   it('is a plain email with an empty template and no values', () => {
     const href = feedbackHref('hello@example.org', 'Feedback', 'Did this help?\n\n');
     expect(href.startsWith('mailto:hello@example.org?subject=Feedback&body=')).toBe(true);

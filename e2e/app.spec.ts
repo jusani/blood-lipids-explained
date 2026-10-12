@@ -170,7 +170,7 @@ test.describe('Lithuanian phone', () => {
   await page.getByRole('button', { name: 'Apie programėlę' }).click();
   await expect(page.getByText('Ji nediagnozuoja ligų')).toBeVisible();
   const mail = page.getByRole('link', { name: 'Siųsti atsiliepimą el. paštu' });
-  await expect(mail).toHaveAttribute('href', /^mailto:justina\.aniulyte@gmail\.com\?subject=/);
+  await expect(mail).toHaveAttribute('href', /^mailto:bloodlipidsexplained@gmail\.com\?subject=/);
   });
 });
 

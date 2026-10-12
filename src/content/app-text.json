@@ -224,7 +224,7 @@
   "strings": {
     "app_name": {
       "en": "Blood Lipids Explained",
-      "lt": "Kraujo lipidai paprastai"
+      "lt": "Lipidai kraujyje paprastai"
     },
     "back": {
       "en": "Back",
@@ -1106,7 +1106,7 @@
     },
     "summary_footer": {
       "en": "Educational summary, not a diagnosis. Not a medical advisor: it repeats published guidelines, listed with links in the app. Content version {version}, checked against the sources listed, not reviewed by a doctor.",
-      "lt": "Šviečiamoji santrauka, ne diagnozė. Ne medicinos patarėja: kartoja paskelbtas gaires, kurių sąrašas su nuorodomis pateiktas programėlėje. Turinio versija {version}, patikrinta pagal nurodytus šaltinius, gydytojo neperžiūrėta."
+      "lt": "Šviečiamoji santrauka, ne diagnozė. Ne medicinos patarėja: atkartoja paskelbtas gaires, kurių sąrašas su nuorodomis pateiktas programėlėje. Turinio versija {version}, patikrinta pagal nurodytus šaltinius, gydytojo neperžiūrėta."
     },
     "print_btn": {
       "en": "Print or save as PDF",
@@ -1649,5 +1649,5 @@
       "max": 10
     }
   },
-  "feedback_email": "justina.aniulyte@gmail.com"
+  "feedback_email": "bloodlipidsexplained@gmail.com"
 }
