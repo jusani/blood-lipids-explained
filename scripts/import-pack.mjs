@@ -100,6 +100,16 @@ if (ev.levers_config) {
 }
 if (ev.retest?.text) need(strings[ev.retest.text], `retest: ${ev.retest.text} missing`);
 
+// Lessons (2026.5): general reads, each with its strings and the claims that carry it.
+const claimIdSet = new Set(ev.claims.map((c) => c.id));
+for (const l of ev.lessons ?? []) {
+  need(strings[l.title] && strings[l.body], `lesson ${l.id}: title or body string missing`);
+  for (const c of l.claims ?? []) need(claimIdSet.has(c), `lesson ${l.id}: claim ${c} missing`);
+}
+for (const k of ['heading', 'general_note']) {
+  if (ev.lessons_config?.[k]) need(strings[ev.lessons_config[k]], `lessons_config.${k}: ${ev.lessons_config[k]} missing`);
+}
+
 // Strings: app screen text plus evidence strings. A key in both is an error.
 for (const k of Object.keys(strings)) need(!app.strings[k], `string ${k} is in both packs`);
 const missingLt = Object.keys(strings).filter((k) => !strings[k].lt);
@@ -146,6 +156,9 @@ const pack = {
     units: ev.units, markers: ev.markers, flags: ev.flags, flags_display: ev.flags_display, claims: ev.claims,
     levers: ev.levers ?? [], levers_config: ev.levers_config ?? null, retest: ev.retest ?? null,
   },
+  lessons: (ev.lessons ?? []).map((l) => ({ id: l.id, order: l.order, title: l.title, body: l.body, linked_from: l.linked_from ?? [], claims: l.claims ?? [] }))
+    .sort((a, b) => a.order - b.order),
+  lessons_config: ev.lessons_config ? { heading: ev.lessons_config.heading, general_note: ev.lessons_config.general_note } : null,
   lint: app.lint,
   strings: { ...app.strings, ...strings },
 };

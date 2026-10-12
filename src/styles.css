@@ -261,3 +261,13 @@ dl.names dt { font-weight: 700; }
 dl.names dd { margin: 2px 0 0; }
 
 .nowrap { white-space: nowrap; }
+
+/* 60-second lessons (content 2026.5) */
+.plainlist { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.plaque { display: flex; justify-content: space-between; gap: 4px; margin: 12px 0; }
+.pl-wall { fill: var(--surface); stroke: var(--muted); stroke-width: 6; }
+.pl-plaque { fill: var(--work); }
+.pl-blood { fill: var(--flag-soft); stroke: var(--line); stroke-width: 1; }
+.family { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; display: grid; gap: 8px; }
+.lesson { display: grid; gap: 10px; }
+.lesson h1, .lesson p { margin: 0; }

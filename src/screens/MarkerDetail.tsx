@@ -7,6 +7,7 @@ import { Statement } from '../components/Statement';
 import { TrustLine } from '../components/TrustLine';
 import { contentLacksLang, markerName, valueText } from '../results/present';
 import { SourceQuotes } from '../components/SourceQuotes';
+import { LessonLinks, lessonsFor } from './Lessons';
 
 // S7 marker detail: the bar, the guideline's own zone names, the guideline text and the
 // quoted source lines with links. No status chip (designer §13.5).
@@ -57,6 +58,7 @@ export function MarkerDetail() {
           <SourceQuotes claimIds={claimIds} />
         </section>
       )}
+      <LessonLinks lessons={lessonsFor(m.id)} />
       <TrustLine />
     </>
   );

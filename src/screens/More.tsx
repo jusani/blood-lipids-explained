@@ -118,6 +118,7 @@ export function More() {
       <section class="section">
         <button class="linkbtn" onClick={() => go('share')}>{t('share_link')}</button>
         <button class="linkbtn" onClick={() => go('sources')}>{t('sources')}</button>
+        {pack.lessons.length > 0 && pack.lessons_config && <button class="linkbtn" onClick={() => go('lessons')}>{t(pack.lessons_config.heading)}</button>}
         <button class="linkbtn" onClick={() => go('about')}>{t('about_link')}</button>
       </section>
 

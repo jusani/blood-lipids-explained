@@ -112,6 +112,17 @@ export interface Claim {
   quotes?: { source: string; quote: string; locator?: string }[];
 }
 
+/** A 60-second lesson (2026.5): general to everyone, never uses the person's values (QA L2). */
+export interface Lesson {
+  id: string;
+  order: number;
+  title: string;
+  body: string;
+  /** Marker details that link to it; the same link for everyone, whatever the value (QA L3). */
+  linked_from: string[];
+  claims: string[];
+}
+
 export interface ContentPack {
   manifest: {
     version: string;
@@ -135,6 +146,8 @@ export interface ContentPack {
   source_types: SourceType[];
   sources: Source[];
   bar_scale: Record<string, Range>;
+  lessons: Lesson[];
+  lessons_config: { heading: string; general_note: string } | null;
   /** Ranges, doctor flags and claims from the evidence pack. Read only by the rules engine. */
   rules: {
     units: { chol_mg_dl_per_mmol: number; tg_mg_dl_per_mmol: number; mg_dl_rule?: string };
