@@ -61,7 +61,7 @@ test('full flow: per-field unit prompt, safety questions, consent, saved after r
   await expect(page.getByText('This app is not a medical advisor.')).toBeVisible();
   await expect(page.locator('.dcard')).toHaveCount(0);
   await expect(page.getByRole('img', { name: 'LDL cholesterol 4.1 on the guideline range bar' })).toBeVisible();
-  await expect(page.getByText('Content version 2026.3')).toBeVisible();
+  await expect(page.getByText('Content version 2026.4')).toBeVisible();
   await shot(page, '05-results-en');
 
   await page.reload();
@@ -236,7 +236,7 @@ test('doctor cards first, marker detail with quotes, doctor summary in its own l
   const sheet = page.locator('.docsheet');
   await expect(sheet).toContainText('Triglycerides 12.0 mmol/L. Guideline level for talking to a doctor: 10.0 mmol/L or higher.');
   await expect(sheet).toContainText('Would a direct LDL or ApoB test help?');
-  await expect(sheet).toContainText('Content version 2026.3');
+  await expect(sheet).toContainText('Content version 2026.4');
   await expect(sheet).not.toContainText(/your|my /i);
   await shot(page, '12-summary-en');
   await page.getByRole('button', { name: 'Lietuvių' }).click();
@@ -276,8 +276,8 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await shot(page, '14-results-before-after-en');
 
   await page.getByRole('button', { name: 'Make a plan' }).click();
-  // Approved 2026.3: sourced options, LDL levers first, trans fats last, never supplements.
-  await expect(page.getByRole('heading', { name: 'Options that often help people with results like these' })).toBeVisible();
+  // Approved 2026.4: sourced options, LDL levers first, trans fats last, never supplements.
+  await expect(page.getByRole('heading', { name: 'Changes that often help people with results like these' })).toBeVisible();
   const titles = await page.locator('article.card h3').allTextContents();
   expect(titles[0]).toBe('Swap butter and lard for plant oils');
   expect(titles[titles.length - 1]).toBe('Avoid trans fats and hard margarine');
@@ -337,7 +337,7 @@ test('no plan offered when every value is inside the guideline ranges', async ({
   await expect(page.getByRole('button', { name: 'Make a plan' })).toHaveCount(0);
 });
 
-test('Lithuanian results use the approved Lithuanian explanations (2026.3)', async ({ page }) => {
+test('Lithuanian results use the approved Lithuanian explanations (2026.4)', async ({ page }) => {
   await page.goto('./?lang=lt');
   await page.getByRole('button', { name: 'Paaiškinti mano rezultatus' }).click();
   await page.getByRole('button', { name: /Mano rezultatai/ }).click();
@@ -353,7 +353,7 @@ test('Lithuanian results use the approved Lithuanian explanations (2026.3)', asy
   await expect(page.getByText('Ši programėlė nėra medicinos patarėja.', { exact: false })).toBeVisible();
   await shot(page, '20-results-doctor-lt');
   await page.getByRole('button', { name: 'Kurti planą' }).click();
-  await expect(page.getByRole('heading', { name: 'Galimybės, kurios dažnai padeda žmonėms su tokiais rezultatais' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Pokyčiai, kurie dažnai padeda žmonėms su tokiais rezultatais' })).toBeVisible();
   await shot(page, '21-plan-options-lt');
 });
 
@@ -376,10 +376,18 @@ test('habit questionnaire: skippable, one per screen, suggests moments, options 
   await expect(page.getByText('Question 2 of 6')).toBeVisible();
   await page.getByRole('button', { name: 'Skip' }).click();
   await page.getByRole('button', { name: 'Rarely' }).click();          // sweet
+  // Good to know after question 3 and question 6, whatever was answered (evidence 2026.4).
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Good to know');
+  await expect(page.getByText(/fibre in oats and barley lowers LDL a little/)).toBeVisible();
+  await shot(page, '24-good-to-know-en');
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.getByText('Question 4 of 6')).toBeVisible();
   await page.getByRole('button', { name: 'Never' }).click();           // alcohol
   await shot(page, '22-habit-question-en');
   await page.getByRole('button', { name: 'A few times a week' }).click(); // activity
   await page.getByRole('button', { name: 'No', exact: true }).click(); // smoking
+  await expect(page.getByText(/Drinking less alcohol is one of the changes/)).toBeVisible();
+  await page.getByRole('button', { name: 'Continue' }).click();
 
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your plan');
   expect(await page.locator('article.card h3').allTextContents()).toEqual(before);
@@ -404,4 +412,19 @@ test('lab names help lists the names labs print, the asked value first', async (
   if (SHOTS) await page.screenshot({ path: `${SHOTS}/23-lab-names-en.png` }); // phone viewport, not full page
   await dialog.getByRole('button', { name: 'Got it' }).click();
   await expect(dialog).toBeHidden();
+});
+
+test('known heart disease: lower LDL goals line on results, not on the doctor summary', async ({ page }) => {
+  await startEn(page);
+  await enterExample(page, { 'LDL cholesterol': '2,4' });
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByRole('group', { name: /heart disease, had a stroke/ }).getByLabel('Yes', { exact: true }).check();
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByRole('button', { name: 'Show the explanation' }).click();
+  await page.getByRole('button', { name: "Don't keep anything" }).click();
+  await expect(page.getByText('Your doctor sets your LDL target.', { exact: false })).toBeVisible();
+  await expect(page.getByText(/Guidelines set much lower LDL goals/)).toHaveCount(1);
+  await shot(page, '25-lower-goals-en');
+  await page.getByRole('button', { name: 'Get a summary for my doctor' }).click();
+  await expect(page.locator('.docsheet')).not.toContainText('much lower LDL goals');
 });

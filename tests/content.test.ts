@@ -77,8 +77,8 @@ describe('stay-educational lint (pm.md §11.1, architect §16.1, QA M4, C4)', ()
     }
   });
 
-  it('uses the approved evidence pack 2026.3', () => {
-    expect(pack.manifest.version).toBe('2026.3');
+  it('uses the approved evidence pack 2026.4', () => {
+    expect(pack.manifest.version).toBe('2026.4');
     expect(pack.manifest.approved_by).toBeTruthy();
     expect(pack.manifest.languages).toContain('lt');
     expect(pack.rules.levers.length).toBeGreaterThan(0);

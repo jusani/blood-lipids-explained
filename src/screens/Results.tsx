@@ -1,3 +1,4 @@
+import { Fragment } from 'preact';
 import { useMemo, useState } from 'preact/hooks';
 import { useApp } from '../app';
 import { pack, packSigned } from '../content';
@@ -11,6 +12,9 @@ import { RangeBar } from '../components/RangeBar';
 import { DoctorCards } from '../results/DoctorCards';
 import { BeforeAfter, previousPanel } from '../results/BeforeAfter';
 import { contentLacksLang, markerName, rangeText, valueText } from '../results/present';
+
+// Clinician page rule 7 (Justina, 2026-10-12), sourced by claim_ldl_goals.
+const LOWER_GOALS = 'note_doctor_sets_target_lower_goals';
 
 // Results (designer §13.5, now permanent): doctor cards first, then the headline, then each
 // value on its guideline range bar. No status labels or verdicts (status_labels: false).
@@ -51,7 +55,12 @@ export function Results() {
       <DoctorCards r={r} />
       <p class="headline">{t(r.headline === 'doctor' ? 'results_headline_doctor' : 'results_headline_neutral')}</p>
       <Statement />
-      {r.infoNotes.filter((n) => !n.effect?.suppress_status || !big.length).map((n) => <p class="info" key={n.id}>{t(n.card)}</p>)}
+      {r.infoNotes.filter((n) => !n.effect?.suppress_status || !big.length).map((n) => (
+        <Fragment key={n.id}>
+          <p class="info">{t(n.card)}</p>
+          {n.card === 'note_doctor_sets_target' && <p class="info">{t(LOWER_GOALS)}</p>}
+        </Fragment>
+      ))}
       {current.safety.cholMedicine === 'yes' && <p class="info">{t('medicine_note')}</p>}
       {lang === 'lt' && contentLacksLang('lt') && <p class="small">{t('lt_fallback_note')}</p>}
 
@@ -62,7 +71,11 @@ export function Results() {
             {i === 0 && id === 'ldl' && <p class="dcard-label">{t('most_important')}</p>}
             <h2 id={`m-${id}`} class="mhead"><span>{markerName(id, lang)}</span><span class="v">{valueText(m, lang)}</span></h2>
             {m.suppressed ? (
-              <p>{t('note_doctor_sets_target')}</p>
+              <>
+                <p>{t('note_doctor_sets_target')}</p>
+                {/* Results screen only, never the doctor summary (QA E1, clinician page rule 7). */}
+                {i === 0 && <p>{t(LOWER_GOALS)}</p>}
+              </>
             ) : (
               <>
                 <RangeBar m={m} />

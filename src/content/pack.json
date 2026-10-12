@@ -1,11 +1,11 @@
 {
   "manifest": {
-    "version": "2026.3",
-    "released": "2026-10-09",
+    "version": "2026.4",
+    "released": "2026-10-12",
     "approved_by": "Justina",
-    "approved_date": "2026-10-09",
-    "approval_record": "Justina, evidence thread 2026-10-09 04:30 UTC: 'Yes' to approving 2026.3 (draft 3), which includes all of 2026.2-draft.1",
-    "supersedes": "2026.1",
+    "approved_date": "2026-10-12",
+    "approval_record": "Justina, Lithuanian text review thread 2026-10-12 08:26 UTC: her only change was app text (privacy paragraph); the heading, the lower-goals LT phrase and version 2026.4 stand as asked",
+    "supersedes": "2026.3",
     "reviewed_by_clinician": null,
     "languages": [
       "en",
@@ -20,7 +20,7 @@
       "lt",
       "en"
     ],
-    "imported_from": "content/content-pack-2026.3.yaml"
+    "imported_from": "content/content-pack-2026.4.yaml"
   },
   "display": {
     "status_labels": false
@@ -620,6 +620,18 @@
             "number_in_quote": "1.4"
           },
           {
+            "source": "src_esc2019",
+            "quote": "Documented ASCVD includes previous ACS (MI or unstable angina), stable angina, coronary revascularization (PCI, CABG, and other arterial revascularization procedures), stroke and TIA, and [...] peripheral arterial disease.",
+            "locator": "Table 4, very-high-risk (supports note_doctor_sets_target_lower_goals: heart disease, stroke)",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "This is true for patients with documented CVD, older individuals with longstanding DM, familial hypercholesterolaemia, chronic kidney disease",
+            "locator": "Box 5 (supports 'diabetes' with 'often', and 'kidney disease')",
+            "number_in_quote": null
+          },
+          {
             "source": "src_esc2025",
             "quote": "It is important to note that the LDL-C treatment goals (Figure 1) and therapeutic guidance (Table 4) for persons in each risk category have not changed from the 2019 ESC/EAS Guidelines.",
             "locator": "§3",
@@ -998,7 +1010,10 @@
       },
       {
         "id": "claim_fibre_ldl",
-        "text": "effect_ldl_oats",
+        "text": [
+          "effect_ldl_oats",
+          "str_gtk_1"
+        ],
         "sources": [
           "src_esc2019"
         ],
@@ -1021,7 +1036,10 @@
       },
       {
         "id": "claim_alcohol_tg",
-        "text": "effect_tg_alcohol",
+        "text": [
+          "effect_tg_alcohol",
+          "str_gtk_2"
+        ],
         "sources": [
           "src_esc2019"
         ],
@@ -1038,8 +1056,15 @@
             "quote": "Reduce alcohol intake",
             "locator": "Table 8, 'reduce TG' block: +++ (>10%), level A",
             "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "The magnitude of the effect (+++ = >10%, ++ = 5–10%, + = <5%)",
+            "locator": "Table 8 footnote",
+            "number_in_quote": null
           }
-        ]
+        ],
+        "note": "str_gtk_2 says 'one of the changes that lowers triglycerides the most': in Table 8's TG block, 'Reduce alcohol intake' is the only change rated +++ (>10%); the others are ++ or +."
       },
       {
         "id": "claim_sugar_tg",
@@ -1370,7 +1395,7 @@
         "helps": {
           "ldl": "+",
           "total": "+",
-          "non_hdl": "++",
+          "non_hdl": "+",
           "tg": "+",
           "hdl": "++"
         },
@@ -2055,8 +2080,8 @@
       "lt": "Jūsų duomenys"
     },
     "about_privacy": {
-      "en": "Your numbers stay in this browser on this phone. There are no accounts, no analytics and no ads, and the app sends nothing anywhere after it has loaded.",
-      "lt": "Jūsų skaičiai lieka šioje naršyklėje šiame telefone. Nėra paskyrų, analitikos ar reklamų, o įsikrovusi programėlė niekur nieko nesiunčia."
+      "en": "Your numbers stay in this browser on this phone. There are no accounts, no analytics and no ads, and the app never sends your numbers or answers anywhere. GitHub Pages, which hosts the app, keeps ordinary visit logs, such as your IP address, when the app loads or checks for updates.",
+      "lt": "Jūsų skaičiai lieka šioje naršyklėje šiame telefone. Nėra paskyrų, analitikos ar reklamų, programėlė niekur nesiunčia jūsų skaičių ar atsakymų. Programėlę talpinanti „GitHub Pages“ saugo įprastus apsilankymų žurnalus, pvz., jūsų IP adresą, kai programėlė užsikrauna ar tikrina atnaujinimus."
     },
     "about_disclaimer_title": {
       "en": "Please note",
@@ -2880,6 +2905,10 @@
       "en": "Did this help you understand your results?\n\nDid you feel calmer or more worried afterwards?\n\nAnything else?\n",
       "lt": "Ar tai padėjo suprasti rezultatus?\n\nAr po to jautėtės ramiau, ar labiau nerimavote?\n\nKą nors dar?\n"
     },
+    "hq_gtk_title": {
+      "en": "Good to know",
+      "lt": "Verta žinoti"
+    },
     "hq_previous": {
       "en": "Previous question",
       "lt": "Ankstesnis klausimas"
@@ -3118,12 +3147,12 @@
     },
     "note_doctor_sets_target_lower_goals": {
       "en": {
-        "self": "Guidelines set much lower LDL goals for people with heart disease, stroke or diabetes, often below 1.8 or 1.4 mmol/L. Bring these results to your doctor.",
-        "helper": "Guidelines set much lower LDL goals for people with heart disease, stroke or diabetes, often below 1.8 or 1.4 mmol/L. They can bring these results to their doctor."
+        "self": "Guidelines set much lower LDL goals for people with heart disease, stroke, diabetes or kidney disease, often below 1.8 or 1.4 mmol/L. Bring these results to your doctor.",
+        "helper": "Guidelines set much lower LDL goals for people with heart disease, stroke, diabetes or kidney disease, often below 1.8 or 1.4 mmol/L. They can bring these results to their doctor."
       },
       "lt": {
-        "self": "Žmonėms su širdies liga, po insulto ar su diabetu gairės nustato daug mažesnius MTL tikslus, dažnai mažiau nei 1,8 arba 1,4 mmol/l. Aptarkite šiuos rezultatus su gydytoju.",
-        "helper": "Žmonėms su širdies liga, po insulto ar su diabetu gairės nustato daug mažesnius MTL tikslus, dažnai mažiau nei 1,8 arba 1,4 mmol/l. Šiuos rezultatus verta aptarti su gydytoju."
+        "self": "Žmonėms su širdies liga, po insulto, su diabetu ar inkstų liga gairės nustato daug mažesnius MTL tikslus, dažnai mažiau nei 1,8 arba 1,4 mmol/l. Aptarkite šiuos rezultatus su gydytoju.",
+        "helper": "Žmonėms su širdies liga, po insulto, su diabetu ar inkstų liga gairės nustato daug mažesnius MTL tikslus, dažnai mažiau nei 1,8 arba 1,4 mmol/l. Šiuos rezultatus verta aptarti su gydytoju."
       }
     },
     "str_fasting_fact": {
@@ -3141,6 +3170,14 @@
     "effect_ldl_swap_sat_fat": {
       "en": "Swap butter and lard for plant oils such as rapeseed, sunflower or olive oil. Mainly moves LDL, often 5–10% lower.",
       "lt": "Sviestą ir taukus pakeiskite augaliniais aliejais, pavyzdžiui, rapsų, saulėgrąžų ar alyvuogių. Daugiausia veikia MTL, dažnai jis sumažėja 5–10 %."
+    },
+    "str_gtk_1": {
+      "en": "The fibre in oats and barley lowers LDL a little, by about 3–5% when enough is eaten every day.",
+      "lt": "Avižų ir miežių skaidulos šiek tiek sumažina MTL, maždaug 3–5 %, kai jų kasdien suvalgoma pakankamai."
+    },
+    "str_gtk_2": {
+      "en": "Drinking less alcohol is one of the changes that lowers triglycerides the most, especially when they are high.",
+      "lt": "Mažiau alkoholio – vienas pokyčių, labiausiai mažinančių trigliceridus, ypač kai jų daug."
     },
     "effect_ldl_oats": {
       "en": "Oats or barley every day. Their fibre lowers LDL a little, by about 3–5% when you eat enough of it.",
@@ -3171,8 +3208,8 @@
       "lt": "Europos gairės (2025) nerekomenduoja maisto papildų ar vitaminų širdies sveikatai, jei neįrodyta, kad jie nekenkia ir aiškiai mažina MTL."
     },
     "lever_heading": {
-      "en": "Options that often help people with results like these",
-      "lt": "Galimybės, kurios dažnai padeda žmonėms su tokiais rezultatais"
+      "en": "Changes that often help people with results like these",
+      "lt": "Pokyčiai, kurie dažnai padeda žmonėms su tokiais rezultatais"
     },
     "lever_alongside_doctor": {
       "en": "These work alongside a doctor's advice, not instead of it.",

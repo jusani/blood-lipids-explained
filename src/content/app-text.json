@@ -783,8 +783,8 @@
       "lt": "Jūsų duomenys"
     },
     "about_privacy": {
-      "en": "Your numbers stay in this browser on this phone. There are no accounts, no analytics and no ads, and the app sends nothing anywhere after it has loaded.",
-      "lt": "Jūsų skaičiai lieka šioje naršyklėje šiame telefone. Nėra paskyrų, analitikos ar reklamų, o įsikrovusi programėlė niekur nieko nesiunčia."
+      "en": "Your numbers stay in this browser on this phone. There are no accounts, no analytics and no ads, and the app never sends your numbers or answers anywhere. GitHub Pages, which hosts the app, keeps ordinary visit logs, such as your IP address, when the app loads or checks for updates.",
+      "lt": "Jūsų skaičiai lieka šioje naršyklėje šiame telefone. Nėra paskyrų, analitikos ar reklamų, programėlė niekur nesiunčia jūsų skaičių ar atsakymų. Programėlę talpinanti „GitHub Pages“ saugo įprastus apsilankymų žurnalus, pvz., jūsų IP adresą, kai programėlė užsikrauna ar tikrina atnaujinimus."
     },
     "about_disclaimer_title": {
       "en": "Please note",
@@ -1607,6 +1607,10 @@
     "feedback_template": {
       "en": "Did this help you understand your results?\n\nDid you feel calmer or more worried afterwards?\n\nAnything else?\n",
       "lt": "Ar tai padėjo suprasti rezultatus?\n\nAr po to jautėtės ramiau, ar labiau nerimavote?\n\nKą nors dar?\n"
+    },
+    "hq_gtk_title": {
+      "en": "Good to know",
+      "lt": "Verta žinoti"
     },
     "hq_previous": {
       "en": "Previous question",
