@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { devices, expect, test, type Page } from '@playwright/test';
 
 const SHOTS = process.env.SHOTS_DIR;
 const FIX = 'e2e/fixtures/';
@@ -56,6 +56,21 @@ test('PDF lab report: text layer read exactly, values land in the form for check
   await expect(page.getByText('Tick the box above once the numbers are checked against the sheet.')).toHaveCount(0);
   await show.click();
   await expect(page.getByRole('heading', { level: 1 })).not.toHaveText('Check the numbers');
+  if (await page.getByRole('button', { name: "Don't keep anything" }).isVisible()) await page.getByRole('button', { name: "Don't keep anything" }).click();
+
+  // One optional question after a reading; each answer is an email with that answer only.
+  const fb = page.getByRole('region', { name: 'Did the photo reading get your numbers right?' });
+  await expect(fb).toBeVisible();
+  if (SHOTS) await page.screenshot({ path: `${SHOTS}/34-read-feedback-en.png`, fullPage: true });
+  const hrefs = await fb.getByRole('link').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).href));
+  expect(hrefs).toHaveLength(3);
+  for (const h of hrefs) {
+    expect(h).toMatch(/^mailto:bloodlipidsexplained@gmail\.com\?subject=Photo%20reading&body=Photo%20reading%3A%20/);
+    expect(decodeURIComponent(h)).not.toMatch(/\d/);                   // no numbers of any kind
+  }
+  expect(decodeURIComponent(hrefs[1])).toContain('Photo reading: I fixed some');
+  await fb.getByRole('button', { name: 'Skip' }).click();
+  await expect(fb).toHaveCount(0);
   expect(problems).toEqual([]);
 });
 
@@ -115,4 +130,24 @@ test('a read value that would bring up a doctor card is asked about once (QA PR1
   await ask.getByRole('button', { name: 'Yes, the sheet says that' }).click();
   await expect(ask).toHaveCount(0);
   await expect(page.getByRole('button', { name: /Continue with/ })).toBeEnabled();
+});
+
+test.describe('on a computer', () => {
+  const { defaultBrowserType: _ignored, ...desktop } = devices['Desktop Chrome'];
+  test.use(desktop);
+  test('the button opens a file picker for a saved photo or PDF (no camera needed)', async ({ page }) => {
+    const problems = watch(page);
+    await toEntry(page);
+    const btn = page.getByRole('button', { name: 'Read the numbers from a photo or PDF' });
+    await expect(page.locator('input[type=file]')).not.toHaveAttribute('capture', /.*/);
+    for (const file of ['lab-report.pdf', 'sheet04.jpg']) {
+      const [chooser] = await Promise.all([page.waitForEvent('filechooser'), btn.click()]);
+      expect(chooser.isMultiple()).toBe(false);
+      for (const id of ['LDL cholesterol', 'Total cholesterol', 'HDL cholesterol', 'Triglycerides']) await page.getByRole('textbox', { name: id }).fill('');
+      await chooser.setFiles(FIX + file);
+      await expect(page.getByText(/Read [1-4] of 4 values/)).toBeVisible({ timeout: 90_000 });
+    }
+    if (SHOTS) await page.screenshot({ path: `${SHOTS}/35-read-desktop-en.png`, fullPage: true });
+    expect(problems).toEqual([]);
+  });
 });

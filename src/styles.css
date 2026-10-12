@@ -267,3 +267,5 @@ dl.names dd { margin: 2px 0 0; }
 .readsheet p:empty { display: none; }
 .fromsheet { font-weight: 700; color: var(--accent); }
 .testing { font-weight: 700; border-left: 4px solid var(--accent); padding: 4px 0 4px 10px; margin: 4px 0; }
+.readfeedback { display: grid; gap: 8px; margin: 12px 0; }
+.readfeedback a.pill { text-decoration: none; }

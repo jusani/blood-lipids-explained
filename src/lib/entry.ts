@@ -28,6 +28,10 @@ export interface Draft {
   readFromSheet?: MarkerId[];
   /** The person ticked "I have checked these numbers against my sheet". */
   sheetChecked?: boolean;
+  /** A sheet was read (whatever the outcome), so the one optional feedback question may show. */
+  sheetUsed?: boolean;
+  /** The feedback question was answered or skipped for this reading. */
+  sheetFeedbackDone?: boolean;
 }
 
 export function todayIso(now = new Date()): string {

@@ -7,6 +7,8 @@ import { offersPlan, runRules, type ValueId } from '../lib/rules';
 import * as store from '../lib/store';
 import { AnswerRows } from '../components/Values';
 import { TrustLine } from '../components/TrustLine';
+import { ReadFeedback } from '../components/ReadFeedback';
+import { photoReading } from '../lib/features';
 import { Statement } from '../components/Statement';
 import { RangeBar } from '../components/RangeBar';
 import { DoctorCards } from '../results/DoctorCards';
@@ -157,6 +159,7 @@ export function Results() {
         </div>
       )}
 
+      {photoReading && <ReadFeedback />}
       <TrustLine />
       <p class="small">{t('content_version', { version: pack.manifest.version })}{!packSigned && ` · ${t('content_unchecked')}`}</p>
     </>

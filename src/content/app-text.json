@@ -1665,6 +1665,34 @@
       "en": "Photo reading is being tested. Please check every number against your sheet before you continue.",
       "lt": "Nuotraukų skaitymas dar bandomas. Prieš tęsdami kiekvieną skaičių patikrinkite pagal savo lapą."
     },
+    "read_feedback_q": {
+      "en": "Did the photo reading get your numbers right?",
+      "lt": "Ar nuotraukų skaitymas teisingai nuskaitė jūsų skaičius?"
+    },
+    "read_feedback_all": {
+      "en": "All right",
+      "lt": "Visi teisingi"
+    },
+    "read_feedback_fixed": {
+      "en": "I fixed some",
+      "lt": "Kai kuriuos pataisiau"
+    },
+    "read_feedback_failed": {
+      "en": "It didn't work",
+      "lt": "Nepavyko"
+    },
+    "read_feedback_skip": {
+      "en": "Skip",
+      "lt": "Praleisti"
+    },
+    "read_feedback_subject": {
+      "en": "Photo reading",
+      "lt": "Nuotraukų skaitymas"
+    },
+    "read_feedback_body": {
+      "en": "Photo reading: {answer}",
+      "lt": "Nuotraukų skaitymas: {answer}"
+    },
     "hq_gtk_title": {
       "en": "Good to know",
       "lt": "Verta žinoti"

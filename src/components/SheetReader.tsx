@@ -20,6 +20,7 @@ export function SheetReader() {
       const { readSheetFile } = await import('../lib/sheetReader');
       found = await readSheetFile(file, (p) => setState({ kind: 'busy', p }));
     } catch {
+      setDraft((d) => ({ ...d, sheetUsed: true, sheetFeedbackDone: false }));
       setState({ kind: 'failed' });
       return;
     }
@@ -33,7 +34,7 @@ export function SheetReader() {
       if (v.unit && v.unit !== next.defaultUnit) next = { ...next, fields: { ...next.fields, [m.id]: { ...next.fields[m.id], unit: v.unit } } };
       filled.push(m.id);
     }
-    setDraft({ ...next, readFromSheet: [...(next.readFromSheet ?? []), ...filled], sheetChecked: false });
+    setDraft({ ...next, readFromSheet: [...(next.readFromSheet ?? []), ...filled], sheetChecked: false, sheetUsed: true, sheetFeedbackDone: false });
     setState({ kind: 'done', n: filled.length });
     if (input.current) input.current.value = '';
   };
