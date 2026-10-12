@@ -429,14 +429,14 @@ test('known heart disease: lower LDL goals line on results, not on the doctor su
   await expect(page.locator('.docsheet')).not.toContainText('much lower LDL goals');
 });
 
-<<<<<<< HEAD
 test('live build: no photo reading button and no reader files', async ({ page }) => {
   await startEn(page);
   await enterExample(page, {});
   await expect(page.getByRole('button', { name: /photo or PDF/ })).toHaveCount(0);
   expect(existsSync('dist/ocr')).toBe(false);
   expect(readdirSync('dist/assets').filter((f) => /^(pdf|src|sheetReader)-/.test(f))).toEqual([]);
-=======
+});
+
 async function resultsFor(page: Page, values: Record<string, string>, familyYes = false) {
   await startEn(page);
   await enterExample(page, values);
@@ -510,5 +510,4 @@ test('2026.5 lessons: same links for everyone, no personal values, drawings only
   await page.getByRole('button', { name: 'Learn in 60 seconds' }).click();
   await expect(page.locator('.lessons button')).toHaveCount(7);
   await shot(page, '42-lessons-en');
->>>>>>> main
 });
