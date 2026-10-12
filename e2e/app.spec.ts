@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 
 const SHOTS = process.env.SHOTS_DIR;
 const shot = async (page: Page, name: string) => { if (SHOTS) await page.screenshot({ path: `${SHOTS}/${name}.png`, fullPage: true }); };
@@ -427,4 +427,12 @@ test('known heart disease: lower LDL goals line on results, not on the doctor su
   await shot(page, '25-lower-goals-en');
   await page.getByRole('button', { name: 'Get a summary for my doctor' }).click();
   await expect(page.locator('.docsheet')).not.toContainText('much lower LDL goals');
+});
+
+test('live build: no photo reading button and no reader files', async ({ page }) => {
+  await startEn(page);
+  await enterExample(page, {});
+  await expect(page.getByRole('button', { name: /photo or PDF/ })).toHaveCount(0);
+  expect(existsSync('dist/ocr')).toBe(false);
+  expect(readdirSync('dist/assets').filter((f) => /^(pdf|src|sheetReader)-/.test(f))).toEqual([]);
 });

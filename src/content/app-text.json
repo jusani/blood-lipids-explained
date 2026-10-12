@@ -1608,6 +1608,34 @@
       "en": "Did this help you understand your results?\n\nDid you feel calmer or more worried afterwards?\n\nAnything else?\n",
       "lt": "Ar tai padėjo suprasti rezultatus?\n\nAr po to jautėtės ramiau, ar labiau nerimavote?\n\nKą nors dar?\n"
     },
+    "read_sheet_btn": {
+      "en": "Read the numbers from a photo or PDF",
+      "lt": "Nuskaityti skaičius iš nuotraukos ar PDF"
+    },
+    "read_sheet_note": {
+      "en": "The reader downloads once (about 9 MB) and then works on this device. The photo or PDF is not sent anywhere and not kept.",
+      "lt": "Skaitytuvas atsisiunčiamas vieną kartą (apie 9 MB) ir veikia šiame įrenginyje. Nuotrauka ar PDF niekur nesiunčiami ir nesaugomi."
+    },
+    "read_sheet_busy": {
+      "en": "Reading… {pct}%",
+      "lt": "Skaitoma… {pct} %"
+    },
+    "read_sheet_found": {
+      "en": "Read {n} of {total} values. Check each number against your sheet and type in any that are missing.",
+      "lt": "Nuskaityta reikšmių: {n} iš {total}. Kiekvieną skaičių patikrinkite pagal lapą, o trūkstamas įveskite patys."
+    },
+    "read_sheet_none": {
+      "en": "No values could be read. Please type them in.",
+      "lt": "Reikšmių nuskaityti nepavyko. Įveskite jas patys."
+    },
+    "read_sheet_failed": {
+      "en": "Reading did not work here. Please type the values in.",
+      "lt": "Nuskaityti nepavyko. Įveskite reikšmes patys."
+    },
+    "read_from_sheet": {
+      "en": "Read from your sheet: please check.",
+      "lt": "Nuskaityta iš lapo: patikrinkite."
+    },
     "hq_gtk_title": {
       "en": "Good to know",
       "lt": "Verta žinoti"

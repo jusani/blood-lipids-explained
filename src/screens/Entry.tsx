@@ -6,6 +6,8 @@ import { answerField, checkDraft, setDefaultUnit, setFieldText, todayIso, type R
 import { formatNumber, unitLabel } from '../lib/i18n';
 import { toMmol, type AskOption } from '../lib/units';
 import { LabGuide } from '../components/LabGuide';
+import { SheetReader } from '../components/SheetReader';
+import { photoReading } from '../lib/features';
 
 const EXAMPLE: Record<MarkerId, string> = { ldl: '4,1', total: '6,3', hdl: '1,3', tg: '2,2' };
 
@@ -15,6 +17,8 @@ export function Entry() {
   const check = checkDraft(draft);
   const inputs = useRef<Partial<Record<MarkerId, HTMLInputElement | null>>>({});
   const [focusAfter, setFocusAfter] = useState<MarkerId | null>(null);
+  // Fields filled from a photo or PDF keep a "please check" hint until the person edits them.
+  const [fromSheet, setFromSheet] = useState<Partial<Record<MarkerId, boolean>>>({});
 
   useEffect(() => {
     if (focusAfter) { inputs.current[focusAfter]?.focus(); setFocusAfter(null); }
@@ -46,6 +50,7 @@ export function Entry() {
       {!packSigned && (
         <button class="linkbtn" onClick={fillExample}>{t('fill_example')}</button>
       )}
+      {photoReading && <SheetReader onFilled={(ids) => setFromSheet(Object.fromEntries(ids.map((id) => [id, true])))} />}
 
       <div class="stack">
         <span class="small" id="unit-label">{t('unit_label')}</span>
@@ -67,6 +72,8 @@ export function Entry() {
           onAnswer={(o) => onAnswer(m.id, o)}
           onGuide={() => setGuideFor(m.id)}
           othersUnit={othersLookLike(m.id, check.resolved, draft.defaultUnit)}
+          fromSheet={!!fromSheet[m.id]}
+          onEdited={() => fromSheet[m.id] && setFromSheet((s) => ({ ...s, [m.id]: false }))}
         />
       ))}
 
@@ -126,9 +133,11 @@ interface FieldProps {
   onAnswer: (o: AskOption) => void;
   onGuide: () => void;
   othersUnit: Unit | null;
+  fromSheet?: boolean;
+  onEdited?: () => void;
 }
 
-function Field({ marker, resolved, inputRef, onAnswer, onGuide, othersUnit }: FieldProps) {
+function Field({ marker, resolved, inputRef, onAnswer, onGuide, othersUnit, fromSheet, onEdited }: FieldProps) {
   const { t, lang, draft, setDraft } = useApp();
   const f = draft.fields[marker.id];
   const id = `f-${marker.id}`;
@@ -189,11 +198,12 @@ function Field({ marker, resolved, inputRef, onAnswer, onGuide, othersUnit }: Fi
           value={f.text}
           aria-invalid={resolved.state === 'invalid' || resolved.state === 'ask'}
           aria-describedby={describedBy}
-          onInput={(e) => setDraft((d) => setFieldText(d, marker.id, (e.target as HTMLInputElement).value))}
+          onInput={(e) => { onEdited?.(); setDraft((d) => setFieldText(d, marker.id, (e.target as HTMLInputElement).value)); }}
         />
         <span class={`u ${ownUnit ? 'own' : ''}`}>{u(f.unit)}</span>
       </div>
       <div class="hint" id={`${id}-hint`}>
+        {fromSheet && <span class="fromsheet">{t('read_from_sheet')}</span>}
         {resolved.state === 'ok' && (
           <span>
             {t('read_as', { value: fmt(resolved.value) })}

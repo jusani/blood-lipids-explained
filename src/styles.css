@@ -261,3 +261,8 @@ dl.names dt { font-weight: 700; }
 dl.names dd { margin: 2px 0 0; }
 
 .nowrap { white-space: nowrap; }
+
+/* v2 prototype: photo/PDF reading (photoReading flag) */
+.readsheet { display: grid; gap: 8px; margin: 12px 0; }
+.readsheet p:empty { display: none; }
+.fromsheet { font-weight: 700; color: var(--accent); }

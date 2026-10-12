@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 // Runs against the production build (service worker, CSP) on a phone-sized screen.
 export default defineConfig({
   testDir: 'e2e',
+  testIgnore: 'photo.spec.ts',
   timeout: 30_000,
   fullyParallel: false,
   use: {
