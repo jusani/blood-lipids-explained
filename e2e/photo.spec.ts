@@ -23,7 +23,7 @@ async function read(page: Page, file: string) {
   await expect(page.getByText(/Read \d of 4 values|No values could be read|did not work/)).toBeVisible({ timeout: 90_000 });
 }
 
-const num = async (page: Page, label: string) => (await page.getByLabel(label).inputValue()).replace(',', '.');
+const num = async (page: Page, label: string) => (await page.getByRole('textbox', { name: label }).inputValue()).replace(',', '.');
 
 test('PDF lab report: text layer read exactly, values land in the form for checking', async ({ page }) => {
   const problems = watch(page);
@@ -37,7 +37,7 @@ test('PDF lab report: text layer read exactly, values land in the form for check
   await expect(page.getByText('Read from your sheet: please check.')).toHaveCount(4);
   if (SHOTS) await page.screenshot({ path: `${SHOTS}/30-read-pdf-en.png`, fullPage: true });
   // Editing a value drops its "please check" note; the usual checks and confirm screen follow.
-  await page.getByLabel('LDL cholesterol').fill('4,2');
+  await page.getByRole('textbox', { name: 'LDL cholesterol' }).fill('4,2');
   await expect(page.getByText('Read from your sheet: please check.')).toHaveCount(3);
   await page.getByRole('button', { name: /Continue with/ }).click();
   await page.getByRole('button', { name: 'Continue' }).click();
@@ -53,7 +53,7 @@ test('clear photo: values read are right, nothing typed is overwritten, works of
   await page.reload();
   await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
   await toEntry(page);
-  await page.getByLabel('HDL cholesterol').fill('1,1');            // typed first: must stay
+  await page.getByRole('textbox', { name: 'HDL cholesterol' }).fill('1,1');            // typed first: must stay
   await read(page, 'sheet04.jpg');                                   // truth: total 6.0, tg 3.05, ldl 3.5, hdl 0.9
   const truth: Record<string, string> = { 'LDL cholesterol': '3.5', 'Total cholesterol': '6', Triglycerides: '3.05' };
   for (const [label, v] of Object.entries(truth)) {
@@ -81,4 +81,24 @@ test('hard photo (tilt, shadow, blur): anything filled is right', async ({ page 
     const got = await num(page, label);
     if (got) expect(Number(got)).toBe(v);
   }
+});
+
+test('a read value that would bring up a doctor card is asked about once (QA PR1-PR3)', async ({ page }) => {
+  await toEntry(page);
+  await read(page, 'lab-report-ldl-high.pdf');                       // LDL 5,5; total printed after its limit
+  expect(await num(page, 'Total cholesterol')).toBe('7.4');            // "< 5,2" skipped; the ratio line filled nothing
+  const ask = page.getByRole('group', { name: 'LDL cholesterol' });
+  await expect(ask).toContainText('We read 5.5 mmol/L for LDL cholesterol. Is that what the sheet says?');
+  await expect(page.getByRole('button', { name: /Continue/ })).toBeDisabled();
+  if (SHOTS) await page.screenshot({ path: `${SHOTS}/32-read-confirm-en.png`, fullPage: true });
+  await ask.getByRole('button', { name: 'No, let me type it' }).click();
+  expect(await num(page, 'LDL cholesterol')).toBe('');
+  await page.getByRole('textbox', { name: 'LDL cholesterol' }).fill('3,5');
+  await expect(page.getByRole('button', { name: /Continue with/ })).toBeEnabled();
+
+  await page.getByRole('textbox', { name: 'LDL cholesterol' }).fill('');
+  await read(page, 'lab-report-ldl-high.pdf');                       // fills only the empty LDL field
+  await ask.getByRole('button', { name: 'Yes, the sheet says that' }).click();
+  await expect(ask).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Continue with/ })).toBeEnabled();
 });

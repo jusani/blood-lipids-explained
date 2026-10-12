@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { useApp } from '../app';
 import { markers, packSigned } from '../content';
 import type { MarkerId, MeasuredMarker, Unit } from '../content/types';
-import { answerField, checkDraft, setDefaultUnit, setFieldText, todayIso, type Resolved } from '../lib/entry';
+import { answerField, buildPanel, checkDraft, setDefaultUnit, setFieldText, todayIso, type Draft, type Resolved } from '../lib/entry';
+import { cardThreshold, runRules } from '../lib/rules';
 import { formatNumber, unitLabel } from '../lib/i18n';
 import { toMmol, type AskOption } from '../lib/units';
 import { LabGuide } from '../components/LabGuide';
@@ -12,13 +13,18 @@ import { photoReading } from '../lib/features';
 const EXAMPLE: Record<MarkerId, string> = { ldl: '4,1', total: '6,3', hdl: '1,3', tg: '2,2' };
 
 export function Entry() {
-  const { t, lang, draft, setDraft, go } = useApp();
+  const { t, lang, mode, draft, setDraft, go } = useApp();
   const [guideFor, setGuideFor] = useState<MarkerId | null>(null);
   const check = checkDraft(draft);
   const inputs = useRef<Partial<Record<MarkerId, HTMLInputElement | null>>>({});
   const [focusAfter, setFocusAfter] = useState<MarkerId | null>(null);
   // Fields filled from a photo or PDF keep a "please check" hint until the person edits them.
   const [fromSheet, setFromSheet] = useState<Partial<Record<MarkerId, boolean>>>({});
+  // QA PR3: a value read from the sheet that would bring up a doctor card is asked about once
+  // (a dropped decimal comma, 1,1 read as 11, can still look plausible).
+  const [sheetOk, setSheetOk] = useState<Partial<Record<MarkerId, boolean>>>({});
+  const sheetAsk = photoReading ? sheetChecks(draft, mode, fromSheet, sheetOk) : [];
+  const ready = check.ready && sheetAsk.length === 0;
 
   useEffect(() => {
     if (focusAfter) { inputs.current[focusAfter]?.focus(); setFocusAfter(null); }
@@ -33,8 +39,8 @@ export function Entry() {
   };
 
   const okNames = markers.filter((m) => check.resolved[m.id].state === 'ok').map((m) => m.names[lang]);
-  const reason = !check.ready
-    ? check.hasAsk || check.swapped ? t('continue_answer_first') : !check.hasMinimum ? t('continue_needs') : check.hasInvalid ? t('err_not_number') : ''
+  const reason = !ready
+    ? check.hasAsk || check.swapped || sheetAsk.length ? t('continue_answer_first') : !check.hasMinimum ? t('continue_needs') : check.hasInvalid ? t('err_not_number') : ''
     : '';
 
   const fillExample = () => {
@@ -73,7 +79,14 @@ export function Entry() {
           onGuide={() => setGuideFor(m.id)}
           othersUnit={othersLookLike(m.id, check.resolved, draft.defaultUnit)}
           fromSheet={!!fromSheet[m.id]}
-          onEdited={() => fromSheet[m.id] && setFromSheet((s) => ({ ...s, [m.id]: false }))}
+          onEdited={() => { if (fromSheet[m.id]) setFromSheet((s) => ({ ...s, [m.id]: false })); setSheetOk((s) => ({ ...s, [m.id]: false })); }}
+          sheetAsk={sheetAsk.includes(m.id)}
+          onSheetAnswer={(right) => {
+            if (right) { setSheetOk((s) => ({ ...s, [m.id]: true })); return; }
+            setFromSheet((s) => ({ ...s, [m.id]: false }));
+            setDraft((d) => setFieldText(d, m.id, ''));
+            setFocusAfter(m.id);
+          }}
         />
       ))}
 
@@ -108,8 +121,8 @@ export function Entry() {
       )}
 
       <div class="stack">
-        <button class="btn" disabled={!check.ready} onClick={() => go('safety')} aria-describedby="continue-why">
-          {check.ready ? t('continue_with', { list: okNames.join(', ') }) : t('continue')}
+        <button class="btn" disabled={!ready} onClick={() => go('safety')} aria-describedby="continue-why">
+          {ready ? t('continue_with', { list: okNames.join(', ') }) : t('continue')}
         </button>
         <p id="continue-why" class="small" aria-live="polite">{reason}</p>
       </div>
@@ -135,9 +148,20 @@ interface FieldProps {
   othersUnit: Unit | null;
   fromSheet?: boolean;
   onEdited?: () => void;
+  sheetAsk?: boolean;
+  onSheetAnswer?: (right: boolean) => void;
 }
 
-function Field({ marker, resolved, inputRef, onAnswer, onGuide, othersUnit, fromSheet, onEdited }: FieldProps) {
+/** Values read from the sheet that would bring up a doctor card and are not yet confirmed. */
+function sheetChecks(d: Draft, mode: 'self' | 'helper', fromSheet: Partial<Record<MarkerId, boolean>>, ok: Partial<Record<MarkerId, boolean>>): MarkerId[] {
+  const read = markers.filter((m) => fromSheet[m.id] && !ok[m.id]).map((m) => m.id);
+  if (read.length === 0) return [];
+  const cards = runRules(buildPanel(d, mode)).doctorCards;
+  const flagged = new Set(cards.map((c) => cardThreshold(c.id)?.id));
+  return read.filter((id) => flagged.has(id));
+}
+
+function Field({ marker, resolved, inputRef, onAnswer, onGuide, othersUnit, fromSheet, onEdited, sheetAsk, onSheetAnswer }: FieldProps) {
   const { t, lang, draft, setDraft } = useApp();
   const f = draft.fields[marker.id];
   const id = `f-${marker.id}`;
@@ -216,6 +240,15 @@ function Field({ marker, resolved, inputRef, onAnswer, onGuide, othersUnit, from
         <button class="linkbtn" onClick={onGuide}>{t('where_find')}</button>
       </div>
       {resolved.state === 'invalid' && <p class="err-text" id={`${id}-err`}>{t('err_not_number')}</p>}
+      {sheetAsk && resolved.state === 'ok' && (
+        <div class="askbox" role="group" aria-label={lead}>
+          <p>{t('read_sheet_confirm', { value: fmt(resolved.value), unit: u(resolved.unit), marker: marker.names[lang] })}</p>
+          <div class="opts">
+            <button class="pill" onClick={() => onSheetAnswer?.(true)}>{t('read_sheet_confirm_yes')}</button>
+            <button class="pill" onClick={() => onSheetAnswer?.(false)}>{t('read_sheet_confirm_no')}</button>
+          </div>
+        </div>
+      )}
       {resolved.state === 'ask' && (
         <div class="askbox" id={`${id}-ask`} role="group" aria-label={lead}>
           {askText.map((s, i) => <p key={i}>{s}</p>)}

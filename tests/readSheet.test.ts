@@ -53,3 +53,60 @@ describe('reading lab sheet text (photo/PDF prototype)', () => {
     expect(lines).toEqual(['Cholesterolis 6,32', 'MTL cholesterolis 4,15']);
   });
 });
+
+describe('QA PR1/PR2: lines that must not fill a value', () => {
+  it.each([
+    'Cholesterolis/DTL santykis 4,5',
+    'Cholesterolis / DTL 4,5',
+    'LDL/HDL ratio 2.5',
+    'TG/HDL 3,1',
+    'Aterogeninis indeksas 3,2',
+    'Cholesterolis ne DTL 4,1 mmol/l',
+    'Non-HDL cholesterol 4.1',
+  ])('%s', (line) => expect(readLine(line)).toBeNull());
+
+  it('skips a limit or range printed before the result', () => {
+    expect(readLine('Cholesterolis < 5,2 6,4 mmol/l')?.value.text).toBe('6,4');
+    expect(readLine('DTL > 1,0 1,4')?.value.text).toBe('1,4');
+    expect(readLine('Trigliceridai 0,5 - 1,7 2,3')?.value.text).toBe('2,3');
+    expect(readLine('Gliukozė 3,9 – 6,1 5,4')).toBeNull();
+  });
+
+  it('leaves the field empty when two figures could be the result', () => {
+    expect(readLine('Trigliceridai 1.7 2,3')).toBeNull();
+    expect(readLine('MTL cholesterolis 4,1 3,8 mmol/l')).toBeNull();      // a previous result alongside
+  });
+
+  it('still reads the usual result, unit and limit layout', () => {
+    expect(readLine('MTL cholesterolis 4,15 mmol/l < 3,0')).toEqual({ id: 'ldl', value: { text: '4,15', unit: 'mmol/L' } });
+    expect(readLine('Gliukozė 5,4 mmol/l 3,9 - 6,1')).toBeNull();
+  });
+});
+
+describe('names as Lithuanian labs print them (Antėja and Medicina practica test lists, Oct 2026)', () => {
+  // No real report is public, so these lines use the names, abbreviations and limits the labs
+  // print on their own pages, in the usual name, result, unit, limit order.
+  const sheet = [
+    'Tyrimas Rezultatas Vnt. Orientacinės reikšmės',
+    'CHOL Cholesterolis bendras 6,4 mmol/l < 5,2',
+    'DTL (α) cholesterolis 1,12 mmol/l > 1,0',
+    'MTL (β) cholesterolis 4,3 mmol/l < 3,0',
+    'TGL Trigliceridai 2,1 mmol/l < 1,7',
+    'Ne DTL cholesterolis 5,28 mmol/l',
+    'Aterogeniškumo indeksas (AI) 4,7',
+  ].join('\n');
+
+  it('reads every value and nothing from the calculated lines', () => {
+    expect(parseLabText(sheet)).toEqual({
+      total: { text: '6,4', unit: 'mmol/L' },
+      hdl: { text: '1,12', unit: 'mmol/L' },
+      ldl: { text: '4,3', unit: 'mmol/L' },
+      tg: { text: '2,1', unit: 'mmol/L' },
+    });
+  });
+
+  it('reads "Cholesterolis (CHOL)" and "TRIG"', () => {
+    expect(readLine('Cholesterolis (CHOL) 5,9 mmol/l')?.id).toBe('total');
+    expect(readLine('TRIG 1,45 mmol/L 0,0 - 1,7')).toEqual({ id: 'tg', value: { text: '1,45', unit: 'mmol/L' } });
+  });
+});

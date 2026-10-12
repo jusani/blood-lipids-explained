@@ -2933,6 +2933,18 @@
       "en": "Read from your sheet: please check.",
       "lt": "Nuskaityta iš lapo: patikrinkite."
     },
+    "read_sheet_confirm": {
+      "en": "We read {value} {unit} for {marker}. Is that what the sheet says?",
+      "lt": "Nuskaitėme {marker}: {value} {unit}. Ar taip parašyta lape?"
+    },
+    "read_sheet_confirm_yes": {
+      "en": "Yes, the sheet says that",
+      "lt": "Taip, lape taip parašyta"
+    },
+    "read_sheet_confirm_no": {
+      "en": "No, let me type it",
+      "lt": "Ne, įvesiu ranka"
+    },
     "hq_gtk_title": {
       "en": "Good to know",
       "lt": "Verta žinoti"
