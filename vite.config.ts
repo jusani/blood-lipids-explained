@@ -89,14 +89,25 @@ function serviceWorker(): Plugin {
       files.push('manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png');
       const assets = ['./', ...files.map((f) => './' + f)];
       const version = createHash('sha256').update(files.sort().join('|')).digest('hex').slice(0, 12);
+      // The reader files get their own cache, named by their content, so a release that does not
+      // change them does not download the 9 MB again (whole-app test U3).
+      const ocrHash = createHash('sha256');
+      for (const f of Object.keys(bundle).filter((f) => f.startsWith('ocr/')).sort()) {
+        const a = bundle[f] as { source?: string | Uint8Array };
+        ocrHash.update(f).update(a.source ?? '');
+      }
+      const ocrVersion = ocrHash.digest('hex').slice(0, 12);
       const source = `// Generated at build time. Precaches the app so it works offline.
 const CACHE = 'app-${version}';
+const OCR_CACHE = 'ocr-${ocrVersion}';
 const ASSETS = ${JSON.stringify(assets)};
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  // cache: 'reload' skips the browser's HTTP cache, so a release never stores the previous
+  // start page (GitHub Pages sends max-age=600; whole-app test U1).
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', (e) => {
-  e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== OCR_CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener('fetch', (e) => {
   const req = e.request;
@@ -107,8 +118,9 @@ self.addEventListener('fetch', (e) => {
   }
   const path = new URL(req.url).pathname;
   if (path.includes('/ocr/') || path.includes('/assets/')) {
+    const keep = path.includes('/ocr/') ? OCR_CACHE : CACHE;
     e.respondWith(caches.match(req, { ignoreSearch: true, ignoreVary: true }).then((r) => r || fetch(req).then((res) => {
-      if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)); }
+      if (res.ok) { const copy = res.clone(); caches.open(keep).then((c) => c.put(req, copy)); }
       return res;
     })));
     return;

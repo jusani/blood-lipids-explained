@@ -100,6 +100,50 @@ test('clear photo: values read are right, nothing typed is overwritten, works of
   await read(offline, 'sheet04.jpg');
   await expect(offline.getByText(/Read [1-4] of 4 values/)).toBeVisible();
   await context.setOffline(false);
+
+  // Whole-app test U3: the reader files sit in their own cache, which a release keeps unless the
+  // reader files themselves change; the app's versioned cache holds none of them.
+  const kept = await page.evaluate(async () => {
+    const out: Record<string, string[]> = {};
+    for (const k of await caches.keys()) out[k] = (await (await caches.open(k)).keys()).map((r) => new URL(r.url).pathname);
+    return out;
+  });
+  const ocrCaches = Object.keys(kept).filter((k) => k.startsWith('ocr-'));
+  expect(ocrCaches).toHaveLength(1);
+  expect(kept[ocrCaches[0]].some((p) => p.endsWith('/ocr/lit.traineddata.gz'))).toBe(true);
+  for (const k of Object.keys(kept).filter((k) => k.startsWith('app-'))) expect(kept[k].filter((p) => p.includes('/ocr/'))).toEqual([]);
+});
+
+test.describe('app left open while a release lands', () => {
+  test.use({ serviceWorkers: 'block' });
+  test('the old reader file is gone: the app reloads once onto the entry screen and reading works (U2)', async ({ page }) => {
+    let gone = true;
+    let refused = 0;
+    await page.route(/\/assets\/sheetReader-[^/]+\.js$/, (route) => {
+      if (gone) { refused++; return route.fulfill({ status: 404, body: '' }); }
+      return route.continue();
+    });
+    page.on('framenavigated', () => { if (refused > 0) gone = false; });
+    await toEntry(page);
+    await page.locator('input[type=file]').setInputFiles(FIX + 'lab-report.pdf');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Type in the numbers from the lab sheet', { timeout: 30_000 });
+    expect(refused).toBeGreaterThan(0);
+    await read(page, 'lab-report.pdf');
+    await expect(page.getByText('Read 4 of 4 values.')).toBeVisible();
+  });
+
+  test('with numbers already typed, nothing reloads and the usual message shows (U2)', async ({ page }) => {
+    await page.route(/\/assets\/sheetReader-[^/]+\.js$/, (route) => route.fulfill({ status: 404, body: '' }));
+    let loads = 0;
+    page.on('load', () => loads++);
+    await toEntry(page);
+    await page.getByRole('textbox', { name: 'HDL cholesterol' }).fill('1,1');
+    const before = loads;
+    await read(page, 'lab-report.pdf');
+    await expect(page.getByText('Reading did not work here. Please type the values in.')).toBeVisible();
+    expect(loads).toBe(before);
+    expect(await num(page, 'HDL cholesterol')).toBe('1.1');
+  });
 });
 
 test('hard photo (tilt, shadow, blur): anything filled is right', async ({ page }) => {

@@ -28,6 +28,7 @@ import { Progress } from './screens/Progress';
 import { Supporter } from './screens/Supporter';
 import { HabitQuestions } from './screens/HabitQuestions';
 import { LessonList, LessonScreen } from './screens/Lessons';
+import { takeReopenEntry } from './lib/updateRecovery';
 
 export type Screen =
   | 'welcome' | 'whose' | 'entry' | 'safety' | 'confirm' | 'consent' | 'results'
@@ -106,6 +107,10 @@ export function App() {
           setFlash('deleted_done');
         }
       } catch { /* storage unavailable */ }
+      if (takeReopenEntry()) {
+        history.pushState({ i: 1 }, '');
+        setStack(['welcome', 'entry']);
+      }
     })();
     history.replaceState({ i: 0 }, '');
     const onPop = (e: PopStateEvent) => {
