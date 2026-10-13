@@ -73,4 +73,6 @@ npm run build      # static site in dist/, deployable to any static host from an
 
 The site is served by GitHub Pages from the `gh-pages` branch at https://jusani.github.io/blood-lipids-explained/. To publish an update: `npm ci && npm test && npm run build`, then put the contents of `dist/` on `gh-pages`.
 
+Photo/PDF reading is on in the normal build. To roll it back quickly, run `npm run build:nophoto` and put the contents of `dist-nophoto/` (not `dist/`) on `gh-pages`; that build has no reader button, no `ocr/` files and no reader code. Check that `dist-nophoto/ocr` does not exist before publishing it.
+
 Content: this repository carries approved content packs only, in `content/`. `npm run import-pack` reads the newest approved pack there (or the project's evidence folder when it sits next to the app).

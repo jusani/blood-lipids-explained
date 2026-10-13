@@ -110,6 +110,19 @@ for (const k of ['heading', 'general_note']) {
   if (ev.lessons_config?.[k]) need(strings[ev.lessons_config[k]], `lessons_config.${k}: ${ev.lessons_config[k]} missing`);
 }
 
+// Food swaps (2026.6): fixed examples inside a lever, the same for everyone (qa.md §18).
+const leverIds = new Set((ev.levers ?? []).map((l) => l.id));
+for (const sw of ev.swaps ?? []) {
+  need(leverIds.has(sw.lever), `swap ${sw.id}: lever ${sw.lever} missing`);
+  need(strings[sw.text], `swap ${sw.id}: text ${sw.text} missing`);
+  for (const c of [sw.claim].flat()) need(claimIdSet.has(c), `swap ${sw.id}: claim ${c} missing`);
+}
+if (ev.swaps_config) {
+  for (const k of ['heading', 'note']) need(strings[ev.swaps_config[k]], `swaps_config.${k}: ${ev.swaps_config[k]} missing`);
+  need(ev.swaps_config.use_answers === false, 'swaps_config.use_answers must be false (QA §18)');
+  need(ev.swaps_config.order === 'fixed', 'swaps_config.order must be fixed');
+}
+
 // Strings: app screen text plus evidence strings. A key in both is an error.
 for (const k of Object.keys(strings)) need(!app.strings[k], `string ${k} is in both packs`);
 const missingLt = Object.keys(strings).filter((k) => !strings[k].lt);
@@ -159,6 +172,8 @@ const pack = {
   lessons: (ev.lessons ?? []).map((l) => ({ id: l.id, order: l.order, title: l.title, body: l.body, linked_from: l.linked_from ?? [], claims: l.claims ?? [] }))
     .sort((a, b) => a.order - b.order),
   lessons_config: ev.lessons_config ? { heading: ev.lessons_config.heading, general_note: ev.lessons_config.general_note } : null,
+  swaps: (ev.swaps ?? []).map((sw) => ({ id: sw.id, lever: sw.lever, text: sw.text, claim: [sw.claim].flat() })),
+  swaps_config: ev.swaps_config ? { heading: ev.swaps_config.heading, note: ev.swaps_config.note } : null,
   lint: app.lint,
   strings: { ...app.strings, ...strings },
 };

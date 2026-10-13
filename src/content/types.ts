@@ -91,6 +91,12 @@ export interface Lever {
   text: string;
   claim: string | string[];
 }
+export interface Swap {
+  id: string;
+  lever: string;
+  text: string;
+  claim: string[];
+}
 export interface LeversConfig {
   use_answers: false;
   show: { min: number; max: number };
@@ -148,6 +154,9 @@ export interface ContentPack {
   bar_scale: Record<string, Range>;
   lessons: Lesson[];
   lessons_config: { heading: string; general_note: string } | null;
+  /** Food swaps (2026.6): fixed examples shown inside their lever, in pack order, same for everyone. */
+  swaps?: Swap[];
+  swaps_config?: { heading: string; note: string } | null;
   /** Ranges, doctor flags and claims from the evidence pack. Read only by the rules engine. */
   rules: {
     units: { chol_mg_dl_per_mmol: number; tg_mg_dl_per_mmol: number; mg_dl_rule?: string };

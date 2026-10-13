@@ -77,13 +77,27 @@ describe('stay-educational lint (pm.md §11.1, architect §16.1, QA M4, C4)', ()
     }
   });
 
-  it('uses the approved evidence pack 2026.5', () => {
-    expect(pack.manifest.version).toBe('2026.5');
+  it('uses the approved evidence pack 2026.6', () => {
+    expect(pack.manifest.version).toBe('2026.6');
     expect(pack.manifest.approved_by).toBeTruthy();
     expect(pack.manifest.languages).toContain('lt');
     expect(pack.rules.levers.length).toBeGreaterThan(0);
     expect(pack.markers.find((m) => m.id === 'tg')?.mg_dl_factor).toBe(88.6);
     expect(pack.markers.find((m) => m.id === 'ldl')?.mg_dl_factor).toBe(38.67);
+  });
+
+  it('2026.6 food swaps sit inside existing options, in fixed order, sourced, in both languages', () => {
+    const swaps = pack.swaps ?? [];
+    expect(swaps).toHaveLength(10);
+    const levers = new Set(pack.rules.levers.map((l) => l.id));
+    const claims = new Set(pack.rules.claims.map((c) => c.id));
+    for (const sw of swaps) {
+      expect(levers.has(sw.lever), sw.id).toBe(true);
+      expect(sw.claim.every((c) => claims.has(c)), sw.id).toBe(true);
+      expect(pack.strings[sw.text]?.en && pack.strings[sw.text]?.lt, sw.id).toBeTruthy();
+    }
+    expect(pack.strings.swap_drinks_water.lt).toContain('gaiviųjų');
+    expect(pack.swaps_config?.note).toBe('swaps_note');
   });
 
   it('pilot defaults: status labels off, accounts off (decisions.md)', () => {

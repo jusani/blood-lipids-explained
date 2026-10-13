@@ -61,7 +61,7 @@ test('full flow: per-field unit prompt, safety questions, consent, saved after r
   await expect(page.getByText('This app is not a medical advisor.')).toBeVisible();
   await expect(page.locator('.dcard')).toHaveCount(0);
   await expect(page.getByRole('img', { name: 'LDL cholesterol 4.1 on the guideline range bar' })).toBeVisible();
-  await expect(page.getByText('Content version 2026.5')).toBeVisible();
+  await expect(page.getByText('Content version 2026.6')).toBeVisible();
   await shot(page, '05-results-en');
 
   await page.reload();
@@ -236,7 +236,7 @@ test('doctor cards first, marker detail with quotes, doctor summary in its own l
   const sheet = page.locator('.docsheet');
   await expect(sheet).toContainText('Triglycerides 12.0 mmol/L. Guideline level for talking to a doctor: 10.0 mmol/L or higher.');
   await expect(sheet).toContainText('Would a direct LDL or ApoB test help?');
-  await expect(sheet).toContainText('Content version 2026.5');
+  await expect(sheet).toContainText('Content version 2026.6');
   await expect(sheet).not.toContainText(/your|my /i);
   await shot(page, '12-summary-en');
   await page.getByRole('button', { name: 'Lietuvių' }).click();
@@ -281,6 +281,21 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   const titles = await page.locator('article.card h3').allTextContents();
   expect(titles[0]).toBe('Swap butter and lard for plant oils');
   expect(titles[titles.length - 1]).toBe('Avoid trans fats and hard margarine');
+  // 2026.6 food swaps: inside their option, fixed order, with the "not a diet plan" note.
+  const butterCard = page.locator('article.card', { has: page.getByRole('heading', { name: 'Swap butter and lard for plant oils' }) });
+  await expect(butterCard.getByRole('heading', { name: 'Everyday swaps, for example' })).toBeVisible();
+  await expect(butterCard.locator('.swaps li')).toHaveText([
+    'Instead of butter or lard: rapeseed, sunflower or olive oil',
+    'Instead of sausages, frankfurters or bacon: fish, for example herring or mackerel, or chicken without skin',
+    'Instead of sour cream or cream: plain skimmed-milk yoghurt',
+    'Instead of frying: boiling, steaming or grilling',
+  ]);
+  await expect(butterCard.getByText('General examples from a Lithuanian kitchen, not a diet plan.')).toBeVisible();
+  await butterCard.getByRole('button', { name: 'Where this comes from' }).click();
+  await expect(butterCard.getByText(/Table 9 summarizes the possible choices of foods/)).toBeVisible();
+  await butterCard.getByRole('button', { name: 'Where this comes from' }).click();
+  await butterCard.scrollIntoViewIfNeeded();
+  await shot(page, '36-plan-swaps-en');
   await page.getByRole('button', { name: 'Where this comes from' }).first().click();
   await expect(page.locator('figure.quote').first()).toBeVisible();
   await page.getByRole('button', { name: 'What about supplements?' }).click();

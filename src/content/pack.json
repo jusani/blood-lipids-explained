@@ -1,11 +1,11 @@
 {
   "manifest": {
-    "version": "2026.5",
-    "released": "2026-10-12",
+    "version": "2026.6",
+    "released": "2026-10-13",
     "approved_by": "Justina",
-    "approved_date": "2026-10-12",
-    "approval_record": "Justina, Lithuanian text review thread 2026-10-12 13:37 UTC: 'yes' to the family note and seven lessons (2026.5-draft.3), no edits to the 19 LT rows",
-    "supersedes": "2026.4",
+    "approved_date": "2026-10-13",
+    "approval_record": "Justina, Lithuanian text review thread 2026-10-13 08:34 UTC: 'yes' to the food swaps (2026.6-draft.3), with one LT fix: swap_drinks_water 'gaivųjų' -> 'gaiviųjų'",
+    "supersedes": "2026.5",
     "reviewed_by_clinician": null,
     "languages": [
       "en",
@@ -20,7 +20,7 @@
       "lt",
       "en"
     ],
-    "imported_from": "content/content-pack-2026.5.yaml"
+    "imported_from": "content/content-pack-2026.6.yaml"
   },
   "display": {
     "status_labels": false
@@ -1572,6 +1572,142 @@
           }
         ],
         "note": "General only. The app does not compute SCORE2 or heart age (PM pick; EU MDR)."
+      },
+      {
+        "id": "claim_food_choices",
+        "text": [
+          "swap_butter_oil",
+          "swap_sausage_fish",
+          "swap_cream_yoghurt",
+          "swap_frying",
+          "swap_rye_bread",
+          "swap_buckwheat_barley",
+          "swap_oat_porridge",
+          "swap_add_legumes",
+          "swap_drinks_water",
+          "swap_sweets_fruit"
+        ],
+        "sources": [
+          "src_esc2019"
+        ],
+        "evidence": "guideline",
+        "quotes": [
+          {
+            "source": "src_esc2019",
+            "quote": "Table 9 summarizes the possible choices of foods to lower TC and LDL-C levels.",
+            "locator": "§7.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Given the cultural diversity of the European populations, they should be translated into practical behaviours, considering local habits and socio-economic factors.",
+            "locator": "§7.1",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Food choices to lower low-density lipoprotein cholesterol and improve the overall lipoprotein profile",
+            "locator": "Table 9 title",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Wholegrains",
+            "locator": "Table 9, cereals: to be preferred",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Refined bread, rice, and pasta, bis- [...] cuits, corn flakes",
+            "locator": "Table 9, cereals: to be used in moderation (cell text interleaved; covers white bread, rice, pasta and corn flakes)",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Lentils, beans, fava beans, peas,",
+            "locator": "Table 9, legumes: to be preferred",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Fresh or frozen fruit",
+            "locator": "Table 9, fruit: to be preferred",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Pastries, muffins, pies, croissants",
+            "locator": "Table 9, cereals: chosen occasionally in limited amounts",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Sucrose, honey, chocolate, sweets/",
+            "locator": "Table 9, sweets: to be used in moderation",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Cakes, ice creams, fructose, soft [...] drinks",
+            "locator": "Table 9, sweets: chosen occasionally in limited amounts (cell text interleaved)",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Dried fruit, jelly, jam, canned fruit, sorbets, ice lollies/popsicles, fruit juice",
+            "locator": "Table 9, fruit: to be used in moderation",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Lean and oily fish, poultry without skin",
+            "locator": "Table 9, meat and fish: to be preferred",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Sausages, salami, bacon, spare ribs, hot dogs, organ meats",
+            "locator": "Table 9, meat and fish: chosen occasionally in limited amounts",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Skimmed milk and yoghurt",
+            "locator": "Table 9, dairy: to be preferred",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Regular cheese, cream, whole milk",
+            "locator": "Table 9, dairy: chosen occasionally in limited amounts",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "coconut oils, butter, lard, bacon fat",
+            "locator": "Table 9, fats: chosen occasionally in limited amounts",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Olive oil, non-tropical vegetable oils, soft margarines",
+            "locator": "Table 9, fats: to be used in moderation (preferred column is vinegar, mustard, fat-free dressings)",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Grilling, boiling, steaming",
+            "locator": "Table 9, cooking procedures: to be preferred",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
+            "quote": "Stir-frying, roasting [...] Frying",
+            "locator": "Table 9, cooking procedures: moderation, then chosen occasionally in limited amounts",
+            "number_in_quote": null
+          }
+        ],
+        "note": "Each swap moves toward a less-limited Table 9 column, or is carried by the other claim it lists: butter or lard to plant oils goes from 'limited' to 'moderation' and rests mainly on claim_satfat_ldl (Table 8 and §7.1, oils 'in substitution of SFA-rich foods like butter or lard'); adding legumes is an addition from the 'preferred' column. The Lithuanian foods are illustrations of those lines, as §7.1 asks ('considering local habits'). Notes per swap: buckwheat (grikiai) is a whole grain; pearl barley is carried by the barley fibre quote (claim_fibre_ldl), not by 'wholegrains'; sour cream, gira and glazed curd bars are local examples of 'cream', soft drinks, frying and sweets. Water and unsweetened tea are illustrations of drinking fewer sugary drinks, not a claim of their own."
       }
     ],
     "levers": [
@@ -1820,6 +1956,99 @@
   "lessons_config": {
     "heading": "lessons_heading",
     "general_note": "lessons_general_note"
+  },
+  "swaps": [
+    {
+      "id": "swap_butter_oil",
+      "lever": "swap_sat_fat",
+      "text": "swap_butter_oil",
+      "claim": [
+        "claim_satfat_ldl",
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "swap_sausage_fish",
+      "lever": "swap_sat_fat",
+      "text": "swap_sausage_fish",
+      "claim": [
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "swap_cream_yoghurt",
+      "lever": "swap_sat_fat",
+      "text": "swap_cream_yoghurt",
+      "claim": [
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "swap_frying",
+      "lever": "swap_sat_fat",
+      "text": "swap_frying",
+      "claim": [
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "swap_rye_bread",
+      "lever": "more_fibre",
+      "text": "swap_rye_bread",
+      "claim": [
+        "claim_food_choices",
+        "claim_fibre_foods"
+      ]
+    },
+    {
+      "id": "swap_buckwheat_barley",
+      "lever": "more_fibre",
+      "text": "swap_buckwheat_barley",
+      "claim": [
+        "claim_food_choices",
+        "claim_fibre_foods",
+        "claim_fibre_ldl"
+      ]
+    },
+    {
+      "id": "swap_oat_porridge",
+      "lever": "more_fibre",
+      "text": "swap_oat_porridge",
+      "claim": [
+        "claim_food_choices",
+        "claim_fibre_ldl"
+      ]
+    },
+    {
+      "id": "swap_add_legumes",
+      "lever": "more_fibre",
+      "text": "swap_add_legumes",
+      "claim": [
+        "claim_food_choices",
+        "claim_fibre_foods"
+      ]
+    },
+    {
+      "id": "swap_drinks_water",
+      "lever": "cut_sweet_drinks",
+      "text": "swap_drinks_water",
+      "claim": [
+        "claim_sugar_tg",
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "swap_sweets_fruit",
+      "lever": "cut_sweet_drinks",
+      "text": "swap_sweets_fruit",
+      "claim": [
+        "claim_food_choices"
+      ]
+    }
+  ],
+  "swaps_config": {
+    "heading": "swaps_heading",
+    "note": "swaps_note"
   },
   "lint": {
     "forbidden": {
@@ -3626,6 +3855,54 @@
     "effect_ldl_swap_sat_fat": {
       "en": "Swap butter and lard for plant oils such as rapeseed, sunflower or olive oil. Mainly moves LDL, often 5–10% lower.",
       "lt": "Sviestą ir taukus pakeiskite augaliniais aliejais, pavyzdžiui, rapsų, saulėgrąžų ar alyvuogių. Daugiausia veikia MTL, dažnai jis sumažėja 5–10 %."
+    },
+    "swaps_heading": {
+      "en": "Everyday swaps, for example",
+      "lt": "Kasdieniai pakeitimai, pavyzdžiui"
+    },
+    "swaps_note": {
+      "en": "General examples from a Lithuanian kitchen, not a diet plan.",
+      "lt": "Bendri pavyzdžiai iš lietuviškos virtuvės, ne mitybos planas."
+    },
+    "swap_butter_oil": {
+      "en": "Instead of butter or lard: rapeseed, sunflower or olive oil",
+      "lt": "Vietoj sviesto ar taukų – rapsų, saulėgrąžų ar alyvuogių aliejus"
+    },
+    "swap_sausage_fish": {
+      "en": "Instead of sausages, frankfurters or bacon: fish, for example herring or mackerel, or chicken without skin",
+      "lt": "Vietoj dešros, dešrelių ar šoninės – žuvis, pavyzdžiui, silkė ar skumbrė, arba vištiena be odos"
+    },
+    "swap_cream_yoghurt": {
+      "en": "Instead of sour cream or cream: plain skimmed-milk yoghurt",
+      "lt": "Vietoj grietinės ar grietinėlės – nugriebto pieno natūralus jogurtas"
+    },
+    "swap_frying": {
+      "en": "Instead of frying: boiling, steaming or grilling",
+      "lt": "Vietoj kepimo riebaluose – virimas, garinimas ar kepimas ant grotelių"
+    },
+    "swap_rye_bread": {
+      "en": "Instead of white bread: wholegrain rye bread",
+      "lt": "Vietoj baltos duonos – viso grūdo ruginė duona"
+    },
+    "swap_buckwheat_barley": {
+      "en": "Instead of white rice or pasta: buckwheat or pearl barley",
+      "lt": "Vietoj baltųjų ryžių ar makaronų – grikiai ar perlinės kruopos"
+    },
+    "swap_oat_porridge": {
+      "en": "Instead of corn flakes or sweet breakfast cereal: oat flake porridge without added sugar",
+      "lt": "Vietoj kukurūzų ar saldžių pusryčių dribsnių – avižinių dribsnių košė be cukraus"
+    },
+    "swap_add_legumes": {
+      "en": "Add peas, beans or lentils, for example to soups",
+      "lt": "Įdėkite žirnių, pupelių ar lęšių, pavyzdžiui, į sriubas"
+    },
+    "swap_drinks_water": {
+      "en": "Instead of soft drinks, sweet gira or juice: water, or tea without sugar",
+      "lt": "Vietoj saldžių gaiviųjų gėrimų, saldžios giros ar sulčių – vanduo arba arbata be cukraus"
+    },
+    "swap_sweets_fruit": {
+      "en": "Instead of pastries or sweets such as glazed curd bars: fresh or frozen fruit and berries",
+      "lt": "Vietoj pyragaičių ar saldumynų, pavyzdžiui, glaistytų sūrelių – švieži ar šaldyti vaisiai ir uogos"
     },
     "str_family_testing_prompt": {
       "en": "When a doctor finds that inherited high cholesterol is likely or certain, guidelines recommend checking the cholesterol of close relatives too: parents, brothers and sisters, and children.",

@@ -11,6 +11,12 @@ import { CARD_HEAD } from '../results/present';
 // from an approved content pack with sourced options ("levers"); 2026.1 has none, so the
 // person writes their own habit. Options, when they arrive, are ordered only by which
 // values are outside the guideline ranges (QA M2).
+
+// Food swaps (2026.6): fixed examples inside their option, the same for everyone, never ranked.
+const swapsFor = (leverId: string) => (pack.swaps ?? []).filter((sw) => sw.lever === leverId);
+const leverClaims = (l: { id: string; claim: string | string[] }) =>
+  [...new Set([...[l.claim].flat(), ...swapsFor(l.id).flatMap((sw) => sw.claim)])];
+
 export function Plan() {
   const { t, settings, current, plan, setPlan, keepPanel, go, isSaved } = useApp();
   const r = useMemo(() => (current ? runRules(current) : null), [current]);
@@ -70,9 +76,16 @@ export function Plan() {
             <article class="card" key={l.id}>
               <h3 class="h3">{t(l.title)}</h3>
               <p>{t(l.text)}</p>
+              {swapsFor(l.id).length > 0 && pack.swaps_config && (
+                <div class="swaps">
+                  <h4>{t(pack.swaps_config.heading)}</h4>
+                  <ul>{swapsFor(l.id).map((sw) => <li key={sw.id}>{t(sw.text)}</li>)}</ul>
+                  <p class="small">{t(pack.swaps_config.note)}</p>
+                </div>
+              )}
               <p class="small">{t(`lever_effort_${l.effort}`)}</p>
               <button class="linkbtn" aria-expanded={openSrc === l.id} onClick={() => setOpenSrc(openSrc === l.id ? null : l.id)}>{t('lever_sources')}</button>
-              {openSrc === l.id && <SourceQuotes claimIds={[l.claim].flat()} />}
+              {openSrc === l.id && <SourceQuotes claimIds={leverClaims(l)} />}
               <button class={leverId === l.id ? 'btn' : 'btn ghost'} aria-pressed={leverId === l.id} onClick={() => choose(l.id, t(l.title))}>{t('lever_choose')}</button>
             </article>
           ))}

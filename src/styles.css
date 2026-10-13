@@ -278,3 +278,6 @@ dl.names dd { margin: 2px 0 0; }
 .family { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; display: grid; gap: 8px; }
 .lesson { display: grid; gap: 10px; }
 .lesson h1, .lesson p { margin: 0; }
+.swaps { display: grid; gap: 6px; padding: 10px 0 2px; border-top: 1px solid var(--line); }
+.swaps h4 { margin: 0; font-size: 1rem; }
+.swaps ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
