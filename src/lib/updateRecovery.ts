@@ -16,7 +16,7 @@ export function nothingToLose(d: Draft, current: Panel | null, isSaved: (id: str
     && d.testDate === today && !d.dateUnknown
     && (Object.keys(emptySafety) as (keyof typeof emptySafety)[]).every((k) => d.safety[k] === emptySafety[k]);
   const resultsSafe = current === null || isSaved(current.id);
-  const planSafe = settings.storageConsent === 'keep' || (plan.habits.length === 0 && plan.checkins.length === 0 && !plan.retestDate);
+  const planSafe = settings.storageConsent === 'keep' || (plan.habits.length === 0 && plan.checkins.length === 0 && !plan.retestDate && !Object.keys(plan.answers ?? {}).length);
   return draftUntouched && resultsSafe && planSafe;
 }
 const REOPEN = 'reopen-entry';
