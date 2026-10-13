@@ -45,7 +45,8 @@ export function More() {
   const deleteAll = async () => {
     await store.deleteEverything();
     try { sessionStorage.setItem('deleted', '1'); } catch { /* unavailable */ }
-    location.replace(location.pathname);
+    // Come back in the language the person chose, not the phone's (whole-app test L1).
+    location.replace(`${location.pathname}?lang=${lang}`);
   };
 
   return (
@@ -65,7 +66,7 @@ export function More() {
 
       <section class="section" aria-labelledby="size-h">
         <h2 id="size-h">{t('text_size')}</h2>
-        <div class="seg" role="group" aria-labelledby="size-h">
+        <div class="seg sizes" role="group" aria-labelledby="size-h">
           {([1, 2, 3] as const).map((s) => (
             <button key={s} aria-pressed={settings.textSize === s} onClick={() => updateSettings({ textSize: s })}>
               {t(`text_size_${s}`)}

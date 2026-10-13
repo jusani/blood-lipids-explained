@@ -4,6 +4,7 @@ import { markers } from '../content';
 import type { MarkerId } from '../content/types';
 import { setDefaultUnit, setFieldText } from '../lib/entry';
 import type { SheetValues } from '../lib/readSheet';
+import { isChunkLoadError, reloadForUpdate } from '../lib/updateRecovery';
 
 // v2 prototype (photoReading flag): fills the empty entry fields from a photo or PDF of the lab
 // sheet. Values only land in the form; the person checks each one there and on the confirm screen.
@@ -19,7 +20,9 @@ export function SheetReader() {
     try {
       const { readSheetFile } = await import('../lib/sheetReader');
       found = await readSheetFile(file, (p) => setState({ kind: 'busy', p }));
-    } catch {
+    } catch (e) {
+      const nothingTyped = !draft.helperName?.trim() && markers.every((m) => !draft.fields[m.id].text.trim());
+      if (isChunkLoadError(e) && nothingTyped && reloadForUpdate()) return;
       setDraft((d) => ({ ...d, sheetUsed: true, sheetFeedbackDone: false }));
       setState({ kind: 'failed' });
       return;

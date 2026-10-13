@@ -88,7 +88,7 @@ export function DoctorSummary() {
             {order.filter((id) => r.markers[id]).map((id) => {
               const m = r.markers[id]!;
               const range = m.suppressed ? s('summary_range_doctor') : id === 'ldl' ? ldlRange() : rangeText(id, sl) ?? s('summary_range_none');
-              return <tr key={id}><td>{markerName(id, sl)}</td><td>{valueText(m, sl)}</td><td>{range}</td></tr>;
+              return <tr key={id}><td>{markerName(id, sl)}</td><td data-label={s('summary_col_result')}>{valueText(m, sl)}</td><td data-label={s('summary_col_range')}>{range}</td></tr>;
             })}
           </tbody>
         </table>

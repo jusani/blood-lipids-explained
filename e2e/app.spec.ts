@@ -521,6 +521,68 @@ test('live build: photo reading on, reader files present but not precached or lo
   expect(requests.filter((p) => p.includes('/ocr/') || lazy.some((l) => p.endsWith(l)))).toEqual([]);
 });
 
+test('service worker: a release skips the HTTP cache and keeps the reader files in their own cache (U1, U3)', async () => {
+  const sw = readFileSync('dist/sw.js', 'utf8');
+  expect(sw).toContain("c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))");
+  const ocr = /const OCR_CACHE = 'ocr-([0-9a-f]{12})';/.exec(sw);
+  expect(ocr).not.toBeNull();
+  expect(sw).toContain('k !== CACHE && k !== OCR_CACHE');
+  expect(sw).toContain("path.includes('/ocr/') ? OCR_CACHE : CACHE");
+});
+
+test('narrow screen, largest text, Lithuanian: rows, doctor summary and text size fit (D1, D2, D4)', async ({ page }) => {
+  await startEn(page);
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.getByRole('button', { name: /^Text size/ }).click();
+  await page.getByRole('button', { name: /^Text size/ }).click();
+  await enterExample(page, { 'LDL cholesterol': '5,5', 'Total cholesterol': '7,4', 'HDL cholesterol': '1,3', Triglycerides: '1,1' });
+  await page.getByRole('button', { name: /Continue with/ }).click();
+  await page.getByRole('button', { name: 'Skip these' }).click();
+  await page.getByRole('button', { name: 'Show the explanation' }).click();
+  const dontKeep = page.getByRole('button', { name: "Don't keep anything" });
+  if (await dontKeep.isVisible()) await dontKeep.click();
+  await page.getByRole('button', { name: 'Change language' }).click();
+  await expect(page.getByRole('heading', { name: 'Kiti skaičiai' })).toBeVisible();
+  const noSideways = () => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(await noSideways()).toBeLessThanOrEqual(0);
+  // D2: in each row the value never sits on top of the name.
+  for (const row of await page.locator('.rows button.rowlink').all()) {
+    const [nm, v] = [await row.locator('.nm').boundingBox(), await row.locator('.v').boundingBox()];
+    const apart = nm!.x + nm!.width <= v!.x + 0.5 || v!.y >= nm!.y + nm!.height - 0.5;
+    expect(apart, await row.innerText()).toBe(true);
+    expect(await row.locator('.nm').evaluate((el) => el.scrollWidth <= el.clientWidth + 1), await row.innerText()).toBe(true);
+  }
+  await shot(page, '37-other-numbers-lt-320-largest');
+  // D1: the doctor summary shows each test as a block with labels, so no word is split.
+  await page.getByRole('button', { name: 'Gauti santrauką gydytojui' }).first().click();
+  await expect(page.locator('.docsheet td[data-label="Rezultatas"]').first()).toBeVisible();
+  expect(await page.locator('.docsheet td').first().evaluate((td) => getComputedStyle(td).display)).toBe('block');
+  for (const td of await page.locator('.docsheet td').all()) {
+    expect(await td.evaluate((el) => el.scrollWidth <= el.clientWidth + 1), await td.innerText()).toBe(true);
+  }
+  expect(await noSideways()).toBeLessThanOrEqual(0);
+  await shot(page, '38-summary-lt-320-largest');
+  await page.emulateMedia({ media: 'print' });
+  expect(await page.locator('.docsheet td').first().evaluate((td) => getComputedStyle(td).display)).toBe('table-cell');
+  await page.emulateMedia({ media: 'screen' });
+  // D4: More > text size: every option fits its button.
+  await page.getByRole('button', { name: 'Daugiau', exact: true }).click();
+  for (const b of await page.locator('.seg.sizes button').all()) {
+    expect(await b.evaluate((el) => el.scrollWidth <= el.clientWidth + 1), await b.innerText()).toBe(true);
+  }
+  await shot(page, '39-text-size-lt-320-largest');
+});
+
+test('delete everything keeps the chosen language, not the phone\'s (L1)', async ({ page }) => {
+  await startEn(page);
+  await page.getByRole('button', { name: 'Change language' }).click();
+  await page.getByRole('button', { name: 'Daugiau', exact: true }).click();
+  await page.getByRole('button', { name: 'Ištrinti visus mano duomenis' }).click();
+  await page.getByRole('button', { name: 'Ištrinti viską' }).click();
+  await expect(page.getByRole('button', { name: 'Paaiškinti mano rezultatus' })).toBeVisible();
+  expect(new URL(page.url()).searchParams.get('lang')).toBe('lt');
+});
+
 async function resultsFor(page: Page, values: Record<string, string>, familyYes = false) {
   await startEn(page);
   await enterExample(page, values);

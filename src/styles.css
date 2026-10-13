@@ -157,7 +157,10 @@ legend { font-weight: 700; padding: 0; margin-bottom: 8px; }
 .row .v { font-weight: 700; text-align: right; }
 .row .v small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; }
 .row .act { grid-column: 1 / -1; justify-self: start; }
-.row button.rowlink { background: none; border: 0; padding: 0; min-height: 44px; color: inherit; text-align: left; width: 100%; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.row button.rowlink { background: none; border: 0; padding: 0; min-height: 44px; color: inherit; text-align: left; width: 100%; cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; justify-content: space-between; }
+/* On a narrow screen with large text the value moves under the name instead of over it (whole-app test D2). */
+.row button.rowlink .nm { flex: 1 1 9em; }
+.row button.rowlink .v { flex: none; margin-left: auto; }
 .row button.rowlink .chev { color: var(--muted); }
 
 .trust { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
@@ -223,7 +226,7 @@ figure.quote { margin: 0; display: grid; gap: 4px; background: var(--surface); b
 figure.quote figcaption { font-weight: 700; font-size: .9rem; }
 figure.quote blockquote { margin: 0; padding-left: 10px; border-left: 3px solid var(--accent); }
 details.card summary { cursor: pointer; font-weight: 700; min-height: 44px; display: flex; align-items: center; }
-.docsheet { background: #fff; color: #111; border: 1px solid var(--line); border-radius: 12px; padding: 18px; font-size: .95rem; overflow-wrap: anywhere; }
+.docsheet { background: #fff; color: #111; border: 1px solid var(--line); border-radius: 12px; padding: 18px; font-size: .95rem; overflow-wrap: break-word; }
 .docsheet h2 { margin-top: 0; }
 .docsheet h3 { font-size: 1rem; margin: 16px 0 6px; }
 .docsheet table { width: 100%; border-collapse: collapse; }
@@ -283,3 +286,22 @@ dl.names dd { margin: 2px 0 0; }
 .swaps ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
 
 .notebox { width: 100%; box-sizing: border-box; background: var(--surface); border: 1px dashed var(--accent); border-radius: 12px; padding: 14px; resize: vertical; white-space: pre-wrap; }
+
+/* Whole-app test D1: on a phone the doctor summary shows each test as a small block, not three
+   squeezed columns. Print keeps the table. */
+@media screen and (max-width: 480px) {
+  .docsheet thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .docsheet table, .docsheet tbody, .docsheet tr, .docsheet td { display: block; }
+  .docsheet tr { padding: 8px 0; border-bottom: 1px solid #ccc; }
+  .docsheet td { border: 0; padding: 2px 0; }
+  .docsheet td:first-child { font-weight: 700; }
+  .docsheet td[data-label]::before { content: attr(data-label) ": "; color: #555; }
+}
+/* Whole-app test D3: the photo-reading answers as full-width buttons, so none breaks mid-label. */
+.readfeedback .opts { display: grid; gap: 8px; }
+.readfeedback a.pill { display: flex; align-items: center; justify-content: center; text-align: center; }
+/* Whole-app test D4: the three text sizes stack when they do not fit side by side. */
+@media (max-width: 400px) {
+  html[data-size="2"] .seg.sizes, html[data-size="3"] .seg.sizes { flex-direction: column; }
+  html[data-size="2"] .seg.sizes button + button, html[data-size="3"] .seg.sizes button + button { border-left: 0; border-top: 1.5px solid var(--accent); }
+}
