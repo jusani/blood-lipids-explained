@@ -1608,8 +1608,8 @@
       "lt": "Atsiliepimas apie programėlę"
     },
     "feedback_template": {
-      "en": "Did this help you understand your results?\n\nDid you feel calmer or more worried afterwards?\n\nAnything else?\n",
-      "lt": "Ar tai padėjo suprasti rezultatus?\n\nAr po to jautėtės ramiau, ar labiau nerimavote?\n\nKą nors dar?\n"
+      "en": "Did this help you understand your results?\n\nDid you feel calmer or more worried afterwards?\n\nIf you used photo reading: did it read any number wrong? Which one (LDL, total, HDL or triglycerides)?\n\nAnything else?\n",
+      "lt": "Ar tai padėjo suprasti rezultatus?\n\nAr po to jautėtės ramiau, ar labiau nerimavote?\n\nJei naudojote nuotraukų skaitymą: ar kuris nors skaičius nuskaitytas neteisingai? Kuris (MTL, bendrasis, DTL ar trigliceridai)?\n\nKą nors dar?\n"
     },
     "read_sheet_btn": {
       "en": "Read the numbers from a photo or PDF",
