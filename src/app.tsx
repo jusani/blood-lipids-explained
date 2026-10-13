@@ -134,6 +134,9 @@ export function App() {
     const next = { ...settingsRef.current, ...patch };
     settingsRef.current = next;
     setSettings(next);
+    // A ?lang= link only picks the first language; once the person changes it, the saved choice wins
+    // on the next visit (QA pass 14, L1).
+    if (patch.language && new URLSearchParams(location.search).has('lang')) history.replaceState(history.state, '', location.pathname);
     try { await store.saveSettings(next); } catch { /* storage unavailable: keep in memory */ }
   }, []);
 

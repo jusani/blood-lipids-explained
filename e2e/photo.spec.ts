@@ -132,6 +132,30 @@ test.describe('app left open while a release lands', () => {
     await expect(page.getByText('Read 4 of 4 values.')).toBeVisible();
   });
 
+  test('results held only in memory: nothing reloads, nothing is lost (U2-a)', async ({ page }) => {
+    await page.route(/\/assets\/sheetReader-[^/]+\.js$/, (route) => route.fulfill({ status: 404, body: '' }));
+    let loads = 0;
+    page.on('load', () => loads++);
+    await toEntry(page);
+    await page.getByRole('textbox', { name: 'LDL cholesterol' }).fill('4,1');
+    await page.getByRole('button', { name: /Continue with/ }).click();
+    await page.getByRole('button', { name: 'Skip these' }).click();
+    await page.getByRole('button', { name: 'Show the explanation' }).click();
+    await page.getByRole('button', { name: "Don't keep anything" }).click();
+    // Home with Back (the results stay in memory), then a new entry: the entry screen is empty.
+    while (!(await page.getByRole('button', { name: 'Explain my results' }).isVisible())) await page.goBack();
+    await page.getByRole('button', { name: 'Explain my results' }).click();
+    await page.getByRole('button', { name: /My own results/ }).click();
+    await page.getByRole('button', { name: 'Continue' }).click();
+    await expect(page.getByRole('textbox', { name: 'LDL cholesterol' })).toHaveValue('');
+    const before = loads;
+    await read(page, 'lab-report.pdf');
+    await expect(page.getByText('Reading did not work here. Please type the values in.')).toBeVisible();
+    expect(loads).toBe(before);
+    // Still the same page: the in-memory results were not wiped by a reload.
+    expect(await page.evaluate(() => performance.getEntriesByType('navigation').length)).toBe(1);
+  });
+
   test('with numbers already typed, nothing reloads and the usual message shows (U2)', async ({ page }) => {
     await page.route(/\/assets\/sheetReader-[^/]+\.js$/, (route) => route.fulfill({ status: 404, body: '' }));
     let loads = 0;
