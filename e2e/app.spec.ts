@@ -338,6 +338,62 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await page.getByRole('button', { name: 'See progress' }).click();
   await expect(page.getByText('Days done: 1')).toBeVisible();
   await shot(page, '18-progress-en');
+
+  // Supporter mode: the person picks, reads and may change the note; never any lab numbers.
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.getByRole('button', { name: 'Send an update to someone who supports me' }).click();
+  const habitBox = page.getByRole('checkbox', { name: 'When I have my morning coffee, I will go for a 10-minute walk.' });
+  const retestBox = page.getByRole('checkbox', { name: /^My re-test date/ });
+  await expect(habitBox).toBeChecked();
+  await expect(retestBox).not.toBeChecked();
+  await expect(page.getByText('Whatever you send stays in that chat app.')).toBeVisible();
+  const note = page.getByRole('textbox', { name: 'Message (you can change it):' });
+  const url = await page.evaluate(() => `${location.origin}${location.pathname}?lang=en`);
+  await expect(note).toHaveValue([
+    'My habit plan update:',
+    '• When I have my morning coffee, I will go for a 10-minute walk. Days done: 1 this week, 1 in total.',
+    '',
+    'Sent from Blood Lipids Explained, a free app that explains cholesterol results. It is not a medical advisor.',
+    url,
+  ].join('\n'));
+  await retestBox.check();
+  await expect(note).toHaveValue(/My next cholesterol test: /);
+  await habitBox.uncheck();
+  await expect(note).not.toHaveValue(/coffee/);
+  await habitBox.check();
+  await shot(page, '34-supporter-en');
+  await note.fill(`${await note.inputValue()}\nSee you Sunday!`);
+  await page.getByRole('button', { name: 'Copy message' }).click();
+  await expect(page.getByText('Copied.')).toBeVisible();
+  const sent = await page.evaluate(() => navigator.clipboard.readText());
+  expect(sent).toBe(await note.inputValue());
+  expect(sent).toContain('See you Sunday!');
+  for (const v of ['4,1', '4.1', '4,5', '4.5']) expect(sent).not.toContain(v);
+  expect(sent.match(/https?:\/\/\S+/g)).toEqual([url]);
+  await page.getByRole('button', { name: 'Lietuvių' }).click();
+  await expect(note).toHaveValue(/Ji nėra medicinos patarėja\.\n.*\?lang=lt$/);
+  // Lithuanian screen at 320 px: no sideways scroll, checkboxes keep their labels.
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.getByRole('button', { name: 'Change language' }).click();
+  await expect(page.getByRole('heading', { name: 'Naujienos jus palaikančiam žmogui' })).toBeVisible();
+  await expect(page.getByRole('checkbox', { name: /^Pakartotinio tyrimo data/ })).toBeChecked();
+  await expect(page.getByText('Tai, ką išsiųsite, liks toje pokalbių programėlėje.')).toBeVisible();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+  await shot(page, '35-supporter-lt-320');
+  await page.getByRole('button', { name: 'Keisti kalbą' }).click();
+  await page.setViewportSize({ width: 412, height: 915 });
+
+  // Hidden in helper mode: there the plan would be someone else's (QA SM2).
+  await page.reload();
+  await page.getByRole('button', { name: 'Explain my results' }).click();
+  await page.getByRole('button', { name: /Someone I'm helping/ }).click();
+  await expect(page.getByRole('button', { name: /Someone I'm helping/ })).toHaveAttribute('aria-pressed', 'true');
+  await page.goBack();
+  await page.getByRole('button', { name: "Today's habits" }).click();
+  await page.getByRole('button', { name: 'See progress' }).click();
+  await expect(page.getByText('Days done: 1')).toBeVisible();
+  await expect(page.getByRole('button', { name: /someone who supports/ })).toHaveCount(0);
   expect(outside).toEqual([]);
 });
 

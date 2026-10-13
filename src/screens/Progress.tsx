@@ -1,10 +1,11 @@
 import { useApp } from '../app';
+import { supporterOffered } from '../lib/supporterNote';
 import { daysDone, doneThisWeek, lastFourWeeks } from '../results/habits';
 
 // S15 Progress: days done (never resets) and a 4-week dot strip. No percentages, streaks or red.
 // The habit-strength curve waits for a sourced claim about how long habits take to form.
 export function Progress() {
-  const { t, plan } = useApp();
+  const { t, mode, plan, go } = useApp();
   return (
     <>
       <h1 tabIndex={-1}>{t('progress_title')}</h1>
@@ -22,6 +23,7 @@ export function Progress() {
         );
       })}
       <p class="small">{t('progress_legend')}</p>
+      {supporterOffered(mode, plan) && <button class="btn ghost" onClick={() => go('supporter')}>{t('supporter_btn')}</button>}
     </>
   );
 }

@@ -25,12 +25,13 @@ import { Plan as PlanScreen } from './screens/Plan';
 import { Retest } from './screens/Retest';
 import { Today } from './screens/Today';
 import { Progress } from './screens/Progress';
+import { Supporter } from './screens/Supporter';
 import { HabitQuestions } from './screens/HabitQuestions';
 import { LessonList, LessonScreen } from './screens/Lessons';
 
 export type Screen =
   | 'welcome' | 'whose' | 'entry' | 'safety' | 'confirm' | 'consent' | 'results'
-  | 'more' | 'about' | 'sources' | 'share' | 'detail' | 'summary' | 'plan' | 'retest' | 'today' | 'progress' | 'habitq' | 'lessons' | 'lesson';
+  | 'more' | 'about' | 'sources' | 'share' | 'detail' | 'summary' | 'plan' | 'retest' | 'today' | 'progress' | 'supporter' | 'habitq' | 'lessons' | 'lesson';
 
 export interface AppCtx {
   lang: Lang;
@@ -73,7 +74,7 @@ export const useApp = () => useContext(Ctx);
 const screens: Record<Screen, () => preact.JSX.Element> = {
   welcome: Welcome, whose: Whose, entry: Entry, safety: SafetyQuestions, confirm: Confirm, consent: Consent,
   results: Results, more: More, about: About, sources: Sources, share: Share,
-  detail: MarkerDetail, summary: DoctorSummary, plan: PlanScreen, retest: Retest, today: Today, progress: Progress, habitq: HabitQuestions,
+  detail: MarkerDetail, summary: DoctorSummary, plan: PlanScreen, retest: Retest, today: Today, progress: Progress, supporter: Supporter, habitq: HabitQuestions,
   lessons: LessonList, lesson: LessonScreen,
 };
 

@@ -3602,6 +3602,54 @@
       "en": "Every lab lays out its sheet differently. Look for any of these names or abbreviations and type in the number next to it.",
       "lt": "Kiekviena laboratorija lapą išdėsto savaip. Ieškokite bet kurio iš šių pavadinimų ar santrumpų ir įveskite šalia esantį skaičių."
     },
+    "supporter_btn": {
+      "en": "Send an update to someone who supports me",
+      "lt": "Siųsti naujienas žmogui, kuris mane palaiko"
+    },
+    "supporter_title": {
+      "en": "Update for someone who supports you",
+      "lt": "Naujienos jus palaikančiam žmogui"
+    },
+    "supporter_intro": {
+      "en": "Choose what to include. You can change the words before you send it.",
+      "lt": "Pasirinkite, ką įtraukti. Prieš siųsdami galite pakeisti žodžius."
+    },
+    "supporter_include": {
+      "en": "Include",
+      "lt": "Įtraukti"
+    },
+    "supporter_include_retest": {
+      "en": "My re-test date ({date})",
+      "lt": "Pakartotinio tyrimo data ({date})"
+    },
+    "supporter_message_label": {
+      "en": "Message (you can change it):",
+      "lt": "Žinutė (galite ją pakeisti):"
+    },
+    "supporter_chat_note": {
+      "en": "Whatever you send stays in that chat app.",
+      "lt": "Tai, ką išsiųsite, liks toje pokalbių programėlėje."
+    },
+    "supporter_copy": {
+      "en": "Copy message",
+      "lt": "Kopijuoti žinutę"
+    },
+    "supporter_note_heading": {
+      "en": "My habit plan update:",
+      "lt": "Mano įpročių plano naujienos:"
+    },
+    "supporter_note_counts": {
+      "en": "Days done: {week} this week, {total} in total.",
+      "lt": "Padaryta dienų: šią savaitę {week}, iš viso {total}."
+    },
+    "supporter_note_retest": {
+      "en": "My next cholesterol test: {date}.",
+      "lt": "Kitas mano cholesterolio tyrimas: {date}"
+    },
+    "supporter_note_closing": {
+      "en": "Sent from {app}, a free app that explains cholesterol results. It is not a medical advisor.",
+      "lt": "Išsiųsta iš „{app}“ – nemokamos programėlės, kuri paaiškina cholesterolio tyrimo rezultatus. Ji nėra medicinos patarėja."
+    },
     "str_ldl_guideline": {
       "en": {
         "self": "European guidelines aim for below 3.0 mmol/L for people at low risk and below 2.6 for people at moderate risk, and lower for people at higher risk. A doctor can tell you which applies to you.",
