@@ -581,6 +581,12 @@ test('delete everything keeps the chosen language, not the phone\'s (L1)', async
   await page.getByRole('button', { name: 'Ištrinti viską' }).click();
   await expect(page.getByRole('button', { name: 'Paaiškinti mano rezultatus' })).toBeVisible();
   expect(new URL(page.url()).searchParams.get('lang')).toBe('lt');
+  // Changing the language afterwards drops ?lang, so the next visit uses the saved choice.
+  await page.getByRole('button', { name: 'Keisti kalbą' }).click();
+  await expect(page.getByRole('button', { name: 'Explain my results' })).toBeVisible();
+  expect(new URL(page.url()).search).toBe('');
+  await page.reload();
+  await expect(page.getByRole('button', { name: 'Explain my results' })).toBeVisible();
 });
 
 async function resultsFor(page: Page, values: Record<string, string>, familyYes = false) {
