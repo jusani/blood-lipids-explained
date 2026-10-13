@@ -3640,7 +3640,7 @@
     },
     "supporter_note_counts": {
       "en": "Days done: {week} this week, {total} in total.",
-      "lt": "Padaryta dienų: šią savaitę {week}, iš viso {total}."
+      "lt": "Dienų, kada įvykdyta: šią savaitę {week}, iš viso {total}."
     },
     "supporter_note_retest": {
       "en": "My next cholesterol test: {date}.",
