@@ -39,6 +39,7 @@ describe('reload after a release only when nothing would be lost (U2, QA pass 14
   it('a plan not kept on the device: not safe; a kept plan: safe', () => {
     expect(nothingToLose(emptyDraft(), null, saved([]), none, habitPlan, today)).toBe(false);
     expect(nothingToLose(emptyDraft(), null, saved([]), none, { ...emptyPlan, retestDate: '2027-01-13' }, today)).toBe(false);
+    expect(nothingToLose(emptyDraft(), null, saved([]), none, { ...emptyPlan, answers: { q1: 'a' } }, today)).toBe(false);
     expect(nothingToLose(emptyDraft(), null, saved([]), keep, habitPlan, today)).toBe(true);
   });
 });
