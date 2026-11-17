@@ -3,7 +3,7 @@ import { pack } from '../src/content';
 import { fieldsFor, habitsFor } from '../src/lib/habitExamples';
 import { translate } from '../src/lib/i18n';
 
-describe('daily habit examples (2026.7 preview)', () => {
+describe('daily habit ideas (2026.7)', () => {
   it('13 short ideas, at most two per option, each inside an option, in pack order, sourced', () => {
     const habits = pack.habit_examples ?? [];
     expect(habits).toHaveLength(13);

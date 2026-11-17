@@ -294,7 +294,7 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await butterCard.getByRole('button', { name: 'Where this comes from' }).click();
   await expect(butterCard.getByText(/Table 9 summarizes the possible choices of foods/)).toBeVisible();
   await butterCard.getByRole('button', { name: 'Where this comes from' }).click();
-  // 2026.7 preview: daily habits inside the option; one tap fills both fields, which stay editable.
+  // 2026.7: daily habit ideas inside the option; one tap fills both fields, which stay editable.
   const habitGroup = butterCard.getByRole('group', { name: 'Daily habits to try' });
   await expect(habitGroup.getByRole('button')).toHaveText([
     'Thin butter, or none, on bread',
@@ -376,6 +376,7 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await habitBox.uncheck();
   await expect(note).not.toHaveValue(/coffee/);
   await habitBox.check();
+  await expect(note).toHaveValue(/coffee/); // the note rewrites itself after a tick; wait before typing
   await shot(page, '34-supporter-en');
   await note.fill(`${await note.inputValue()}\nSee you Sunday!`);
   await page.getByRole('button', { name: 'Copy message' }).click();
