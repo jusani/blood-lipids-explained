@@ -5,6 +5,7 @@ import { isoDay, MAX_HABITS, newId } from '../lib/model';
 import { rankLevers, runRules } from '../lib/rules';
 import { cuesFor, type HabitAnswers } from '../lib/questionnaire';
 import { SourceQuotes } from '../components/SourceQuotes';
+import { fieldsFor, habitsFor } from '../lib/habitExamples';
 import { CARD_HEAD } from '../results/present';
 
 // S11 options + S12 if-then builder. Habit options are lifestyle claims, so they come only
@@ -15,10 +16,10 @@ import { CARD_HEAD } from '../results/present';
 // Food swaps (2026.6): fixed examples inside their option, the same for everyone, never ranked.
 const swapsFor = (leverId: string) => (pack.swaps ?? []).filter((sw) => sw.lever === leverId);
 const leverClaims = (l: { id: string; claim: string | string[] }) =>
-  [...new Set([...[l.claim].flat(), ...swapsFor(l.id).flatMap((sw) => sw.claim)])];
+  [...new Set([...[l.claim].flat(), ...swapsFor(l.id).flatMap((sw) => sw.claim), ...habitsFor(l.id).flatMap((h) => h.claim)])];
 
 export function Plan() {
-  const { t, settings, current, plan, setPlan, keepPanel, go, isSaved } = useApp();
+  const { t, lang, settings, current, plan, setPlan, keepPanel, go, isSaved } = useApp();
   const r = useMemo(() => (current ? runRules(current) : null), [current]);
   const [cue, setCue] = useState('');
   const [action, setAction] = useState('');
@@ -38,6 +39,16 @@ export function Plan() {
     setLeverId(id);
     setAction(title);
     setMsg(t('lever_chosen'));
+    document.getElementById('cue')?.focus();
+  };
+
+  // One tap fills both fields with a ready-made habit; the person can still change either (2026.7).
+  const useHabit = (leverId: string, h: Parameters<typeof fieldsFor>[0]) => {
+    const f = fieldsFor(h, lang);
+    setLeverId(leverId);
+    setCue(f.cue);
+    setAction(f.action);
+    setMsg(t('habit_filled'));
     document.getElementById('cue')?.focus();
   };
 
@@ -83,6 +94,14 @@ export function Plan() {
                   <p class="small">{t(pack.swaps_config.note)}</p>
                 </div>
               )}
+              {habitsFor(l.id).length > 0 && (
+                <div class="habitex" role="group" aria-label={t('habits_heading')}>
+                  <h4>{t('habits_heading')}</h4>
+                  {habitsFor(l.id).map((h) => (
+                    <button key={h.id} class="pill" aria-pressed={leverId === l.id && cue === fieldsFor(h, lang).cue && action === fieldsFor(h, lang).action} onClick={() => useHabit(l.id, h)}>{h.text[lang].label}</button>
+                  ))}
+                </div>
+              )}
               <p class="small">{t(`lever_effort_${l.effort}`)}</p>
               <button class="linkbtn" aria-expanded={openSrc === l.id} onClick={() => setOpenSrc(openSrc === l.id ? null : l.id)}>{t('lever_sources')}</button>
               {openSrc === l.id && <SourceQuotes claimIds={leverClaims(l)} />}
@@ -125,9 +144,12 @@ export function Plan() {
         <section class="card" aria-labelledby="ifthen-h">
           <h2 id="ifthen-h">{t('ifthen_title')}</h2>
           <p class="small">{t('ifthen_why')}</p>
+          {/* Next to the fields it describes (QA DH6). */}
+          {msg && <p class="notice" role="status">{msg}</p>}
           <div class="field">
             <label for="cue"><span class="lt">{t('ifthen_when')}</span></label>
             <div class="inputrow"><input id="cue" value={cue} maxLength={120} placeholder={t('ifthen_cue_ph')} onInput={(e) => setCue((e.target as HTMLInputElement).value)} /></div>
+            <p class="small">{t('ifthen_own_moment')}</p>
             <div class="chips">
               {cues.map((c) => <button key={c} class="pill" aria-pressed={cue === c} onClick={() => setCue(c)}>{c}</button>)}
             </div>
@@ -140,7 +162,6 @@ export function Plan() {
           <button class="btn" onClick={save}>{t(keeping ? 'ifthen_save' : 'ifthen_save_keep')}</button>
         </section>
       )}
-      {msg && <p class="small" role="status">{msg}</p>}
 
       {plan.habits.length > 0 && (
         <div class="stack">

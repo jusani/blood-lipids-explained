@@ -1754,6 +1754,18 @@
     "supporter_note_closing": {
       "en": "Sent from {app}, a free app that explains cholesterol results. It is not a medical advisor.",
       "lt": "Išsiųsta iš „{app}“ – nemokamos programėlės, kuri paaiškina cholesterolio tyrimo rezultatus. Ji nėra medicinos patarėja."
+    },
+    "habits_heading": {
+      "en": "Daily habits to try",
+      "lt": "Kasdieniai įpročiai, kuriuos galima išbandyti"
+    },
+    "habit_filled": {
+      "en": "Filled in below. Change any words you like, then save.",
+      "lt": "Įrašyta žemiau. Galite pakeisti žodžius ir išsaugoti."
+    },
+    "ifthen_own_moment": {
+      "en": "Or pick your own moment:",
+      "lt": "Arba pasirinkite savo akimirką:"
     }
   },
   "_about": "App-owned screen text, lab names and input heuristics (no medical claims). scripts/import-pack.mjs merges it with the evidence pack into pack.json.",

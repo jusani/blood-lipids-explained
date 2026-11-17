@@ -61,7 +61,7 @@ test('full flow: per-field unit prompt, safety questions, consent, saved after r
   await expect(page.getByText('This app is not a medical advisor.')).toBeVisible();
   await expect(page.locator('.dcard')).toHaveCount(0);
   await expect(page.getByRole('img', { name: 'LDL cholesterol 4.1 on the guideline range bar' })).toBeVisible();
-  await expect(page.getByText('Content version 2026.6')).toBeVisible();
+  await expect(page.getByText(/Content version 2026\.7/)).toBeVisible();
   await shot(page, '05-results-en');
 
   await page.reload();
@@ -236,7 +236,7 @@ test('doctor cards first, marker detail with quotes, doctor summary in its own l
   const sheet = page.locator('.docsheet');
   await expect(sheet).toContainText('Triglycerides 12.0 mmol/L. Guideline level for talking to a doctor: 10.0 mmol/L or higher.');
   await expect(sheet).toContainText('Would a direct LDL or ApoB test help?');
-  await expect(sheet).toContainText('Content version 2026.6');
+  await expect(sheet).toContainText('Content version 2026.7');
   await expect(sheet).not.toContainText(/your|my /i);
   await shot(page, '12-summary-en');
   await page.getByRole('button', { name: 'Lietuvių' }).click();
@@ -280,7 +280,7 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await expect(page.getByRole('heading', { name: 'Changes that often help people with results like these' })).toBeVisible();
   const titles = await page.locator('article.card h3').allTextContents();
   expect(titles[0]).toBe('Swap butter and lard for plant oils');
-  expect(titles[titles.length - 1]).toBe('Avoid trans fats and hard margarine');
+  expect(titles).not.toContain('Avoid trans fats and hard margarine'); // retired in 2026.7
   // 2026.6 food swaps: inside their option, fixed order, with the "not a diet plan" note.
   const butterCard = page.locator('article.card', { has: page.getByRole('heading', { name: 'Swap butter and lard for plant oils' }) });
   await expect(butterCard.getByRole('heading', { name: 'Everyday swaps, for example' })).toBeVisible();
@@ -294,6 +294,21 @@ test('plan: if-then habit, Today check-in, progress, re-test calendar file, befo
   await butterCard.getByRole('button', { name: 'Where this comes from' }).click();
   await expect(butterCard.getByText(/Table 9 summarizes the possible choices of foods/)).toBeVisible();
   await butterCard.getByRole('button', { name: 'Where this comes from' }).click();
+  // 2026.7 preview: daily habits inside the option; one tap fills both fields, which stay editable.
+  const habitGroup = butterCard.getByRole('group', { name: 'Daily habits to try' });
+  await expect(habitGroup.getByRole('button')).toHaveText([
+    'Thin butter, or none, on bread',
+    'Herring, skinless chicken or vegetables on a sandwich',
+  ]);
+  await habitGroup.getByRole('button').first().click();
+  await expect(page.getByLabel('When…')).toHaveValue('I make my breakfast sandwich');
+  await expect(page.getByLabel('then I will…')).toHaveValue('skip the butter or spread it thin');
+  await expect(habitGroup.getByRole('button').first()).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#ifthen-h ~ .notice')).toHaveText('Filled in below. Change any words you like, then save.');
+  await page.getByLabel('then I will…').fill('skip the butter');
+  await expect(habitGroup.getByRole('button').first()).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.getByText('Or pick your own moment:')).toBeVisible();
+  await shot(page, '40-plan-habit-filled-en');
   await butterCard.scrollIntoViewIfNeeded();
   await shot(page, '36-plan-swaps-en');
   await page.getByRole('button', { name: 'Where this comes from' }).first().click();

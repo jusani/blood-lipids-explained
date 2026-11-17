@@ -15,6 +15,11 @@ function allTexts(): { key: string; lang: Lang; text: string }[] {
     }
   }
   for (const s of pack.sources) for (const lang of langs) if (s.summary?.[lang]) out.push({ key: `source:${s.id}`, lang, text: s.summary[lang]! });
+  for (const h of pack.habit_examples ?? []) for (const lang of langs) {
+    out.push({ key: `${h.id}.label`, lang, text: h.text[lang].label });
+    out.push({ key: `${h.id}.when`, lang, text: h.text[lang].when });
+    out.push({ key: `${h.id}.then`, lang, text: h.text[lang].then });
+  }
   return out;
 }
 
@@ -77,8 +82,8 @@ describe('stay-educational lint (pm.md §11.1, architect §16.1, QA M4, C4)', ()
     }
   });
 
-  it('uses the approved evidence pack 2026.6', () => {
-    expect(pack.manifest.version).toBe('2026.6');
+  it('uses the approved evidence pack 2026.7', () => {
+    expect(pack.manifest.version).toBe('2026.7');
     expect(pack.manifest.approved_by).toBeTruthy();
     expect(pack.manifest.languages).toContain('lt');
     expect(pack.rules.levers.length).toBeGreaterThan(0);

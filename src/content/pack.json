@@ -1,17 +1,18 @@
 {
   "manifest": {
-    "version": "2026.6",
-    "released": "2026-10-13",
+    "version": "2026.7",
+    "released": "2026-11-17",
     "approved_by": "Justina",
-    "approved_date": "2026-10-13",
-    "approval_record": "Justina, Lithuanian text review thread 2026-10-13 08:34 UTC: 'yes' to the food swaps (2026.6-draft.3), with one LT fix: swap_drinks_water 'gaivųjų' -> 'gaiviųjų'",
-    "supersedes": "2026.5",
+    "approved_date": "2026-11-17",
+    "approval_record": "Justina, build thread 2026-11-17 09:51 UTC: 'yes' to the 13 daily habit ideas (2026.7-draft.3: LT labels, EN labels, when/then fills), no edits",
+    "supersedes": "2026.6",
     "reviewed_by_clinician": null,
     "languages": [
       "en",
       "lt"
     ],
     "lt_native_review": false,
+    "lt_pending": [],
     "evidence_standard": "guideline_or_sr_of_rcts (architect); society consensus statements for lab thresholds only",
     "sources_list": "evidence/sources.md",
     "canary": "evidence/canary.yaml",
@@ -20,7 +21,7 @@
       "lt",
       "en"
     ],
-    "imported_from": "content/content-pack-2026.6.yaml"
+    "imported_from": "content/content-pack-2026.7.yaml"
   },
   "display": {
     "status_labels": false
@@ -1190,40 +1191,6 @@
         "note": "Supports testing relatives only once a doctor has diagnosed inherited high cholesterol in a family member (pass 2 fix)."
       },
       {
-        "id": "claim_transfat",
-        "text": "lever_avoid_trans_fat_text",
-        "sources": [
-          "src_esc2019"
-        ],
-        "evidence": "guideline",
-        "quotes": [
-          {
-            "source": "src_esc2019",
-            "quote": "Quantitatively, dietary trans fatty acids have a similar elevating effect on LDL-C to that of SFAs; however, while SFAs increase HDL-C levels, trans fats decrease them.",
-            "locator": "§7.1",
-            "number_in_quote": null
-          },
-          {
-            "source": "src_esc2019",
-            "quote": "Avoid dietary trans fats",
-            "locator": "Table 8: ++ (5–10%) level A for LDL-C, ++ level A for HDL-C",
-            "number_in_quote": null
-          },
-          {
-            "source": "src_esc2019",
-            "quote": "‘Partially hydrogenated fatty acids’ of industrial origin represent the major source of trans fatty acids in the diet",
-            "locator": "§7.1",
-            "number_in_quote": null
-          },
-          {
-            "source": "src_esc2019",
-            "quote": "Trans fats and hard margarines",
-            "locator": "Table 9, cooking fat row, column 'to be chosen occasionally in limited amounts', marked '(better to avoid them)'",
-            "number_in_quote": null
-          }
-        ]
-      },
-      {
         "id": "claim_fibre_foods",
         "text": "lever_more_fibre_text",
         "sources": [
@@ -1660,6 +1627,12 @@
           },
           {
             "source": "src_esc2019",
+            "quote": "Raw and cooked vegetables",
+            "locator": "Table 9, vegetables: to be preferred (2026.7: 'or vegetables' in habit_sandwich_filling)",
+            "number_in_quote": null
+          },
+          {
+            "source": "src_esc2019",
             "quote": "Lean and oily fish, poultry without skin",
             "locator": "Table 9, meat and fish: to be preferred",
             "number_in_quote": null
@@ -1742,20 +1715,6 @@
         ]
       },
       {
-        "id": "avoid_trans_fat",
-        "helps": {
-          "ldl": "++",
-          "total": "++",
-          "non_hdl": "++",
-          "hdl": "++"
-        },
-        "evidence": "guideline",
-        "effort": "small",
-        "title": "lever_avoid_trans_fat_title",
-        "text": "lever_avoid_trans_fat_text",
-        "claim": "claim_transfat"
-      },
-      {
         "id": "less_alcohol",
         "helps": {
           "tg": "+++"
@@ -1831,7 +1790,7 @@
         "total",
         "tg"
       ],
-      "rank_last": [
+      "retired": [
         "avoid_trans_fat"
       ],
       "show": {
@@ -2043,6 +2002,259 @@
       "text": "swap_sweets_fruit",
       "claim": [
         "claim_food_choices"
+      ]
+    }
+  ],
+  "habit_examples": [
+    {
+      "id": "habit_butter_thin",
+      "lever": "swap_sat_fat",
+      "text": {
+        "en": {
+          "label": "Thin butter, or none, on bread",
+          "when": "When I make my breakfast sandwich",
+          "then": "I will skip the butter or spread it thin"
+        },
+        "lt": {
+          "label": "Plonai sviesto ant duonos arba visai be jo",
+          "when": "Kai ruošiu pusryčių sumuštinį",
+          "then": "sviesto netepsiu arba užtepsiu ploną sluoksnį"
+        }
+      },
+      "claim": [
+        "claim_satfat_ldl"
+      ]
+    },
+    {
+      "id": "habit_sandwich_filling",
+      "lever": "swap_sat_fat",
+      "text": {
+        "en": {
+          "label": "Herring, skinless chicken or vegetables on a sandwich",
+          "when": "When I make a sandwich",
+          "then": "I will use herring, chicken without skin or vegetables instead of sausage"
+        },
+        "lt": {
+          "label": "Silkė, vištiena be odos ar daržovės ant sumuštinio",
+          "when": "Kai ruošiu sumuštinį",
+          "then": "vietoj dešros dėsiu silkės, vištienos be odos ar daržovių"
+        }
+      },
+      "claim": [
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "habit_rye_bread",
+      "lever": "more_fibre",
+      "text": {
+        "en": {
+          "label": "Wholegrain rye bread",
+          "when": "When I eat bread",
+          "then": "I will choose wholegrain rye"
+        },
+        "lt": {
+          "label": "Viso grūdo ruginė duona",
+          "when": "Kai valgau duonos",
+          "then": "rinksiuosi viso grūdo ruginę"
+        }
+      },
+      "claim": [
+        "claim_food_choices",
+        "claim_fibre_foods"
+      ]
+    },
+    {
+      "id": "habit_oat_porridge",
+      "lever": "more_fibre",
+      "text": {
+        "en": {
+          "label": "Oat porridge for breakfast",
+          "when": "When I have breakfast",
+          "then": "I will have oat porridge"
+        },
+        "lt": {
+          "label": "Avižinė košė pusryčiams",
+          "when": "Kai pusryčiauju",
+          "then": "valgysiu avižinių dribsnių košės"
+        }
+      },
+      "claim": [
+        "claim_fibre_ldl",
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "habit_tea_sugar",
+      "lever": "cut_sweet_drinks",
+      "text": {
+        "en": {
+          "label": "Tea or coffee with less sugar",
+          "when": "When I have tea or coffee",
+          "then": "I will skip the sugar or use less"
+        },
+        "lt": {
+          "label": "Arbata ar kava su mažiau cukraus",
+          "when": "Kai geriu arbatą ar kavą",
+          "then": "nedėsiu cukraus arba dėsiu mažiau"
+        }
+      },
+      "claim": [
+        "claim_sugar_tg"
+      ]
+    },
+    {
+      "id": "habit_sweet_fruit",
+      "lever": "cut_sweet_drinks",
+      "text": {
+        "en": {
+          "label": "Fruit or berries when you want something sweet",
+          "when": "When I want something sweet, like a curd bar",
+          "then": "I will have fruit or berries"
+        },
+        "lt": {
+          "label": "Vaisiai ar uogos, kai norisi saldaus",
+          "when": "Kai užsinoriu saldumyno, pavyzdžiui, sūrelio",
+          "then": "valgysiu vaisių ar uogų"
+        }
+      },
+      "claim": [
+        "claim_food_choices"
+      ]
+    },
+    {
+      "id": "habit_evening_beer",
+      "lever": "less_alcohol",
+      "text": {
+        "en": {
+          "label": "Alcohol-free beer or tea in the evening",
+          "when": "When I feel like a beer in the evening",
+          "then": "I will choose alcohol-free beer or tea"
+        },
+        "lt": {
+          "label": "Vakare nealkoholinis alus ar arbata",
+          "when": "Kai vakare užsinoriu alaus",
+          "then": "rinksiuosi nealkoholinį alų ar arbatą"
+        }
+      },
+      "claim": [
+        "claim_alcohol_tg"
+      ]
+    },
+    {
+      "id": "habit_walk_after_dinner",
+      "lever": "move_more",
+      "text": {
+        "en": {
+          "label": "A short walk after dinner",
+          "when": "When I finish dinner",
+          "then": "I will go for a short walk"
+        },
+        "lt": {
+          "label": "Trumpas pasivaikščiojimas po vakarienės",
+          "when": "Kai pavakarieniauju",
+          "then": "trumpai pasivaikščiosiu"
+        }
+      },
+      "claim": [
+        "claim_exercise_tg_hdl"
+      ]
+    },
+    {
+      "id": "habit_stairs",
+      "lever": "move_more",
+      "text": {
+        "en": {
+          "label": "Stairs instead of the lift",
+          "when": "When I need to go up a floor",
+          "then": "I will take the stairs, not the lift"
+        },
+        "lt": {
+          "label": "Laiptai vietoj lifto",
+          "when": "Kai reikia lipti į aukštą",
+          "then": "lipsiu laiptais, ne liftu"
+        }
+      },
+      "claim": [
+        "claim_exercise_tg_hdl"
+      ]
+    },
+    {
+      "id": "habit_tv_no_snack",
+      "lever": "lose_weight",
+      "text": {
+        "en": {
+          "label": "TV without snacks",
+          "when": "When I watch TV in the evening",
+          "then": "I will skip snacks"
+        },
+        "lt": {
+          "label": "Televizorius be užkandžių",
+          "when": "Kai vakare žiūriu televizorių",
+          "then": "neužkandžiausiu"
+        }
+      },
+      "claim": [
+        "claim_weight_lipids",
+        "claim_weight_tg"
+      ]
+    },
+    {
+      "id": "habit_smaller_plate",
+      "lever": "lose_weight",
+      "text": {
+        "en": {
+          "label": "A smaller plate",
+          "when": "When I serve myself food",
+          "then": "I will use a smaller plate"
+        },
+        "lt": {
+          "label": "Mažesnė lėkštė",
+          "when": "Kai įsidedu maisto",
+          "then": "imsiu mažesnę lėkštę"
+        }
+      },
+      "claim": [
+        "claim_weight_lipids",
+        "claim_weight_tg"
+      ]
+    },
+    {
+      "id": "habit_coffee_no_cigarette",
+      "lever": "stop_smoking",
+      "text": {
+        "en": {
+          "label": "Morning coffee without a cigarette",
+          "when": "When I have my morning coffee",
+          "then": "I will skip the cigarette and take a short walk instead"
+        },
+        "lt": {
+          "label": "Rytinė kava be cigaretės",
+          "when": "Kai geriu rytinę kavą",
+          "then": "nerūkysiu, o trumpai pasivaikščiosiu"
+        }
+      },
+      "claim": [
+        "claim_smoking"
+      ]
+    },
+    {
+      "id": "habit_craving_wait",
+      "lever": "stop_smoking",
+      "text": {
+        "en": {
+          "label": "A few minutes and a glass of water when a craving comes",
+          "when": "When I feel like smoking",
+          "then": "I will wait a few minutes and drink a glass of water"
+        },
+        "lt": {
+          "label": "Kelios minutės ir stiklinė vandens, kai norisi parūkyti",
+          "when": "Kai užsinoriu parūkyti",
+          "then": "palauksiu kelias minutes ir išgersiu stiklinę vandens"
+        }
+      },
+      "claim": [
+        "claim_smoking"
       ]
     }
   ],
@@ -3650,6 +3862,18 @@
       "en": "Sent from {app}, a free app that explains cholesterol results. It is not a medical advisor.",
       "lt": "Išsiųsta iš „{app}“ – nemokamos programėlės, kuri paaiškina cholesterolio tyrimo rezultatus. Ji nėra medicinos patarėja."
     },
+    "habits_heading": {
+      "en": "Daily habits to try",
+      "lt": "Kasdieniai įpročiai, kuriuos galima išbandyti"
+    },
+    "habit_filled": {
+      "en": "Filled in below. Change any words you like, then save.",
+      "lt": "Įrašyta žemiau. Galite pakeisti žodžius ir išsaugoti."
+    },
+    "ifthen_own_moment": {
+      "en": "Or pick your own moment:",
+      "lt": "Arba pasirinkite savo akimirką:"
+    },
     "str_ldl_guideline": {
       "en": {
         "self": "European guidelines aim for below 3.0 mmol/L for people at low risk and below 2.6 for people at moderate risk, and lower for people at higher risk. A doctor can tell you which applies to you.",
@@ -4089,14 +4313,6 @@
     "lever_more_fibre_text": {
       "en": "Fibre from oats, barley, beans, lentils, vegetables and wholegrains lowers LDL. Oat and barley fibre lowers it by about 3–5% when you eat enough of it every day.",
       "lt": "Skaidulos iš avižų, miežių, pupelių, lęšių, daržovių ir viso grūdo produktų mažina MTL. Avižų ir miežių skaidulos jį sumažina maždaug 3–5 %, kai jų kasdien suvalgoma pakankamai."
-    },
-    "lever_avoid_trans_fat_title": {
-      "en": "Avoid trans fats and hard margarine",
-      "lt": "Venkite transriebalų ir kietojo margarino"
-    },
-    "lever_avoid_trans_fat_text": {
-      "en": "Trans fats raise LDL about as much as saturated fat does, and they also lower HDL. Look for 'partially hydrogenated' on labels.",
-      "lt": "Transriebalai MTL padidina maždaug tiek pat, kiek sotieji riebalai, be to, sumažina DTL. Etiketėse ieškokite žodžių „iš dalies hidrinti“."
     },
     "lever_less_alcohol_title": {
       "en": "Drink less alcohol, if you drink",

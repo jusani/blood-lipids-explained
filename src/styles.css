@@ -283,3 +283,6 @@ dl.names dd { margin: 2px 0 0; }
 .swaps ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
 
 .notebox { width: 100%; box-sizing: border-box; background: var(--surface); border: 1px dashed var(--accent); border-radius: 12px; padding: 14px; resize: vertical; white-space: pre-wrap; }
+.habitex { display: grid; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
+.habitex h4 { margin: 0; font-size: 1rem; }
+.habitex .pill { text-align: left; border-radius: 12px; }

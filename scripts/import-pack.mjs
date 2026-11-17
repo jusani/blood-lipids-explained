@@ -123,6 +123,27 @@ if (ev.swaps_config) {
   need(ev.swaps_config.order === 'fixed', 'swaps_config.order must be fixed');
 }
 
+// Daily habit examples (2026.7): ready-made when/then pairs inside an option, the same for everyone.
+// Their text is a { when, then } pair per language, so it leaves the strings table here.
+const habitExamples = [];
+for (const h of ev.habit_examples ?? []) {
+  need(leverIds.has(h.lever), `habit ${h.id}: lever ${h.lever} missing`);
+  const txt = strings[h.text];
+  need(txt?.en?.label && txt?.en?.when && txt?.en?.then && txt?.lt?.label && txt?.lt?.when && txt?.lt?.then, `habit ${h.id}: label/when/then text missing in EN or LT`);
+  // The app saves "When {cue}, I will {action}." / "Kai {cue}, tada {action}.", so the pair must fit it (QA DH1).
+  if (txt?.en && txt?.lt) {
+    need(/^When /.test(txt.en.when) && /^I will /.test(txt.en.then), `habit ${h.id}: EN must read "When …" / "I will …"`);
+    need(/^Kai /.test(txt.lt.when), `habit ${h.id}: LT "when" must start with "Kai "`);
+  }
+  for (const c of [h.claim].flat()) need(claimIdSet.has(c), `habit ${h.id}: claim ${c} missing`);
+  if (txt) habitExamples.push({ id: h.id, lever: h.lever, text: { en: txt.en, lt: txt.lt }, claim: [h.claim].flat() });
+  delete strings[h.text];
+}
+if (ev.habit_examples_config) {
+  need(ev.habit_examples_config.use_answers === false, 'habit_examples_config.use_answers must be false (QA §18)');
+  need(ev.habit_examples_config.order === 'fixed', 'habit_examples_config.order must be fixed');
+}
+
 // Strings: app screen text plus evidence strings. A key in both is an error.
 for (const k of Object.keys(strings)) need(!app.strings[k], `string ${k} is in both packs`);
 const missingLt = Object.keys(strings).filter((k) => !strings[k].lt);
@@ -173,6 +194,7 @@ const pack = {
     .sort((a, b) => a.order - b.order),
   lessons_config: ev.lessons_config ? { heading: ev.lessons_config.heading, general_note: ev.lessons_config.general_note } : null,
   swaps: (ev.swaps ?? []).map((sw) => ({ id: sw.id, lever: sw.lever, text: sw.text, claim: [sw.claim].flat() })),
+  habit_examples: habitExamples,
   swaps_config: ev.swaps_config ? { heading: ev.swaps_config.heading, note: ev.swaps_config.note } : null,
   lint: app.lint,
   strings: { ...app.strings, ...strings },

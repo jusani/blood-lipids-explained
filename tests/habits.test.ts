@@ -143,7 +143,7 @@ describe('levers in the approved 2026.5 pack', async () => {
     expect(r.outOfRange).toEqual(['total']);
     const ids = rankLevers(r.outOfRange).map((l) => l.id);
     expect(ids.length).toBeGreaterThanOrEqual(3);
-    expect(ids[ids.length - 1]).toBe('avoid_trans_fat');
+    expect(ids).not.toContain('avoid_trans_fat'); // retired in 2026.7
   });
   it('HDL alone still gets none', () => expect(rankLevers(['hdl'])).toEqual([]));
   it('no lever is a supplement', () => {

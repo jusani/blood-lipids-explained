@@ -91,6 +91,13 @@ export interface Lever {
   text: string;
   claim: string | string[];
 }
+export interface HabitExample {
+  id: string;
+  lever: string;
+  /** label: the short idea on the button; when/then: what a tap fills in (2026.7-draft.3). */
+  text: Record<Lang, { label: string; when: string; then: string }>;
+  claim: string[];
+}
 export interface Swap {
   id: string;
   lever: string;
@@ -157,6 +164,8 @@ export interface ContentPack {
   /** Food swaps (2026.6): fixed examples shown inside their lever, in pack order, same for everyone. */
   swaps?: Swap[];
   swaps_config?: { heading: string; note: string } | null;
+  /** Daily habit examples (2026.7): fixed when/then pairs shown inside their option, same for everyone. */
+  habit_examples?: HabitExample[];
   /** Ranges, doctor flags and claims from the evidence pack. Read only by the rules engine. */
   rules: {
     units: { chol_mg_dl_per_mmol: number; tg_mg_dl_per_mmol: number; mg_dl_rule?: string };
